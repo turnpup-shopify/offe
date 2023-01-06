@@ -5,7 +5,7 @@
   endif
 
   assign cover_link = false
-  if link_text == blank and link_url != blank and description == blank
+  if link_url != blank and description == blank
     assign cover_link = true
   endif
 
@@ -60,7 +60,8 @@
 %}
 
 <div
-  class="featured-content--root"
+  id="custom-featured-{{ block_id }}"  
+  class="featured-content--root" 
   data-banner-promo="{{ banner_promo }}"
   data-box-around-text="{{ box_around_text }}"
   data-container-width="{{ container_width }}"
@@ -106,111 +107,51 @@
       data-background-color="{{ bg_color }}"
     {% endunless %}
   >
-  <div class="featured-content--image">
-    {% if collection.metafields['marketing-tile']['image-link'] != blank and isGridPromo != 'false' %}
-       <div class="offe-custom-collection-marketing-tile-image" data-darken-mobile="true" style="
-          height: 100%;
-          background-size: cover;
-          background-repeat: no-repeat;
-          position: absolute;
-          width: 100%;
-          background-image: url('{{collection.metafields['marketing-tile']['image-link']}}')";>
-       </div>
-    {% elsif image %}
-      {%
-        render "image",
-        image: image,
-        full_width: true,
-        parallax: parallax_enabled,
-        cover: cover_image,
-        cover_mobile: cover_image_mobile,
-        darken: darken_image,
-        darken_mobile: darken_image_mobile
-      %}
-    {% elsif show_placeholder_image %}
-      {%
-        render "placeholder",
-        type: "lifestyle",
-        aspect_ratio: 2.4,
-        placeholder_index: 2,
-        cover: cover_image,
-        cover_mobile: cover_image_mobile,
-        darken: darken_image,
-        darken_mobile: darken_image_mobile
-      %}
-    {% endif %}
-  </div>
-  {% if timer_enabled %}
-    <div class="flash-sale-sticker"> 
-      <img src="{{ settings.flash-sticker-url }}">
+    <div class="featured-content--image">
+      {%- liquid
+        if image
+          render "image", image: image, mobile_image: mobile_image, full_width: true, parallax: parallax_enabled, cover: cover_image, cover_mobile: cover_image_mobile, darken: darken_image, darken_mobile: darken_image_mobile
+        elsif show_placeholder_image
+          render "placeholder", type: "lifestyle", aspect_ratio: 2.4, placeholder_index: 2, cover: cover_image, cover_mobile: cover_image_mobile, darken: darken_image, darken_mobile: darken_image_mobile
+        endif
+      -%}
     </div>
-  {% endif %}    
 
     {%- if text_exists -%}
       <div class="featured-content--text">
         <div class="featured-content--text-container">
-          {% if overline != blank or timer_enabled %}
+          {%- if overline != blank -%}
             <h2 class="featured-content--overline" data-item="overline">
-              {% if timer_enabled %}
-                {% render 'countdown-timer', 
-                   start_date: new_start_date,
-                   end_date: new_end_date,
-                   block_id: block_id,
-                   timer_label_color: timer_label_color,
-                   timer_label_text_color: timer_label_text_color;
-                %}
-              {% elsif collection.metafields['marketing-tile']['subtitle'] != blank and isGridPromo != 'false' %}
-                {{ collection.metafields['marketing-tile']['subtitle'] }}                                                              	
-              {% else %}
-                {{ overline | escape }}                                               
+              {{- overline | escape -}}
             </h2>
-          {% endif %}
+          {%- endif -%}
 
-          {% if title != blank or collection.metafields['custom']['header_title'] != blank %}
-            <h3 class="featured-content--title" data-item="{{ heading_type }} {{ mobile_heading_type }}">
-              {% comment %}{{ title | escape }}{% endcomment %}
-              {% if collection.metafields['marketing-tile']['header'] != blank and isGridPromo != 'false' %}
-                {{ collection.metafields['marketing-tile']['header'] }}                                                              	
-              {% else %}
-                {{ title | escape }}                               
-                {% endif %}
-              
-              {% endif %}
+          {%- if title != blank -%}
+            <h3
+              class="featured-content--title"
+              data-item="{{ heading_type }} {{ mobile_heading_type }}"
+            >
+              {{- title | escape -}}
             </h3>
-          {% endif %}
+          {%- endif -%}
 
-          {% if description != blank %}
+          {%- if description != blank -%}
             <div class="featured-content--description" data-item="rte-content">
-              {% if collection.metafields['marketing-tile']['description'] != blank and isGridPromo != 'false' %}
-                {{ collection.metafields['marketing-tile']['description'] }}                                                              	
-              {% else %}
-                {{ description}}                                  	
-              {% endif %} 
+              {{- description -}}
             </div>
-          {% endif %}
+          {%- endif -%}
 
-          {% if link_text != blank %}
-          <div class="featured-content--link"  data-item="block-link">
-            {% if collection.metafields['marketing-tile']['link-text'] == blank and make_klaviyo_form  %}
-              <button class="{{ title | remove:" " }}" id="klaviyo_form_button">{{ link_text }}</button>                            	
-            {% else %}
-              <a href="
-
-                {% if collection.metafields['marketing-tile']['link'] != blank and isGridPromo != 'false' %}
-                  {{ collection.metafields['marketing-tile']['link'] }}                                                              	
-                {% else %}
-                  {{ link_url }}                                  	
-                {% endif %} 
-
-
-               " id="{{ block_id }}">
-                  {% if collection.metafields['marketing-tile']['link-text'] != blank and isGridPromo != 'false' %}
-                    {{ collection.metafields['marketing-tile']['link-text'] }}                                                              	
-                  {% else %}                                     
-                    {{ link_text }}                                  	
-                  {% endif %} 
-              </a>
-            {% endif %}
+          {%- if link_text != blank -%}
+            <div class="featured-content--link" data-item="block-link">
+              {%- if cover_link -%}
+                <div class="featured-content--link--container">
+                  {{- link_text -}}
+                </div>
+              {%- else -%}
+                <a class="featured-content--link--container" href="{{ link_url }}">
+                  {{- link_text -}}
+                </a>
+              {%- endif -%}
             </div>
           {%- endif -%}
         </div>
@@ -223,7 +164,6 @@
     </a>
   {%- endif -%}
 </div>
-
 <!-- TURNPUP ADD STYLING -->
 <style>  
   .custom-featured-{{ block_id }} button.{{title|remove:" "}} {
