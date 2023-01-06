@@ -1,6 +1,5 @@
 {
   "current": {
-    "color--accent": "#f07855",
     "bg-color--light": "#e3c4e8",
     "bg-color--dark": "#bdaf50",
     "bg-color--body": "#f8f6f4",
@@ -61,6 +60,7 @@
     "checkout_accent_color": "#000000",
     "checkout_button_color": "#000000",
     "checkout_error_color": "#f07855",
+    "color--accent": "#f07855",
     "turnpup-product--label-color": "accent-light-text",
     "bg-color--announcement": "#e6d4ff",
     "announcement--alternative-text": false,
@@ -68,8 +68,11 @@
       "header": {
         "type": "header",
         "settings": {
+          "background-color": "none",
+          "light-text": false,
           "logo": "shopify:\/\/shop_images\/61b98ee5-66e7-4616-8552-ed6a4c25394f_c2168402-381b-46dd-be39-1fc276f126ce.png",
-          "logo-height-range": 75,
+          "logo-height": 35,
+          "mobile-logo-height": 30,
           "menu": "new-nav",
           "mobile_menu": "mobile-new-nav"
         }
@@ -106,7 +109,9 @@
           "1584642450700"
         ],
         "settings": {
-          "show-currency-selector": true,
+          "background-color": "dark",
+          "light-text": false,
+          "show-region-selector": true,
           "show-locale-selector": true,
           "show-payment-icons": false
         }
@@ -286,9 +291,9 @@
         "settings": {
           "text-style": "light-with-overlay",
           "background-color": "light",
-          "spacing": true,
           "mobile-overlay": true,
           "container-width": 4,
+          "spacing": true,
           "width": 4,
           "mobile-width": "2",
           "heading": "Grid with overlay",
@@ -459,7 +464,6 @@
         "header": {
           "type": "header",
           "settings": {
-            "logo-height-range": 50,
             "menu": "main-menu"
           }
         },
@@ -496,7 +500,6 @@
             "1584642450700"
           ],
           "settings": {
-            "show-currency-selector": true,
             "show-locale-selector": true,
             "show-payment-icons": true
           }
@@ -676,9 +679,9 @@
           "settings": {
             "text-style": "light-with-overlay",
             "background-color": "light",
-            "spacing": true,
             "mobile-overlay": true,
             "container-width": 4,
+            "spacing": true,
             "width": 4,
             "mobile-width": "2",
             "heading": "Grid with overlay",
@@ -840,7 +843,6 @@
         "header": {
           "type": "header",
           "settings": {
-            "logo-height-range": 50,
             "menu": "main-menu"
           }
         },
@@ -877,7 +879,6 @@
             "1584642450700"
           ],
           "settings": {
-            "show-currency-selector": true,
             "show-locale-selector": true,
             "show-payment-icons": true
           }
@@ -1056,9 +1057,9 @@
           "settings": {
             "text-style": "light-with-overlay",
             "background-color": "light",
-            "spacing": true,
             "mobile-overlay": true,
             "container-width": 4,
+            "spacing": true,
             "width": 4,
             "mobile-width": "2",
             "heading": "Grid with overlay",
@@ -1220,7 +1221,6 @@
         "header": {
           "type": "header",
           "settings": {
-            "logo-height-range": 50,
             "menu": "main-menu"
           }
         },
@@ -1257,7 +1257,6 @@
             "1584642450700"
           ],
           "settings": {
-            "show-currency-selector": true,
             "show-locale-selector": true,
             "show-payment-icons": true
           }
@@ -1436,9 +1435,9 @@
           "settings": {
             "text-style": "light-with-overlay",
             "background-color": "light",
-            "spacing": true,
             "mobile-overlay": true,
             "container-width": 4,
+            "spacing": true,
             "width": 4,
             "mobile-width": "2",
             "heading": "Grid with overlay",
