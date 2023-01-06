@@ -64,6 +64,27 @@
         "type": "color",
         "id": "bg-color--button",
         "label": "Button background"
+      },
+      {
+        "type": "color",
+        "id": "color--header",
+        "label": "Header text"
+      },
+      {
+        "type": "color",
+        "id": "color--footer",
+        "label": "Footer text"
+      },
+      {
+        "type": "color",
+        "id": "bg-color--footer",
+        "label": "Footer background"
+      },
+      {
+        "id": "nav-hover-color-offe-custom",
+        "label": "Custom Nav Color - Hover",
+        "type": "color",
+        "default": "#000000"
       }
     ]
   },
@@ -109,6 +130,28 @@
           }
         ],
         "default": "medium"
+      },
+      {
+        "type": "header",
+        "content": "CUSTOM FONT OVERRIDE FOR HEADERS"
+      },
+      {
+        "id": "offe-custom-heading-override",
+        "label": "Use Custom Font for Heading?",
+        "type": "checkbox",
+        "default": false
+      },
+      {
+        "id": "offe-custom-heading-custom-font",
+        "label": "Heading Custom Font",
+        "type": "text",
+        "default": "Swear Display"
+      },
+      {
+        "id": "offe-custom-heading-custom-weight",
+        "label": "Heading Custom Weight",
+        "type": "text",
+        "default": "700"
       },
       {
         "type": "header",
