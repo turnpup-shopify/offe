@@ -72,7 +72,7 @@
           "light-text": false,
           "logo": "shopify:\/\/shop_images\/61b98ee5-66e7-4616-8552-ed6a4c25394f_c2168402-381b-46dd-be39-1fc276f126ce.png",
           "logo-height": 65,
-          "mobile-logo-height": 30,
+          "mobile-logo-height": 65,
           "menu": "new-nav",
           "mobile_menu": "mobile-new-nav"
         }
