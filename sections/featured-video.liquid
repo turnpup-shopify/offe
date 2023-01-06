@@ -11,10 +11,9 @@
   assign thumbnail = section.settings.image
   assign video_url = section.settings.video-url
 
+  assign video_id = '_9VUPq3SxOc'
   if video_url.id
     assign video_id = video_url.id
-  else
-    assign video_id = '_9VUPq3SxOc'
   endif
 
   assign cover_link = false
@@ -26,13 +25,14 @@
   if light_text
     assign button_type = 'inverted-secondary-button'
   endif
+
+  render 'section-assets', name: 'featured-video'
 -%}
 
 {% comment %} View {% endcomment %}
-<div
+<featured-video-root
   class="featured-video--root"
   data-section-id="{{ section.id }}"
-  data-js-class="FeaturedVideo"
   data-background-color="{{ bg_color }}"
   data-darken-video="{{ darken_video }}"
   data-full-width="{{ full_width }}"
@@ -42,48 +42,46 @@
   data-video-type="{{ video_url.type }}"
   data-video-id="{{ video_id }}"
 >
-  {% if cover_link %}
+  {%- if cover_link -%}
     <a href="{{ button_url }}">
-  {% endif %}
+  {%- endif -%}
 
   <div class="featured-video--body">
-
     <div class="featured-video--container">
-
-      {% if thumbnail %}
+      {%- if thumbnail -%}
         <div class="featured-video--thumbnail">
-          {%
+          {%-
             render 'image',
             image: thumbnail | img_url,
             full_width: true
-          %}
+          -%}
         </div>
 
         <div class="featured-video--play-mobile">
-          {% render 'icons', icon: 'play-solid' %}
+          {%- render 'icons', icon: 'play-solid' -%}
         </div>
-      {% endif %}
+      {%- endif -%}
 
       <div class="featured-video--header">
-        {% if heading != blank %}
+        {%- if heading != blank -%}
           <div class="featured-video--heading">
             <h2 data-item="featured-heading">{{ heading }}</h2>
           </div>
-        {% endif %}
+        {%- endif -%}
 
-        {% if sub_heading != blank %}
+        {%- if sub_heading != blank -%}
           <div class="featured-video--sub-heading" data-item="block-heading">
-            {{ sub_heading }}
+            {{- sub_heading -}}
           </div>
-        {% endif %}
+        {%- endif -%}
 
-        {% if thumbnail %}
+        {%- if thumbnail -%}
           <div class="featured-video--play">
-            {% render 'icons', icon: 'play-solid' %}
+            {%- render 'icons', icon: 'play-solid' -%}
           </div>
-        {% endif %}
+        {%- endif -%}
 
-        {% if button_text != blank %}
+        {%- if button_text != blank -%}
           <a
             class="featured-video--button"
             data-item="{{ button_type }}"
@@ -91,30 +89,28 @@
           >
             <div>{{ button_text }}</div>
           </a>
-        {% endif %}
+        {%- endif -%}
       </div>
 
       <div id="player-{{ section.id }}"></div>
-
     </div>
-
   </div>
 
-  {% if heading != blank or sub_heading != blank or button_text != blank %}
+  {%- if heading != blank or sub_heading != blank or button_text != blank -%}
     <div class="featured-video--header-mobile" data-mq="small">
-      {% if heading != blank %}
+      {%- if heading != blank -%}
         <div class="featured-video--heading-mobile">
           <h2 data-item="section-heading">{{ heading }}</h2>
         </div>
-      {% endif %}
+      {%- endif -%}
 
-      {% if sub_heading != blank %}
+      {%- if sub_heading != blank -%}
         <div class="featured-video--sub-heading-mobile" data-item="block-heading">
-          {{ sub_heading }}
+          {{- sub_heading -}}
         </div>
-      {% endif %}
+      {%- endif -%}
 
-      {% if button_text != blank %}
+      {%- if button_text != blank -%}
         <a
           class="featured-video--button"
           href="{{ button_url }}"
@@ -126,23 +122,14 @@
         >
           <div>{{ button_text }}</div>
         </a>
-      {% endif %}
+      {%- endif -%}
     </div>
-  {% endif %}
+  {%- endif -%}
 
-  {% if cover_link %}
+  {%- if cover_link -%}
     </a>
-  {% endif %}
-</div>
-
-<script>
-  // YouTube callback
-  if (typeof onYouTubeIframeAPIReady != 'function') {
-    function onYouTubeIframeAPIReady() {
-      window.dispatchEvent(new Event('theme:utils:youtubeAPIReady'));
-    }
-  }
-</script>
+  {%- endif -%}
+</featured-video-root>
 
 {% schema %}
   {
@@ -175,7 +162,8 @@
           { "label": "None", "value": "none" },
           { "label": "Light", "value": "light" },
           { "label": "Dark", "value": "dark" },
-          { "label": "Accent", "value": "accent" }
+          { "label": "Accent 1", "value": "accent-1" },
+          { "label": "Accent 2", "value": "accent-2" }
         ],
         "default": "none"
       },
@@ -194,7 +182,7 @@
        "id": "light-text",
        "label": "Use light text color",
        "type": "checkbox",
-       "default": false
+       "default": true
       },
       {
         "type": "checkbox",

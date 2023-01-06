@@ -17,7 +17,6 @@
   For more info see: https://support.troopthemes.com/guide/color-swatch-guide
 {% endcomment %}
 
-
 {% capture swatch_color_list %}
       taromix taromix.png
       bluebell bluebell.png
@@ -84,19 +83,46 @@
       slateblue #9BA0BE
 {% endcapture %}
 
+{% comment %} Don't change anything below this comment {% endcomment %}
 
-{%- assign swatch_colors = swatch_color_list | newline_to_br | split: '<br />' -%}
+<script>
+  theme.swatches = new class Swatches {
+    constructor() {
+      this.getColors();
+    }
 
-{%- for color in swatch_colors -%}
-  {%- unless color == blank -%}
-    {% assign key = color | downcase | split: ' ' | first %}
-    {% assign value = color | downcase | split: ' ' | last %}
+    getColors() {
+      {%- assign swatch_colors = swatch_color_list | newline_to_br | split: '<br />' -%}
+      {%- for color in swatch_colors -%}
+        {%- unless color == blank -%}
+          {%- assign key = color | downcase | split: ' ' | first -%}
+          {%- assign value = color | downcase | split: ' ' | last -%}
 
-    {% if value contains '.png' or value contains '.jp' or value contains '.gif' %}
-      theme.swatches['{{ key }}'] = '{{ value | file_img_url: "100x" }}';
-    {% else %}
-      theme.swatches['{{ key }}'] = '{{ value }}';
-    {% endif %}
+          {% if value contains '.png' or value contains '.jp' or value contains '.gif' %}
+            this['{{ key }}'] = '{{ value | file_img_url: "100x" }}';
+          {% else %}
+            this['{{ key }}'] = '{{ value }}';
+          {% endif %}
 
-  {%- endunless -%}
-{%- endfor -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    }
+
+    setColors(inputs = false) {
+      if (!inputs) return
+
+      inputs.forEach(input => {
+        const swatch = input.nextElementSibling;
+        const swatch_color = input.value.toLowerCase().replace(/\s+/g, '');
+
+        if (this[swatch_color] === undefined) {
+          swatch.style['background-color'] = swatch_color;
+        } else if (this[swatch_color].indexOf('cdn.shopify.com') > -1) {
+          swatch.style['background-image'] = `url(${this[swatch_color]})`;
+        } else {
+          swatch.style['background-color'] = this[swatch_color];
+        }
+      });
+    }
+  };
+</script>

@@ -5,15 +5,17 @@
   assign contact_button_t = 'contact_page.button' | t
   assign open_maps_t = 'sections.map.open_in_maps' | t
   assign shopify_disclaimer_t = 'shopify.online_store.spam_detection.disclaimer_html' | t
+
+  render 'section-assets', name: 'contact', type: 'style'
 -%}
 
 <div class="contact--container">
   {%- if store_address != blank or store_hours != blank -%}
     <div class="contact--left-column">
-      {% unless store_address == blank %}
+      {%- unless store_address == blank -%}
         <div class="contact--address">
           <address class="contact--address-text" data-item="paragraph">
-            {{ store_address | newline_to_br }}
+            {{- store_address | newline_to_br -}}
           </address>
 
           <div class="contact--address-link" data-item="block-link">
@@ -22,22 +24,22 @@
               target="_blank"
               rel="noreferrer"
             >
-              {{ open_maps_t }}
+              {{- open_maps_t -}}
             </a>
           </div>
         </div>
-      {% endunless %}
+      {%- endunless -%}
 
-      {% unless store_hours == blank %}
+      {%- unless store_hours == blank -%}
         <div class="contact--hours" data-item="paragraph">
-          {{ store_hours }}
+          {{- store_hours -}}
         </div>
-      {% endunless %}
+      {%- endunless -%}
     </div>
   {%- endif -%}
 
   <div class="contact--right-column">
-    {% form 'contact', id: form_id %}
+    {%- form 'contact', id: form_id -%}
       <div class="contact--form-details">
         <label for="{{ form_id }}-contact-name" data-item="hidden-text">
           {{ contact_name_t }}
@@ -56,7 +58,7 @@
         />
 
         <label for="{{ form_id }}-contact-email" data-item="hidden-text">
-          {{ contact_email_t }}
+          {{- contact_email_t -}}
         </label>
         <input
           class="{% if form.errors contains 'email' %}error{% endif %}"
@@ -74,7 +76,7 @@
       </div>
 
       <label for="{{ form_id }}-contact-textarea" data-item="hidden-text">
-        {{ contact_message_t }}
+        {{- contact_message_t -}}
       </label>
       <textarea
         class="{% if form.errors contains 'body' %}error{% endif %}"
@@ -88,24 +90,24 @@
 
       <div class="contact--form-submit" data-item="{{ button_type }}">
         <button type="submit" value="{{ contact_button_t }}">
-          {{ contact_button_t }}
+          {{- contact_button_t -}}
         </button>
       </div>
 
       {%- if form.posted_successfully? or form.errors -%}
-        <script>window.location.hash = '#feedback-bar--{{ feedback_message }}';</script>
+        <script>window.location.hash = '#feedback-bar--contact-form';</script>
       {%- endif -%}
 
       <div data-item="hidden-text">
         {% comment %} remove the below line to display reCAPTCHA badge {% endcomment %}
         {{ shopify_disclaimer_t }}
       </div>
-    {% endform %}
+    {%- endform -%}
 
-    {% if show_social_sharing %}
+    {%- if show_social_sharing -%}
       <div class="contact--social">
-        {% render 'social-follow' %}
+        {%- render 'social-follow' -%}
       </div>
-    {% endif %}
+    {%- endif -%}
   </div>
 </div>

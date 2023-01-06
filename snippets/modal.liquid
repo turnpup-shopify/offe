@@ -1,17 +1,15 @@
+{%- render 'section-assets', name: 'modal', type: 'script' -%}
+
 <div class="modal--window">
-  <div
-    class="modal--mask"
-    data-js-class="Transition"
-    data-transition="at_start"
-  ></div>
+  <transition-root class="modal--mask" data-transition="at_start"></transition-root>
   <div class="modal--container"></div>
   <div class="modal--close" tabindex="0">
-    {% render 'icons', icon: 'cross' %}
+    {%- render 'icons', icon: 'cross' -%}
   </div>
   <div class="modal--prev">
-    {% render 'icons', icon: 'chevron-left' %}
+    {%- render 'icons', icon: 'chevron-left' -%}
   </div>
   <div class="modal--next">
-    {% render 'icons', icon: 'chevron-right' %}
+    {%- render 'icons', icon: 'chevron-right' -%}
   </div>
 </div>

@@ -1,56 +1,54 @@
 {%- liquid
   assign locale_label_t = 'general.localization.language' | t
-  assign currency_label_t = 'general.localization.currency' | t
+  assign region_label_t = 'general.localization.region' | t
 
   assign form_id = id | append: '--localization'
   assign locale_id = id | append: '--locale'
-  assign currency_id = id | append: '--currency'
+  assign region_id = id | append: '--region'
 
   form 'localization', id: form_id
-    if locale_enable
-      capture locale_values
-        for locale in form.available_locales
+    if locale_enabled
+      for locale in localization.available_languages
+        capture locale_values
+          echo locale_values
           echo locale.iso_code | append: ','
-        endfor
-      endcapture
+        endcapture
+
+        capture locale_names
+          echo locale_names
+          echo locale.endonym_name | append: ','
+        endcapture
+      endfor
 
       assign locale_values = locale_values | split: ','
-
-      capture locale_names
-        for locale in form.available_locales
-          echo locale.endonym_name | append: ','
-        endfor
-      endcapture
-
       assign locale_names = locale_names | split: ','
 
-      render 'disclosure', label_name: locale_label_t, option_names: locale_names, option_values: locale_values, current_value: form.current_locale.iso_code, id: locale_id, input_name: 'locale_code', type: 'localization'
+      render 'disclosure', label_name: locale_label_t, option_names: locale_names, option_values: locale_values, current_value: localization.language.iso_code, id: locale_id, input_name: 'locale_code', type: 'localization'
     endif
 
-    if currency_enable
-      capture currency_values
-        for currency in form.available_currencies
-          echo currency.iso_code | append: ','
-        endfor
-      endcapture
+    if region_enabled
+      for country in localization.available_countries
+        capture flag
+          echo '<span class="flag--root" data-value="' | append: country.iso_code | append: '"></span>'
+        endcapture
 
-      assign currency_values = currency_values | split: ','
+        capture region_values
+          echo region_values
+          echo country.iso_code | append: ','
+        endcapture
 
-      capture currency_names
-        for currency in form.available_currencies
-          echo currency.iso_code
+        capture region_names
+          echo region_names
+          echo '<span class="disclosure-option--wrapper">' | append: flag
+          echo '<p>' | append: country.name | append: '</p></span><p>('
+          echo country.currency.iso_code | append: ' ' | append: country.currency.symbol | append: ')</p>,'
+        endcapture
+      endfor
 
-          if currency.symbol
-            echo ' ' | append: currency.symbol
-          endif
+      assign region_values = region_values | split: ','
+      assign region_names = region_names | split: ','
 
-          echo ','
-        endfor
-      endcapture
-
-      assign currency_names = currency_names | split: ','
-
-      render 'disclosure', label_name: currency_label_t, option_names: currency_names, option_values: currency_values, current_value: form.current_currency.iso_code, id: currency_id, input_name: 'currency_code', type: 'localization'
+      render 'disclosure', label_name: region_label_t, option_names: region_names, option_values: region_values, current_value: localization.country.iso_code, id: region_id, input_name: 'country_code', type: 'localization'
     endif
   endform
 -%}

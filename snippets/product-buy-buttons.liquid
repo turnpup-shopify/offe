@@ -3,6 +3,8 @@
   assign out_of_stock_t = 'products.out_of_stock' | t
 
   assign current_variant = product.selected_or_first_available_variant
+
+  render 'section-assets', name: 'product-buy-buttons', type: 'script'
 %}
 
 <product-buy-buttons-root
@@ -10,10 +12,10 @@
   data-id="{{ id }}"
   style="display:block;"
 >
-  {% form 'product', product, class: 'product-buy-buttons--form', id: id %}
+  {%- form 'product', product, class: 'product-buy-buttons--form', id: id -%}
     {{- form | payment_terms -}}
 
-    {% if request.page_type != "password" %}
+    {%- if request.page_type != "password" -%}
       <div class="product-buy-buttons--primary"
         data-enabled="true"
         {% if smart_payment_enabled and product.selling_plan_groups == empty %}
@@ -38,12 +40,12 @@
             -%}
           </span>
           <span class="product-buy-buttons--spinner">
-            {% render 'loading-spinner', size: '41px' %}
+            {%- render 'loading-spinner', size: '41px' -%}
           </span>
         </button>
       </div>
 
-      {% if smart_payment_enabled and product.available and product.selling_plan_groups == empty %}
+      {%- if smart_payment_enabled and product.available and product.selling_plan_groups == empty -%}
         <div
           class="product-buy-buttons--smart"
           {%- unless current_variant.available -%}
@@ -52,8 +54,8 @@
         >
           {{- form | payment_button -}}
         </div>
-      {% endif %}
-    {% endif %}
+      {%- endif -%}
+    {%- endif -%}
 
     <select class="product-buy-buttons--select" name="id" data-mq="none">
       {%- for variant in product.variants -%}
@@ -72,7 +74,7 @@
         </option>
       {%- endfor -%}
     </select>
-  {% endform %}
+  {%- endform -%}
 </product-buy-buttons-root>
 
 {%- if settings.product--quick-add-enabled == false -%}

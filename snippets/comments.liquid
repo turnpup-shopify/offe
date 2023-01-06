@@ -8,65 +8,63 @@
   assign no_comments_t = 'blog.article.no_comments' | t
   assign button_t = 'blog.comment.button' | t
   assign moderated_notice_t = 'blog.comment.moderated_notice' | t
+
+  render 'section-assets', name: 'comments', type: 'style'
 -%}
 
-{% paginate article.comments by 8 %}
-
-{% comment %} View {% endcomment %}
+{%- paginate article.comments by 8 -%}
   <div id="comments" class="comments--root">
-
-    {% if article.comments.size > 0 %}
+    {%- if article.comments.size > 0 -%}
       <div class="comments--list">
-        {% for comment in article.comments %}
+        {%- for comment in article.comments -%}
           <div id="comment-{{ comment.id }}" class="comment--item">
             <p class="comment--meta">
               <span data-item="accent-text">{{ comment.author }}</span> &mdash;
               <span data-item="light-accent-text">
-                {%
+                {%-
                   render "utils",
                   utility: "timesince",
                   created_at: comment.created_at
-                %}
+                -%}
               </span>
             </p>
 
             <div class="comment--content" data-item="paragraph">
-              {{ comment.content }}
+              {{- comment.content -}}
             </div>
           </div>
-        {% endfor %}
+        {%- endfor -%}
       </div>
 
-    {% else %}
+    {%- else -%}
       <div class="comments--none" data-item="paragraph">
-        {{ no_comments_t }}
+        {{- no_comments_t -}}
       </div>
 
-    {% endif %}
+    {%- endif -%}
 
-    {% if paginate.pages > 1 %}
+    {%- if paginate.pages > 1 -%}
       <div class="comments--pagination">
-        {%
+        {%-
           render 'pagination',
           paginate: paginate,
           view: 'blog-comments'
-        %}
+        -%}
       </div>
-    {% endif %}
+    {%- endif -%}
 
-    {% form article, class: 'comments--form' %}
-
-      {% if form.posted_successfully? %}
-        {% if blog.moderated? %}
-          <p class="success" data-item="accent-text">
-            {{ moderated_feedback_t }}
-          </p>
-        {% else %}
-          <p class="success" data-item="accent-text">
-            {{ success_feedback_t }}
-          </p>
-        {% endif %}
-      {% endif %}
+    {%- form article, class: 'comments--form' -%}
+      {%- liquid
+        if form.posted_successfully?
+          echo '<p class="success" data-item="accent-text">'
+            if blog.moderated?
+              echo moderated_feedback_t
+            else
+              echo success_feedback_t
+            endif
+          echo '</p>'
+        endif
+      -%}
 
       <div class="comments--form-meta">
         <div class="comments--form-name">
@@ -80,7 +78,9 @@
             placeholder="{{ name_t }}"
             required
           />
-          <label for="comment_name">{{ name_t }}</label>
+          <label for="comment_name">
+            {{- name_t -}}
+          </label>
         </div>
 
         <div class="comments--form-email">
@@ -94,7 +94,9 @@
             placeholder="{{ email_t }}"
             required
           />
-          <label for="comment_email">{{ email_t }}</label>
+          <label for="comment_email">
+            {{- email_t -}}
+          </label>
         </div>
       </div>
 
@@ -108,29 +110,28 @@
           placeholder="{{ comment_t }}"
           required
         >{{ form.body }}</textarea>
-        <label for="comment_body">{{ comment_t }}</label>
+        <label for="comment_body">
+          {{- comment_t -}}
+        </label>
       </div>
 
-      {% if blog.moderated? %}
+      {%- if blog.moderated? -%}
         <div class="comments--form-moderated" data-item="accent-text">
-          {{ moderated_notice_t }}
+          {{- moderated_notice_t -}}
         </div>
-      {% endif %}
+      {%- endif -%}
 
-      {% if form.errors %}
+      {%- if form.errors -%}
         <div class="comments--form-error" data-item="accent-text">
-          {{ error_t }}
+          {{- error_t -}}
         </div>
-      {% endif %}
+      {%- endif -%}
 
       <div class="comments--form-submit" data-item='button'>
         <button type="submit" value="{{ button_t }}">
-          {{ button_t }}
+          {{- button_t -}}
         </button>
       </div>
-
-    {% endform %}
-
+    {%- endform -%}
   </div>
-
-{% endpaginate %}
+{%- endpaginate -%}

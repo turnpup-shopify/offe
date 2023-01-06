@@ -19,7 +19,7 @@
   {{ routes.search_url }}?type=product&q={{ search.terms }}&
 {%- endcapture -%}
 
-{% if result_type == 'product' or search.results.size == 0 %}
+{%- if result_type == 'product' or search.results.size == 0 -%}
   {%-
     render 'navigation',
     ajax_url: ajax_url,
@@ -38,9 +38,9 @@
     swatches_enabled: section.settings.swatches-enabled
   -%}
 
-  {% if show_sort_button or show_refine_button %}
+  {%- if show_sort_button or show_refine_button -%}
     <div class="filter--for-off-canvas" style="display:none;">
-      {%
+      {%-
         render 'filter',
         filters: search.filters,
         show_collection_list: false,
@@ -50,10 +50,10 @@
         sort_by: search.sort_by,
         sort_options: search.sort_options,
         swatches_enabled: section.settings.swatches-enabled
-      %}
+      -%}
     </div>
-  {% endif %}
-{% endif %}
+  {%- endif -%}
+{%- endif -%}
 
 {% schema %}
 {

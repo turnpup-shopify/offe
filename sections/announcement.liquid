@@ -1,4 +1,3 @@
-
 {%- liquid
   assign bg_color = section.settings.background-color
   assign enabled = section.settings.enabled
@@ -14,11 +13,12 @@
 
   capture link_settings
     echo settings.color--alternative
-    echo settings.color--accent
-   endcapture
+    echo settings.color--accent-1
+    echo settings.color--accent-2
+  endcapture
 -%}
 
-{% if enabled and show_on_page %}
+{%- if enabled and show_on_page -%}
   <div
     class="announcement--root"
     data-section-id="{{ section.id }}"
@@ -27,34 +27,34 @@
     data-light-text="{{ light_text }}"
     data-spacing="none"
   >
-    {% if link != blank %}
+    {%- if link != blank -%}
       <a class="announcement--link" href="{{ link }}">
-    {% endif %}
+    {%- endif -%}
 
     <div class="announcement--wrapper">
-      {% if icon %}
+      {%- if icon -%}
         <div class="announcement--icon">
-          {{ icon | img_url: '50x50' | img_tag: icon.alt }}
+          {{- icon | image_url: width: 50, height: 50 | image_tag: alt: icon.alt -}}
         </div>
-      {% endif %}
+      {%- endif -%}
 
-      {% if text != blank %}
+      {%- if text != blank -%}
         <div class="announcement--text" data-item="accent-text">
-          {{ text | escape }}          
-          
+          {{- text | escape -}}
         </div>
-      {% endif %}
+      {%- endif -%}
     </div>
 
-    {% if link != blank %}
+    {%- if link != blank -%}
       </a>
-    {% endif %}
+    {%- endif -%}
   </div>
-{% endif %}
+{%- endif -%}
 
 {% schema %}
 {
   "name": "Announcement bar",
+  "tag": "section",
   "settings": [
     {
       "type": "checkbox",
@@ -76,7 +76,8 @@
         { "label": "None", "value": "none" },
         { "label": "Light", "value": "light" },
         { "label": "Dark", "value": "dark" },
-        { "label": "Accent", "value": "accent" }
+        { "label": "Accent 1", "value": "accent-1" },
+        { "label": "Accent 2", "value": "accent-2" }
       ],
       "default": "dark"
     },

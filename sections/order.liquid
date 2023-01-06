@@ -1,31 +1,33 @@
+{%- render 'section-assets', name: 'customer', type: 'style' -%}
+
 <div
   class="customer--root"
   data-section-id="{{ section.id }}"
 >
   <div class="customer--wrapper">
     <h1 data-item="section-heading">
-      {{ 'customer.order.page_title' | t: name: order.name }}
+      {{- 'customer.order.page_title' | t: name: order.name -}}
       <span class="note order_date">
         &mdash; {{ order.created_at | time_tag: format: 'date' }}
       </span>
     </h1>
 
     <div class="account--breadcrumb-container">
-      {% render 'breadcrumbs' %}
+      {%- render 'breadcrumbs' -%}
     </div>
 
-    {% if order.cancelled %}
+    {%- if order.cancelled -%}
       <div id="order_cancelled" class="flash notice">
         <h5 id="order_cancelled_title">{{ 'customer.order.cancelled' | t }}
           <span class="note">{{ order.cancelled_at | time_tag: format: 'date' }}</span>
         </h5>
         <span class="note">{{ order.cancel_reason }}</span>
       </div>
-    {% endif %}
+    {%- endif -%}
 
     <div id="order_payment" class="columns">
       <h2 data-item="block-heading">
-        {{ 'customer.order.billing_address' | t }}
+        {{- 'customer.order.billing_address' | t -}}
       </h2>
 
       <p><span class="note">{{ 'customer.order.payment_status' | t }}:</span>
@@ -39,7 +41,7 @@
           assign trans_voided = 'customer.order.voided' | t
         -%}
         <em>
-          {{
+          {{-
             order.financial_status | replace: 'paid',
             trans_paid | replace: 'pending',
             trans_pending | replace: 'authorized',
@@ -47,7 +49,7 @@
             trans_abandoned | replace: 'refunded',
             trans_refunded | replace: 'voided',
             trans_voided
-          }}
+          -}}
         </em></span>
       </p>
 
@@ -61,18 +63,18 @@
       </div>
     </div>
 
-    {% if order.shipping_address %}
+    {%- if order.shipping_address -%}
       <div id="order_shipping" class="columns">
         <h2 data-item="block-heading">
-          {{ 'customer.order.shipping_address' | t }}
+          {{- 'customer.order.shipping_address' | t -}}
         </h2>
-        <p><span class="note">{{ 'customer.order.fulfillment_status' | t }}:</span> <span class="status_{{ order.fulfillment_status }}">
-          <em>
-            {% assign trans_fulfilled = 'customer.order.fulfilled' | t %}
-            {% assign trans_unfulfilled = 'customer.order.unfulfilled' | t %}
-            {% assign trans_partial = 'customer.order.unfulfilled' | t %}
-            {{ order.fulfillment_status | replace: 'unfulfilled', trans_unfulfilled | replace: 'fulfilled', trans_fulfilled | replace: 'partial', trans_partial }}
-          </em></span>
+        <p><span class="note">{{ 'customer.order.fulfillment_status' | t }}:</span> <span class="status_{{ order.fulfillment_status }}"><em>
+          {%- liquid
+            assign trans_fulfilled = 'customer.order.fulfilled' | t
+            assign trans_unfulfilled = 'customer.order.unfulfilled' | t
+            assign trans_partial = 'customer.order.unfulfilled' | t
+            echo order.fulfillment_status | replace: 'unfulfilled', trans_unfulfilled | replace: 'fulfilled', trans_fulfilled | replace: 'partial', trans_partial
+          -%}</em></span>
         </p>
         <div class="address--view">
           <p>{{ order.shipping_address.name }}</p>
@@ -97,7 +99,7 @@
       </thead>
 
       <tbody>
-        {% for line_item in order.line_items %}
+        {%- for line_item in order.line_items -%}
           <tr id="{{ line_item.id }}">
             <td
               class="order--item--title" data-item="paragraph"
@@ -105,34 +107,34 @@
             >
               {{ line_item.title | link_to: line_item.product.url }}
 
-              {% if line_item.selling_plan_allocation %}
+              {%- if line_item.selling_plan_allocation -%}
                 <div class="order--selling-plan" data-item="small-text">
                   {{ line_item.selling_plan_allocation.selling_plan.name }}
                 </div>
-              {% endif %}
+              {%- endif -%}
 
-              {% if line_item.fulfillment %}
+              {%- if line_item.fulfillment -%}
                 <div class="note">
-                  {% assign date = line_item.fulfillment.created_at | time_tag: format: 'date' %}
-                  {{ 'customer.order.fulfilled_at' | t: date: date }}<br />
-                  {{ 'customer.order.tracking_company' | t }}: {{ line_item.fulfillment.tracking_company }}
+                  {%- assign date = line_item.fulfillment.created_at | time_tag: format: 'date' -%}
+                  {{- 'customer.order.fulfilled_at' | t: date: date -}}<br />
+                  {{- 'customer.order.tracking_company' | t }}: {{ line_item.fulfillment.tracking_company -}}
                   <br>
-                  {% if line_item.fulfillment.tracking_number %}
-                    {{ 'customer.order.tracking_number' | t }}: {{ line_item.fulfillment.tracking_number }}
+                  {%- if line_item.fulfillment.tracking_number -%}
+                    {{- 'customer.order.tracking_number' | t }}: {{ line_item.fulfillment.tracking_number -}}
                     <br>
-                  {% endif %}
+                  {%- endif -%}
 
-                  {% if line_item.fulfillment.tracking_url %}
+                  {%- if line_item.fulfillment.tracking_url -%}
                     <a href="{{ line_item.fulfillment.tracking_url }}">
-                      {{ 'customer.order.track_shipment' | t }}
+                      {{- 'customer.order.track_shipment' | t -}}
                     </a>
-                  {% endif %}
+                  {%- endif -%}
                 </div>
-              {% endif %}
+              {%- endif -%}
             </td>
             <td class="order--item--sku" data-label="{{ 'customer.order.sku' | t }}">
               <div data-item="accent-text">
-                {{ line_item.sku }}
+                {{- line_item.sku -}}
               </div>
             </td>
             <td
@@ -140,57 +142,57 @@
               data-item="accent-text"
               data-label="{{ 'customer.order.price' | t }}"
             >
-              {% if line_item.original_line_price > line_item.final_line_price %}
+              {%- if line_item.original_line_price > line_item.final_line_price -%}
                 <div data-item="light-accent-text">
                   <s class="money">{{ line_item.original_price | money }}</s>
                 </div>
-              {% endif %}
+              {%- endif -%}
 
               <div class="money" data-item="accent-text">
-                {{ line_item.final_price | money }}
+                {{- line_item.final_price | money -}}
               </div>
 
               <div class="order--item--unit-price-container" data-item="light-accent-text">
-                {% if line_item.unit_price_measurement %}
+                {%- if line_item.unit_price_measurement -%}
                   {{- line_item.unit_price | money -}}/
                   {%- if line_item.unit_price_measurement.reference_value != 1 -%}
                     {{- line_item.unit_price_measurement.reference_value -}}
                   {%- endif -%}
                   {{ line_item.unit_price_measurement.reference_unit }}
-                {% endif %}
+                {%- endif -%}
               </div>
 
-              {% if line_item.line_level_discount_allocations.size > 0 %}
+              {%- if line_item.line_level_discount_allocations.size > 0 -%}
                 <div data-item="light-accent-text">
                   {% for discount_allocation in line_item.line_level_discount_allocations %}
                     {{ discount_allocation.discount_application.title }} (-<span class="money">{{ discount_allocation.amount | money }}</span>)
                   {% endfor %}
                 </div>
-              {% endif %}
+              {%- endif -%}
             </td>
             <td
               class="order--item--quantity"
               data-item="accent-text"
               data-label="{{ 'customer.order.quantity' | t }}"
             >
-              {{ line_item.quantity }}
+              {{- line_item.quantity -}}
             </td>
             <td
               class="order--item--total"
               data-item="accent-text"
               data-label="{{ 'customer.order.total' | t }}"
             >
-              {% if line_item.original_line_price > line_item.final_line_price %}
+              {%- if line_item.original_line_price > line_item.final_line_price -%}
                 <div data-item="light-accent-text">
                   <s class="money">{{ line_item.original_line_price | money }}</s>
                 </div>
-              {% endif %}
+              {%- endif -%}
               <div class="money">
-                {{ line_item.quantity | times: line_item.final_price | money }}
+                {{- line_item.quantity | times: line_item.final_price | money -}}
               </div>
             </td>
           </tr>
-        {% endfor %}
+        {%- endfor -%}
 
         <tr>
           <td></td>
@@ -201,7 +203,7 @@
           <td>{{ 'customer.order.subtotal' | t }}</td>
           <td colspan="3"></td>
           <td class="order--item--total money" data-item="accent-text">
-            {{ order.line_items_subtotal_price | money }}
+            {{- order.line_items_subtotal_price | money -}}
           </td>
         </tr>
 
@@ -219,7 +221,7 @@
           {%- endfor -%}
         {%- endif -%}
 
-        {% for shipping_method in order.shipping_methods %}
+        {%- for shipping_method in order.shipping_methods -%}
           <tr>
             <td>{{ shipping_method.title }}:</td>
             <td colspan="3"></td>
@@ -227,27 +229,26 @@
               {{ shipping_method.price | money }}
             </td>
           </tr>
-        {% endfor %}
+        {%- endfor -%}
 
-        {% for tax_line in order.tax_lines %}
+        {%- for tax_line in order.tax_lines -%}
           <tr>
             <td>{{ tax_line.title }} {{ tax_line.rate | times: 100 }}%:</td>
             <td colspan="3"></td>
             <td class="order--item--total money" data-item="accent-text">
-              {{ tax_line.price | money }}
+              {{- tax_line.price | money -}}
             </td>
           </tr>
-        {% endfor %}
+        {%- endfor -%}
 
         <tr>
           <td>{{ 'customer.order.total' | t }}</td>
           <td colspan="3"></td>
           <td class="order--item--total money" data-item="accent-text">
-            {{ order.total_price | money }} {{ order.currency }}
+            {{- order.total_price | money }} {{ order.currency -}}
           </td>
         </tr>
       </tbody>
-
     </table>
   </div>
 </div>

@@ -20,162 +20,158 @@
 -%}
 
 <div class="social-share--root" data-view="{{ view }}">
-  {% case view %}
-    {% when 'modal' %}
-      {% if kickstarter_url.size > 0 %}
+  {%- case view -%}
+    {%- when 'modal' -%}
+      {%- if kickstarter_url.size > 0 -%}
         <a
           class="social-share--item-kickstarter"
           href="{{ kickstarter_url }}"
           title="Kickstarter"
           target="_blank"
         >
-          {% render 'icons', icon: 'kickstarter' %}
+          {%- render 'icons', icon: 'kickstarter' -%}
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if facebook_url.size > 0 %}
+      {%- if facebook_url.size > 0 -%}
         <a
           class="social-share--item-facebook"
           href="{{ facebook_url }}"
           title="Facebook"
           target="_blank"
         >
-          {% render 'icons', icon: 'facebook' %}
+          {%- render 'icons', icon: 'facebook' -%}
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if instagram_url.size > 0 %}
+      {%- if instagram_url.size > 0 -%}
         <a
           class="social-share--item-instagram"
           href="{{ instagram_url }}"
           title="Instagram"
           target="_blank"
         >
-          {% render 'icons', icon: 'instagram' %}
+          {%- render 'icons', icon: 'instagram' -%}
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if twitter_url.size > 0 %}
+      {%- if twitter_url.size > 0 -%}
         <a
           class="social-share--item-twitter"
           href="{{ twitter_url }}"
           title="Twitter"
           target="_blank"
         >
-          {% render 'icons', icon: 'twitter' %}
+          {%- render 'icons', icon: 'twitter' -%}
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if vimeo_url.size > 0 %}
+      {%- if vimeo_url.size > 0 -%}
         <a
           class="social-share--item-vimeo"
           href="{{ vimeo_url }}"
           title="Vimeo"
           target="_blank"
         >
-          {% render 'icons', icon: 'vimeo' %}
+          {%- render 'icons', icon: 'vimeo' -%}
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if pinterest_url.size > 0 %}
+      {%- if pinterest_url.size > 0 -%}
         <a
           class="social-share--item-pinterest"
           href="{{ pinterest_url }}"
           title="Pinterest"
           target="_blank"
         >
-          {% render 'icons', icon: 'pinterest' %}
+          {%- render 'icons', icon: 'pinterest' -%}
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if youtube_url.size > 0 %}
+      {%- if youtube_url.size > 0 -%}
         <a
           class="social-share--item-youtube"
           href="{{ youtube_url }}"
           title="Youtube"
           target="_blank"
         >
-          {% render 'icons', icon: 'youtube' %}
+          {%- render 'icons', icon: 'youtube' -%}
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if tiktok_url.size > 0 %}
+      {%- if tiktok_url.size > 0 -%}
         <a
           class="social-share--item-tiktok"
           href="{{ tiktok_url }}"
           title="TikTok"
           target="_blank"
         >
-          {% render 'icons', icon: 'tiktok' %}
+          {%- render 'icons', icon: 'tiktok' -%}
         </a>
-      {% endif %}
+      {%- endif -%}
 
-    {% when 'product' %}
+    {%- when 'product' -%}
       <p class="social-share--product-title" data-item="block-heading">
         {{ product_title_t }}
       </p>
 
-      {% if settings.social--share-facebook %}
+      {%- if settings.social--share-facebook -%}
         <a
           class="social-share--item-facebook"
           href="https://www.facebook.com/sharer.php?u={{ shareurl }}&t={{ product.title | strip_html | escape | replace: ' ', '%20' }}"
           data-item="accent-text"
         >
-          {% render 'icons', icon: 'facebook' %}
+          {%- render 'icons', icon: 'facebook' -%}
           <span>{{ facebook_share_t }}</span>
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if settings.social--share-twitter %}
+      {%- if settings.social--share-twitter -%}
         <a
           class="social-share--item-twitter"
           href="https://twitter.com/intent/tweet?text=Check%20out%20this%20{% if request.page_type == 'article' or request.page_type == 'blog' %}blog%20post{% elsif request.page_type == 'product' %}product{% endif %}:+{{ shareurl }}"
           data-item="accent-text"
         >
-          {% render 'icons', icon: 'twitter' %}
+          {%- render 'icons', icon: 'twitter' -%}
           <span>{{ twitter_share_t }}</span>
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if settings.social--share-pinterest %}
+      {%- if settings.social--share-pinterest -%}
         <a
           class="social-share--item-pinterest"
           href="https://pinterest.com/pin/create/button/?url={{ shareurl }}&media={{ product.featured_media | img_url: 'original' }}&description={{ product.title | strip_html | escape | replace: ' ', '%20' }}"
           data-item="accent-text"
           count-layout="none"
         >
-          {% render 'icons', icon: 'pinterest' %}
+          {%- render 'icons', icon: 'pinterest' -%}
           <span>{{ pinterest_share_t }}</span>
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if settings.social--share-email %}
+      {%- if settings.social--share-email -%}
         <a
           class="social-share--item-email"
           href="mailto:?Subject={{ product.title | url_escape }}&body={{ shop.url | url_escape }}{{ product.url | url_escape }}"
           data-item="accent-text"
         >
-          {% render 'icons', icon: 'mail' %}
+          {%- render 'icons', icon: 'mail' -%}
           <span>{{ email_share_t }}</span>
         </a>
-      {% endif %}
+      {%- endif -%}
 
-      {% if settings.social--share-link %}
+      {%- if settings.social--share-link -%}
         <div
           class="social-share--item-copy"
           tabindex="0"
           data-item="accent-text"
         >
-          {% render 'icons', icon: 'copy' %}
-          <span
-            class="social-share--item-copy--wrapper"
-            data-js-class="Transition"
-            data-transition="at_start"
-          >
-            {{ link_title_t }}
-          </span>
+          {%- render 'icons', icon: 'copy' -%}
+          <transition-root class="social-share--item-copy--wrapper" data-transition="at_start">
+            {{- link_title_t -}}
+          </transition-root>
         </div>
-      {% endif %}
+      {%- endif -%}
 
-  {% endcase %}
+  {%- endcase -%}
 </div>

@@ -7,9 +7,10 @@
       break
     endif
   endfor
+
+  render 'section-assets', name: 'product-pickup'
 -%}
 
-{% comment %} pickup section is brought in async {% endcomment %}
 <product-pickup-root
   class="product-pickup--root"
   style="display:block;"
@@ -20,13 +21,10 @@
   data-is-only-variant="{{ product.has_only_default_variant }}"
   data-title="{{ product.title }}"
 >
+  {% comment %} pickup section is brought in async here {% endcomment %}
   {%- if first_variant_has_pickup -%}
     <div class="product-pickup--spinner">
       {% render 'loading-spinner' %}
     </div>
   {%- endif -%}
 </product-pickup-root>
-
-<script>
-  libraryLoader('product_pickup', "{{ 'product-pickup.js' | asset_url }}");
-</script>

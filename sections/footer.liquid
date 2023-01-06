@@ -4,136 +4,127 @@
   assign navigation_t = 'layout.footer.navigation' | t
   assign shopify_disclaimer_t = 'shopify.online_store.spam_detection.disclaimer_html' | t
 
+  assign bg_color = section.settings.background-color
   assign block_count = section.blocks.size
-  assign locale_enable = false
-  assign currency_enable = false
+  assign light_text = section.settings.light-text
+  assign locale_enabled = false
+  assign region_enabled = false
 
-  if section.settings.show-currency-selector and shop.enabled_currencies.size > 1
-    assign currency_enable = true
+  if section.settings.show-region-selector and localization.available_countries.size > 1
+    assign region_enabled = true
   endif
 
-  if section.settings.show-locale-selector and shop.published_locales.size > 1
-    assign locale_enable = true
+  if section.settings.show-locale-selector and localization.available_languages.size > 1
+    assign locale_enabled = true
   endif
 
   assign button_type = 'button'
-  assign contrast_ratio = settings.bg-color--footer | color_contrast: settings.bg-color--button
-  if contrast_ratio < 4.5
+  if light_text
     assign button_type = 'inverted-button'
   endif
--%}
-                         
-                          {% if template contains 'product' %}
-                         
-                        
-<!-- Stamped - Begin main-widget -->
-<div id="stamped-main-widget" class="stamped-main-widget" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: " ? ", " % 3F" | replace: "& "," % 26"}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}"> {{ product.metafields.stamped.reviews }} </div>
-<!-- Stamped - End main-widget -->
- 
-                         
-  {% endif %}
 
-<footer
+  render 'section-assets', name: 'footer', type: 'style'
+-%}
+
+<div
   class="footer--root"
-  data-js-class="Footer"
   data-section-id="{{ section.id }}"
   data-section-type="footer"
+  data-background-color="{{ bg_color }}"
+  data-light-text="{{ light_text }}"
 >
   <div class="footer--blocks">
-    {% for block in section.blocks limit: block_count %}
+    {%- for block in section.blocks limit: block_count -%}
 
-      {% case block.type %}
-        {% when 'about' %}
-          {% assign show_social = false %}
-          {% if
-            settings.social--facebook--url.size > 0 or
-            settings.social--twitter--url.size > 0  or
-            settings.social--tiktok--url.size > 0  or
-            settings.social--instagram--url.size > 0 or
-            settings.social--pinterest--url.size > 0 or
-            settings.social--vimeo--url.size > 0 or
-            settings.social--youtube--url.size > 0
-          %}
-            {% assign show_social = true %}
-          {% endif %}
+      {%- case block.type -%}
+        {%- when 'about' -%}
+          {%- liquid
+            assign show_social = false
 
-          {% if block.settings.subscribe--show-social-icons == false %}
-            {% assign show_social = false %}
-          {% endif %}
+            if settings.social--facebook--url.size > 0 or settings.social--twitter--url.size > 0  or settings.social--tiktok--url.size > 0  or settings.social--instagram--url.size > 0 or settings.social--pinterest--url.size > 0 or settings.social--vimeo--url.size > 0 or settings.social--youtube--url.size > 0
+              assign show_social = true
+            endif
+
+            if block.settings.subscribe--show-social-icons == false
+              assign show_social = false
+            endif
+          -%}
 
           <div class="footer--block" data-block-type="about" {{ block.shopify_attributes }}>
             <div class="footer--block--container">
-              {% if block.settings.about-title != blank %}
+              {%- if block.settings.about-title != blank -%}
                 <div class="footer--block--heading" data-item="block-heading">
-                  {{ block.settings.about-title | escape }}
+                  {{- block.settings.about-title | escape -}}
                 </div>
-              {% endif %}
+              {%- endif -%}
 
               <div class="footer--block--body">
-                {% if block.settings.text != blank %}
+                {%- if block.settings.text != blank -%}
                   <div class="footer--about-text" data-item="rte-content">
-                    {% assign current_year = 'now' | date: '%Y' %}
-                    {{ block.settings.text | replace: '[current_year]', current_year }}
+                    {%- assign current_year = 'now' | date: '%Y' -%}
+                    {{- block.settings.text | replace: '[current_year]', current_year -}}
                   </div>
-                {% endif %}
+                {%- endif -%}
 
-                {% if show_social %}
+                {%- if show_social -%}
                   <div class="footer--social-icons">
-                    {% render 'social-follow' %}
+                    {%- render 'social-follow' -%}
                   </div>
-                {% endif %}
+                {%- endif -%}
               </div>
             </div>
           </div>
 
-        {% when 'menu' %}
+        {%- when 'menu' -%}
           <div class="footer--block" data-block-type="menu" {{ block.shopify_attributes }}>
             <div class="footer--block--container">
-              {% if block.settings.menu-title != blank %}
+              {%- if block.settings.menu-title != blank -%}
                 <div class="footer--block--heading" data-item="block-heading">
-                  {{ block.settings.menu-title | escape }}
+                  {{- block.settings.menu-title | escape -}}
                 </div>
-              {% endif %}
+              {%- endif -%}
 
               <div class="footer--block--body" role="navigation" data-item="paragraph">
-                {% if linklists[block.settings.menu].links.size > 0 %}
-                  {% assign footer_nav = block.settings.menu %}
+                {%- if linklists[block.settings.menu].links.size > 0 -%}
+                  {%- assign footer_nav = block.settings.menu -%}
 
                   <ul
                     class="footer--menu"
                     aria-label="{{ navigation_t }}"
                   >
-                    {% for link in linklists[footer_nav].links %}
+                    {%- for link in linklists[footer_nav].links -%}
                       <li>
                         <a href="{{ link.url }}" title="{{ link.title }}">
-                          {{ link.title }}
+                          {{- link.title -}}
                         </a>
                       </li>
-                    {% endfor %}
+                    {%- endfor -%}
                   </ul>
-                {% endif %}
+                {%- endif -%}
               </div>
             </div>
           </div>
 
-        {% when 'subscribe' %}
+        {%- when 'subscribe' -%}
           <div class="footer--block" data-block-type="subscribe" {{ block.shopify_attributes }}>
             <div class="footer--block--container">
               <div class="footer--subscribe">
 
-                {% if block.settings.subscribe--show-newsletter or show_social %}
-                  {% if block.settings.newsletter--heading != blank %}
-                    <div class="footer--block--heading" data-item="block-heading">
-                      {{ block.settings.newsletter--heading }}
-                    </div>
-                  {% endif %}
-                {% endif %}
+                {%- liquid
+                  if block.settings.subscribe--show-newsletter or show_social
+                    if block.settings.newsletter--heading != blank
+                      echo '<div class="footer--block--heading" data-item="block-heading">'
+                        echo block.settings.newsletter--heading
+                      echo '</div>'
+                    endif
+                  endif
+                -%}
 
                 <div class="footer--block--body">
-                  {% if
+                  {%- if
                     block.settings.subscribe--show-newsletter or
                     settings.popup--newsletter--enabled
-                  %}
+                  -%}
                     <div
                       id="mailing-list-module"
                       {%-
@@ -143,32 +134,32 @@
                         style="display:none;"
                       {%- endif -%}
                     >
-                      {% if block.settings.newsletter--info != blank %}
+                      {%- if block.settings.newsletter--info != blank -%}
                         <div class="footer--subscribe--info" data-item="rte-content">
-                          {{ block.settings.newsletter--info }}
+                          {{- block.settings.newsletter--info -}}
                         </div>
-                      {% endif %}
+                      {%- endif -%}
 
-                      {% form 'customer', id: 'footer_form' %}
-                        {% if form.errors %}
+                      {%- form 'customer', id: 'footer_form' -%}
+                        {%- if form.errors -%}
                           <p class="error feedback">
-                            {% for field in form.errors %}
-                              {{ field }} {{ form.errors.messages[field] }}
-                            {% endfor %}
+                            {%- for field in form.errors -%}
+                              {{- field }} {{ form.errors.messages[field] -}}
+                            {%- endfor -%}
                           </p>
-                        {% endif %}
+                        {%- endif -%}
 
                         <div class="footer--form-container">
                           <input type="hidden" name="contact[tags]" value="newsletter" />
                           <input
                             type="hidden"
                             name="contact[first_name]"
-                            value="Footer"
+                            value="Newsletter"
                           />
                           <input
                             type="hidden"
                             name="contact[last_name]"
-                            value="Newsletter Subscriber"
+                            value="Subscriber"
                           />
                           <label for="footer-email" data-item="hidden-text">
                             {{ newsletter_placeholder_t }}
@@ -188,85 +179,110 @@
                           </div>
                         </div>
 
-                        {% if form.posted_successfully? or form.errors %}
+                        {%- if form.posted_successfully? or form.errors -%}
                           <script>window.location.hash = '#feedback-bar--newsletter';</script>
-                        {% endif %}
+                        {%- endif -%}
 
                         <div data-item="hidden-text">
-                          {% comment %} remove the below line to display reCAPTCHA badge {% endcomment %}
-                          {{ shopify_disclaimer_t }}
+                          {%- comment -%} remove the below line to display reCAPTCHA badge {%- endcomment -%}
+                          {{- shopify_disclaimer_t -}}
                         </div>
-                      {% endform %}
+                      {%- endform -%}
                     </div>
-                  {% endif %}
+                  {%- endif -%}
                 </div>
               </div>
             </div>
           </div>
-      {% endcase %}
-    {% endfor %}
+      {%- endcase -%}
+    {%- endfor -%}
 
-    {% if section.blocks.size == 0 %}
-      {% render 'no-blocks' %}
-    {% endif %}
+    {%- liquid
+      if section.blocks.size == 0
+        render 'no-blocks'
+      endif
+    -%}
   </div>
 
   <div class="footer--sub">
-    {% if locale_enable or currency_enable %}
+    {%- if locale_enabled or region_enabled -%}
       <div class="footer--sub--block" data-type="localization">
         <div class="footer--sub--container">
-          {% render
+          {%- render
             'localization',
-            locale_enable: locale_enable,
-            currency_enable: currency_enable,
+            locale_enabled: locale_enabled,
+            region_enabled: region_enabled
             id: 'footer'
-          %}
+          -%}
         </div>
       </div>
-    {% endif %}
+    {%- endif -%}
 
-    {% assign powered_check = powered_by_link | split: '>' %}
-    {% if powered_check[1] != ' </a' %}
+    {%- assign powered_check = powered_by_link | split: '>' -%}
+    {%- if powered_check[1] != ' </a' -%}
       <div class="footer--sub--block" data-type="powered-by">
         <div class="footer--sub--container" data-item="paragraph">
           <span class="footer--sub--shopify-link"><center>© offe market 2022<br>2010 W 62nd Street, Unit 200<br>Los Angeles, CA 90047<br>(424) 625-9888</center></span>
         </div>
       </div>
-    {% endif %}
+    {%- endif -%}
 
-    {% unless shop.enabled_payment_types == empty %}
-      {% if section.settings.show-payment-icons %}
+    {%- unless shop.enabled_payment_types == empty -%}
+      {%- if section.settings.show-payment-icons -%}
         <div class="footer--sub--block" data-type="payment-icons">
           <div class="footer--sub--container">
-            {% render 'payment-icons' %}
+            <ul class="footer--payment-icons">
+              {%- liquid
+                for type in shop.enabled_payment_types
+                  echo '<li class="footer--payment-icon">'
+                    echo type | payment_type_svg_tag
+                  echo '</li>'
+                endfor
+              -%}
+            </ul>
           </div>
         </div>
-      {% endif %}
-    {% endunless %}
+      {%- endif -%}
+    {%- endunless -%}
   </div>
-
 </footer>
 
 {% schema %}
 {
   "name": "Footer",
+  "tag": "footer",
   "class": "section--footer",
   "max_blocks": 3,
   "settings": [
     {
+      "id": "background-color",
+      "label": "Background color",
+      "type": "select",
+      "options": [
+        { "label": "None", "value": "none" },
+        { "label": "Light", "value": "light" },
+        { "label": "Dark", "value": "dark" },
+        { "label": "Accent 1", "value": "accent-1" },
+        { "label": "Accent 2", "value": "accent-2" }
+      ],
+      "default": "accent-1"
+    },
+    {
+      "id": "light-text",
+      "label": "Use light text color",
+      "type": "checkbox",
+      "default": false
+    },
+    {
       "type": "header",
-      "content": "Currency Selector",
-      "info": "To add a currency, go to your [payment settings](/admin/settings/payments)."
+      "content": "Country/region Selector",
+      "info": "To add a country/region, go to your [payment settings](/admin/settings/payments)."
     },
     {
       "type": "checkbox",
-      "id": "show-currency-selector",
-      "label": "Show currency selector",
+      "id": "show-region-selector",
+      "label": "Show country/region selector",
       "default": true
-    },
-    {
-      "type": "paragraph",
-      "content": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https://docs.shopify.com/support/settings/general/tell-my-script-where-to-find-money-formats)."
     },
     {
       "type": "header",

@@ -1,13 +1,12 @@
 {%- liquid
-  assign ajax_url =  collection.url | append: '?'
+  assign ajax_url = collection.url | append: '?'
+  unless collection.current_vendor == blank and collection.current_type == blank
+    assign ajax_url = collection.url | append: '&'
+  endunless
+
   assign show_browse_button = section.settings.show-browse-button
   assign show_sort_button = section.settings.show-sort-button
   assign show_refine_button = section.settings.show-refine-button
-
-  assign show_filter = false
-  if show_browse_button or show_refine_button or show_sort_button
-    assign show_filter = true
-  endif
 -%}
 
 {%-
@@ -28,9 +27,9 @@
   swatches_enabled: section.settings.swatches-enabled
 -%}
 
-{% if show_browse_button or show_refine_button or show_sort_button %}
+{%- if show_browse_button or show_refine_button or show_sort_button -%}
   <div class="filter--for-off-canvas" style="display:none;">
-    {%
+    {%-
       render 'filter',
       collection_url: collection.url,
       custom_collection_list: section.settings.custom-list-collections,
@@ -42,9 +41,9 @@
       sort_by: collection.sort_by,
       sort_options: collection.sort_options,
       swatches_enabled: section.settings.swatches-enabled
-    %}
+    -%}
   </div>
-{% endif %}
+{%- endif -%}
 
 {% schema %}
 {

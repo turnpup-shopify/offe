@@ -6,6 +6,8 @@
   assign password_t = 'customer.register.password' | t
   assign submit_t = 'customer.register.submit' | t
   assign login_t = 'customer.register.login' | t
+
+  render 'section-assets', name: 'customer', type: 'style'
 -%}
 
 <div
@@ -15,16 +17,15 @@
   <div class="customer--wrapper">
     <div id="customer-register" class="customer--register">
       <h1 data-item="section-heading">
-        {{ title_t }}
+        {{- title_t -}}
       </h1>
 
-      {% form 'create_customer' %}
-
-        {{ form.errors | default_errors }}
+      {%- form 'create_customer' -%}
+        {{- form.errors | default_errors -}}
 
         <div id="first_name">
           <label for="first_name" class="label" data-item="accent-text">
-            {{ first_name_t }}
+            {{- first_name_t -}}
           </label>
           <input
             class="text"
@@ -39,7 +40,7 @@
 
         <div id="last_name">
           <label for="last_name" class="label" data-item="accent-text">
-            {{ last_name_t }}
+            {{- last_name_t -}}
           </label>
           <input
             class="text"
@@ -54,7 +55,7 @@
 
         <div id="email">
           <label for="email" class="label" data-item="accent-text">
-            {{ email_t }}
+            {{- email_t -}}
           </label>
           <input
             class="text"
@@ -69,7 +70,7 @@
 
         <div id="password">
           <label for="password" class="label" data-item="accent-text">
-            {{ password_t }}
+            {{- password_t -}}
           </label>
           <input
             class="password text"
@@ -85,7 +86,7 @@
         <div class="account--button-container">
           <div class="account--create" data-item='button'>
             <button type="submit" value="{{ submit_t }}">
-              {{ submit_t }}
+              {{- submit_t -}}
             </button>
           </div>
           <a
@@ -97,7 +98,7 @@
           </a>
         </div>
 
-      {% endform %}
+      {%- endform -%}
     </div>
   </div>
 </div>

@@ -6,10 +6,6 @@
     assign aspect_ratio = 1
   endunless
 
-  unless extra_padding
-    assign extra_padding = ''
-  endunless
-
   unless cover
     assign cover = false
   endunless
@@ -31,13 +27,9 @@
   data-cover-mobile="{{ cover_mobile }}"
   data-darken="{{ darken }}"
   data-darken-mobile="{{ darken_mobile }}"
+  style="--aspect-ratio: {{ aspect_ratio | round: 2 }};"
 >
-  <div
-    class="placeholder--container"
-    {% unless cover and cover_mobile %}
-      style="padding-top:calc({{ 1 | divided_by: aspect_ratio | times: 100 }}% {{ extra_padding }});"
-    {% endunless %}
-  >
-    {{ placeholder | placeholder_svg_tag }}
+  <div class="placeholder--container">
+    {{- placeholder | placeholder_svg_tag -}}
   </div>
 </div>

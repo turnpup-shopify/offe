@@ -10,6 +10,8 @@
       render block
     endfor
   endcapture
+
+  render 'section-assets', name: 'apps', type: 'style'
 -%}
 
 <div
@@ -38,7 +40,8 @@
           { "label": "None", "value": "none" },
           { "label": "Light", "value": "light" },
           { "label": "Dark", "value": "dark" },
-          { "label": "Accent", "value": "accent" }
+          { "label": "Accent 1", "value": "accent-1" },
+          { "label": "Accent 2", "value": "accent-2" }
         ],
         "default": "none"
       },
@@ -50,7 +53,7 @@
       },
       {
         "id": "container-width",
-        "label": "Width of container",
+        "label": "Maximum width of container",
         "type": "range",
         "min": 1,
         "max": 6,
