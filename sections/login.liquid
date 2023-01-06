@@ -11,8 +11,6 @@
   assign guest_continue_t = 'customer.login.guest_continue' | t
   assign submit_t = 'customer.login.submit' | t
   assign cancel_t = 'customer.login.cancel' | t
-
-  render 'section-assets', name: 'customer', type: 'style'
 -%}
 
 <div
@@ -20,19 +18,19 @@
   data-section-id="{{ section.id }}"
 >
   <div class="customer--wrapper">
-    <div class="customer--login">
-      <p class="account--reset" data-item="paragraph">
-        {{- reset_instructions_t -}}
+    <div id="customer-login" class="customer--login">
+      <p id="account-reset" class="account--reset" data-item="paragraph">
+        {{ reset_instructions_t }}
       </p>
       <h1 data-item="section-heading">
-        {{- title_t -}}
+        {{ title_t }}
       </h1>
 
-      {%- form 'customer_login' -%}
-        {{- form.errors | default_errors -}}
+      {% form 'customer_login' %}
+        {{ form.errors | default_errors }}
 
         <label for="customer_email" class="label" data-item="accent-text">
-          {{- email_t -}}
+          {{ email_t }}
         </label>
         <input
           class="text"
@@ -43,9 +41,9 @@
           required
         />
 
-        {%- if form.password_needed -%}
+        {% if form.password_needed %}
           <label for="customer_password" class="label" data-item="accent-text">
-            {{- password_t -}}
+            {{ password_t }}
           </label>
           <input
             class="text"
@@ -57,16 +55,16 @@
             required
           />
           <p class="account--forgot-password" data-item="block-link">
-            <a href="#" onclick="showRecoverForm(true);return false;">
-              {{- forgot_password_t -}}
+            <a href="#" onclick="showRecoverPasswordForm();return false;">
+              {{ forgot_password_t }}
             </a>
           </p>
-        {%- endif -%}
+        {% endif %}
 
         <div class="account--button-container">
           <div class="account--sign-in" data-item='button'>
             <button type="submit" value="{{ sign_in_t }}">
-              {{- sign_in_t -}}
+              {{ sign_in_t }}
             </button>
           </div>
           <a
@@ -77,22 +75,22 @@
             <div>{{ new_account_t }}</div>
           </a>
         </div>
-      {%- endform -%}
+      {% endform %}
     </div>
 
-    <div class="account--recover-password" style="display:none;">
+    <div class="account--recover-password" id="recover-password" style="display:none;">
       <h1 data-item="section-heading">
-        {{- reset_password_t -}}
+        {{ reset_password_t }}
       </h1>
       <p class="account--reset-instructions" data-item="paragraph">
-        {{- reset_instructions_t -}}
+        {{ reset_instructions_t }}
       </p>
 
-      {%- form 'recover_customer_password' -%}
-        {{- form.errors | default_errors -}}
+      {% form 'recover_customer_password' %}
+        {{ form.errors | default_errors }}
 
         <label for="email" class="label" data-item="accent-text">
-          {{- email_t -}}
+          {{ email_t }}
         </label>
         <input
           class="text"
@@ -107,46 +105,54 @@
         <div class="account--password-buttons">
           <div class="account--submit" data-item='button'>
             <button type="submit" value="{{ submit_t }}">
-              {{- submit_t -}}
+              {{ submit_t }}
             </button>
           </div>
           <span data-item="block-link">
             <a
               class="account--cancel"
               href="#"
-              onclick="showRecoverForm(false);return false;"
+              onclick="hideRecoverPasswordForm();return false;"
             >
-              {{- cancel_t -}}
+              {{ cancel_t }}
             </a>
           </span>
         </div>
 
-        {%- if form.posted_successfully? -%}
+        {% if form.posted_successfully? or form.errors %}
           <script>window.location.hash = '#recover-successful';</script>
-        {%- endif -%}
-      {%- endform -%}
+        {% endif %}
+      {% endform %}
     </div>
 
-    {%- if shop.checkout.guest_login -%}
+    {% if shop.checkout.guest_login %}
       <div id="guest" class="columns">
         <h1 data-item="section-heading">{{ guest_title_t }}</h1>
 
-        {%- form 'guest_login' -%}
+        {% form 'guest_login' %}
           <input class="button" type="submit" value="{{ guest_continue_t }}" />
-        {%- endform -%}
+        {% endform %}
       </div>
-    {%- endif -%}
+    {% endif %}
   </div>
 </div>
 
 <script type="text/javascript">
-  showRecoverForm = (toggle) => {
-    document.querySelector('.account--recover-password').style.display = toggle ? 'block' : 'none';
-    document.querySelector('.customer--login').style.display = toggle ? 'none' : 'block';
+  function showRecoverPasswordForm() {
+    document.getElementById('recover-password').style.display = 'block';
+    document.getElementById('customer-login').style.display= 'none';
   }
 
-  if (window.location.hash === '#recover')
-    showRecoverForm(true);
-  else if (window.location.hash === '#recover-successful')
-    document.querySelector('.account--reset').style.display = 'block';
+  function hideRecoverPasswordForm() {
+    document.getElementById('recover-password').style.display = 'none';
+    document.getElementById('customer-login').style.display = 'block';
+  }
+
+  function showRecoverSuccess() {
+    document.getElementById('account-reset').style.display = 'block';
+  }
+
+  if (window.location.hash == '#recover') { showRecoverPasswordForm() }
+
+  if (window.location.hash == '#recover-successful') { showRecoverSuccess() }
 </script>

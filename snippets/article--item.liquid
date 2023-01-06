@@ -7,99 +7,88 @@
 -%}
 
 <div class="article--item">
-  {%- case type -%}
-    {%- when 'full_article' -%}
-      <a
-        href="{{ featured_article.url }}"
-        class="article--item--image-wrapper"
-        aria-label="{{ featured_article.image.alt }}"
-      >
+  {% case type %}
+    {% when 'full_article' %}
+
+      {% if featured_article.image %}
         <div class="article--item--image">
-          {%- liquid
-            if featured_article.image
-              render "image", image: featured_article.image, preload: preload, full_width: true
-            else
-              render "placeholder", type: "lifestyle", placeholder_index: 2
-            endif
-          -%}
+          {%
+            render "image",
+            image: featured_article.image,
+            full_width: true
+          %}
         </div>
-      </a>
+      {% endif %}
 
       <h3 class="article--item--heading" data-item="block-heading">
         <a href="{{ featured_article.url }}">
-          {{- featured_article.title -}}
+          {{ featured_article.title }}
         </a>
       </h3>
 
-      {%- if show_date or show_author -%}
+      {% if show_date or show_author %}
         <div class="article--item-info">
-          {%- if show_date -%}
+          {% if show_date %}
             <div class="article--item--date" data-item="light-accent-text">
-              {%- comment -%} 'timesince' requires passing 'created_at' {%- endcomment -%}
-              {%-
+              {% comment %} 'timesince' requires passing 'created_at' {% endcomment %}
+              {%
                 render "utils",
                 utility: "timesince",
                 created_at: featured_article.published_at
-              -%}
+              %}
             </div>
-          {%- endif -%}
+          {% endif %}
 
-          {%- if show_date and show_author -%}
+          {% if show_date and show_author %}
             <span class="article--item-dot" data-mq="medium-large">&CenterDot;</span>
-          {%- endif -%}
+          {% endif %}
 
-          {%- if show_author -%}
+          {% if show_author %}
             <div class="article--item-author" data-item="caption">
-              {{- written_by_t }} {{ featured_article.author -}}
+              {{ written_by_t }} {{ featured_article.author }}
             </div>
-          {%- endif -%}
+          {% endif %}
         </div>
-      {%- endif -%}
+      {% endif %}
 
-      {%- if show_excerpt -%}
+      {% if show_excerpt %}
         <div class="article--item--excerpt" data-item="paragraph">
-          {%- liquid
-            if featured_article.excerpt == blank
-              echo featured_article.content | strip_html | truncate: 100
-            else
-              echo featured_article.excerpt
-            endif
-          -%}
+          {% if featured_article.excerpt == blank %}
+            {{ featured_article.content | strip_html | truncate: 100 }}
+          {% else %}
+            {{ featured_article.excerpt }}
+          {% endif %}
         </div>
-      {%- endif -%}
+      {% endif %}
 
       <div class="article--item--read-more" data-item="block-link">
-        <a href="{{ featured_article.url }}">
-          {{- article_continue_reading_t -}}
-        </a>
+        <a href="{{ featured_article.url }}">{{ article_continue_reading_t }}</a>
       </div>
 
-    {%- when 'placeholder' -%}
+    {% when 'placeholder' %}
+
       <div class="article--item--image">
-        {%- render "placeholder", type: "image" -%}
+        {% render "placeholder", type: "image" %}
       </div>
 
       <h3 class="article--item--heading" data-item="block-heading">
-        {{- article_item_title_t -}}
+        {{ article_item_title_t }}
       </h3>
 
-      {%- if show_date -%}
+      {% if show_date %}
         <div class="article--item--date" data-item="light-accent-text">
-          {{- article_date_t -}}
+          {{ article_date_t }}
         </div>
-      {%- endif -%}
+      {% endif %}
 
-      {%- if show_excerpt -%}
+      {% if show_excerpt %}
         <div class="article--item--excerpt" data-item="paragraph">
-          {{- article_excerpt_t -}}
+          {{ article_excerpt_t }}
         </div>
-      {%- endif -%}
+      {% endif %}
 
       <div class="article--item--read-more" data-item="block-link">
         <a>{{ article_continue_reading_t }}</a>
       </div>
-
-  {%- endcase -%}
-
-  {%- render 'section-assets', name: 'article-item', type: 'style' -%}
+  {% endcase %}
 </div>

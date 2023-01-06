@@ -7,7 +7,6 @@
   assign full_width = section.settings.full-width
   assign heading = section.settings.heading
   assign hover_enabled = false
-  assign light_text = section.settings.light-text
   assign link_text = section.settings.link-text
   assign link_url = section.settings.link-url
   assign mobile_overlay = section.settings.mobile-overlay
@@ -51,19 +50,13 @@
   if bg_color == 'dark'
     assign dark_background = true
   endif
-
-  assign button_type = "button"
-  if light_text
-    assign button_type = "inverted-secondary-button"
-  endif
-
-  render 'section-assets', name: 'featured-grid', type: 'style'
 -%}
 
 <div
   class="featured-grid--root"
   data-section-id="{{ section.id }}"
-  data-alt-color="{{ alt_color }}"
+  data-js-class="CoreFeaturedGrid"
+  data-alternative-color="{{ alt_color }}"
   data-apply-overlay="{{ apply_overlay }}"
   data-background-color="{{ bg_color }}"
   data-container-width="{{ container_width }}"
@@ -81,21 +74,21 @@
   data-text-style="{{ text_style }}"
   data-text-position="center"
 >
-  {%- if header_text_exists -%}
-    <div class="featured-grid--header" data-container="block" data-light-text="{{ light_text }}">
-      {%- if heading != blank -%}
+  {% if header_text_exists %}
+    <div class="featured-grid--header" data-container="block">
+      {% if heading != blank %}
         <h2 class="featured-grid--heading" data-item="section-heading">
-          {{- heading | escape -}}
+          {{ heading | escape }}
         </h2>
-      {%- endif -%}
+      {% endif %}
 
-      {%- if subtitle != blank -%}
+      {% if subtitle != blank %}
         <h3 class="featured-grid--subtitle" data-item="paragraph">
-          {{- subtitle | escape -}}
+          {{ subtitle | escape }}
         </h3>
-      {%- endif -%}
+      {% endif %}
     </div>
-  {%- endif -%}
+  {% endif %}
 
   <div class="featured-grid--body">
     <div
@@ -105,7 +98,7 @@
       data-mobile-columns="{{ mobile_width }}"
       data-block-spacing="{{ spacing }}"
     >
-      {%- for block in section.blocks -%}
+      {% for block in section.blocks %}
         {%- liquid
           assign block_link_text = block.settings.link-text
           assign block_link_url = block.settings.link-url
@@ -117,13 +110,23 @@
 
           assign aspect_ratio = 1.0
           assign shape = 'square'
+          assign extra_padding = '+ 0px'
 
           if wide and tall == false
             assign aspect_ratio = 2.0
             assign shape = 'wide'
+
+            if spacing
+              assign extra_padding = '- 16px'
+            endif
+
           elsif wide == false and tall
             assign aspect_ratio = 0.5
             assign shape = 'tall'
+
+            if spacing
+              assign extra_padding = '+ 32px'
+            endif
           endif
         -%}
 
@@ -136,86 +139,86 @@
           data-retain-ratio="{{ retain_ratio }}"
           {{ block.shopify_attributes }}
         >
-          {%- if block_link_url != blank -%}
+          {% if block_link_url != blank %}
             <a
               class="featured-grid--item--link-wrapper"
               href="{{ block_link_url }}"
               {%- if title != blank -%}
                 aria-label="{{ title }}"
-              {%- elsif heading != blank -%}
-                aria-label="{{ heading }}"
               {%- else -%}
-                aria-label="{{ image.alt }}"
+                aria-label="{{ heading }}"
               {%- endif -%}
             >
-          {%- endif -%}
+          {% endif %}
 
           <div class="featured-grid--item--container">
             <div class="featured-grid--item--image" data-item="image">
-              {%- liquid
-                if image
-                  assign cover_image = true
-                  if retain_ratio
-                    assign cover_image = false
-                  endif
-
-                  render "image", image: image, cover: cover_image, cover_mobile: cover_image, full_width: true
-
-                else
-                  render "placeholder", type: "image", aspect_ratio: aspect_ratio
-                endif
-              -%}
+              {% if image %}
+                {%
+                  render "image",
+                  image: image,
+                  full_width: true
+                %}
+              {% else %}
+                {%
+                  render "placeholder",
+                  type: "image",
+                  aspect_ratio: aspect_ratio,
+                  extra_padding: extra_padding
+                %}
+              {% endif %}
             </div>
 
-            {%- if title != blank or block_link_text != blank -%}
+            {% if title != blank or block_link_text != blank %}
               <div class="featured-grid--item--overlay-background"></div>
 
-              {%- unless title == blank and block_link_text == blank -%}
+              {% unless title == blank and block_link_text == blank %}
                 <div class="featured-grid--item--text-container">
                   <div class="featured-grid--item--text-background" data-container="block-container">
-                    {%- if title != blank -%}
+                    {% if title != blank %}
                       <h3 class="featured-grid--item--title" data-item="{{ block_heading_font }}">
-                        {{- title | newline_to_br -}}
+                        {{ title | newline_to_br }}
                       </h3>
-                    {%- endif -%}
+                    {% endif %}
 
-                    {%- if block_link_text != blank -%}
+                    {% if block_link_text != blank %}
                       <div class="featured-grid--item--link" data-item="block-link">
                         <div class="featured-grid--item--link-container">
-                          {{- block_link_text -}}
+                          {{ block_link_text }}
                         </div>
                       </div>
-                    {%- endif -%}
+                    {% endif %}
                   </div>
                 </div>
-              {%- endunless -%}
-            {%- endif -%}
+              {% endunless %}
+            {% endif %}
+
           </div>
 
-          {%- if block_link_url != blank -%}
+          {% if block_link_url != blank %}
             </a>
-          {%- endif -%}
+          {% endif %}
         </div>
 
-      {%- endfor -%}
+      {% endfor %}
     </div>
   </div>
 
-  {%- if footer_text_exists -%}
+  {% if footer_text_exists %}
     <div class="featured-grid--footer" data-container="panel">
       <div class="featured-grid--footer--block" data-container="block">
         <a
           class="featured-grid--footer--button"
+          data-item="button"
           href="{{ link_url }}"
-          data-item="{{ button_type }}"
         >
           <div class="featured-grid--footer--button-container">
-            {{- link_text -}}
+            {{ link_text }}
           </div>
         </a>
       </div>
     </div>
-  {%- endif -%}
+  {% endif %}
 </div>
 
 {% schema %}
@@ -247,16 +250,15 @@
         { "label": "None", "value": "none" },
         { "label": "Light", "value": "light" },
         { "label": "Dark", "value": "dark" },
-        { "label": "Accent 1", "value": "accent-1" },
-        { "label": "Accent 2", "value": "accent-2" }
+        { "label": "Accent", "value": "accent" }
       ],
       "default": "none"
     },
     {
-      "id": "light-text",
-      "label": "Use light text color",
+      "id": "spacing",
+      "label": "Show spacing between blocks",
       "type": "checkbox",
-      "default": false
+      "default": true
     },
     {
       "id": "mobile-overlay",
@@ -267,18 +269,12 @@
     },
     {
       "id": "container-width",
-      "label": "Maximum width of container",
+      "label": "Width of container",
       "type": "range",
       "min": 1,
       "max": 6,
       "step": 1,
       "default": 4
-    },
-    {
-      "id": "spacing",
-      "label": "Show spacing between blocks",
-      "type": "checkbox",
-      "default": true
     },
     {
       "id": "spacing-above",
@@ -376,8 +372,7 @@
         {
           "type": "url",
           "id": "link-url",
-          "label": "Link",
-          "info": "Entire block will become a link when no link text or description."
+          "label": "Link"
         },
         {
           "id": "link-text",

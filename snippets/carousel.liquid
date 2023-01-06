@@ -21,10 +21,12 @@
 
 {% liquid
   if onboarding and view == 'product'
-    assign total_blocks = 8
+    assign num_placeholder_items = 8
+    assign total_blocks = num_placeholder_items
     assign total_slides = 2
   elsif onboarding and view == 'product-page'
-    assign total_blocks = 4
+    assign num_placeholder_items = 4
+    assign total_blocks = num_placeholder_items
     assign total_slides = 4
   endif
 
@@ -48,8 +50,6 @@
     assign container_offset = offset | times: total_slides | times: 2
     assign container_offset_mobile = offset_mobile | times: total_slides_mobile | times: 2
   endif
-
-  render 'section-assets', name: 'carousel'
 %}
 
 <style>
@@ -74,8 +74,9 @@
   }
 </style>
 
-<carousel-root
+<div
   class="carousel--root"
+  data-js-class="CoreCarousel"
   data-at-end="false"
   data-at-start="true"
   data-auto-rotate="{{ auto_rotate }}"
@@ -89,20 +90,19 @@
   data-spacing-below="{{ spacing_below }}"
   data-transition-type="{{ transition_type }}"
   data-view="{{ view }}"
-  style="display:block;opacity:0;"
 >
   <div class="carousel--viewport">
     <div class="carousel--arrow-nav">
       <div class="carousel--prev" tabindex="0">
-        {%- render 'css-icons', icon: 'prev' -%}
+        {% render 'css-icons', icon: 'prev' %}
       </div>
     </div>
 
-    <transition-root class="carousel--x-container">
+    <div class="carousel--x-container" data-js-class="Transition">
       <div class="carousel--y-container">
 
-      {%- if onboarding and view == 'product' -%}
-        {%- for i in (1..total_blocks) -%}
+      {% if onboarding and view == 'product' %}
+        {% for i in (1..num_placeholder_items) %}
           <div
             class="carousel--block"
             data-loaded="{{ block_loaded }}"
@@ -120,10 +120,10 @@
               %}
             </div>
           </div>
-        {%- endfor -%}
+        {% endfor %}
 
-      {%- elsif onboarding and view == 'product-page' -%}
-        {%- for i in (1..total_blocks) -%}
+      {% elsif onboarding and view == 'product-page' %}
+        {% for i in (1..num_placeholder_items) %}
           <div
             class="carousel--block"
             data-loaded="{{ block_loaded }}"
@@ -131,14 +131,14 @@
             {{ block.shopify_attributes }}
           >
             <div class="carousel--block--container">
-              {%- render "placeholder", type: "product", placeholder_index: i -%}
+              {% render "placeholder", type: "product", placeholder_index: i %}
             </div>
           </div>
-        {%- endfor -%}
+        {% endfor %}
 
-      {%- else -%}
-        {%- for block in blocks limit: total_blocks -%}
-          {%- liquid
+      {% else %}
+        {% for block in blocks limit: total_blocks %}
+          {% liquid
             assign block_loaded = false
             assign block_loaded_mobile = false
 
@@ -149,7 +149,7 @@
             if forloop.index <= blocks_per_slide_mobile
               assign block_loaded_mobile = true
             endif
-          -%}
+          %}
 
           <div
             class="carousel--block"
@@ -163,8 +163,8 @@
                 section
                 block
               {% endcomment %}
-              {%- if view == "featured-content" -%}
-                {%- render 'featured-content',
+              {% if view == "featured-content" %}
+                {% render 'featured-content',
                   parallax_enabled: false,
                   bg_color: bg_color,
                   overlap: false,
@@ -181,54 +181,67 @@
                   text_width: block.settings.text-width,
                   text_position: block.settings.text-position,
                   image: block.settings.image,
-                  mobile_image: block.settings.mobile-image,
                   overline: block.settings.overline,
                   title: block.settings.title,
                   description: block.settings.description,
                   link_text: block.settings.link-text,
-                  link_url: block.settings.link-url
-                -%}
-
-              {%- elsif view == "product" -%}
-                {%-
+                  link_url: block.settings.link-url,
+                  link_url_color: block.settings.link-text-color,
+                  link_url_hover_color: block.settings.link-text-hover-color,
+                  block_id: block.id,
+                  timer_enabled: block.settings.timer_enabled,
+                  make_klaviyo_form: block.settings.make-klaviyo-form,
+                  new_start_date: block.settings.new_start_date,
+                  new_end_date: block.settings.new_end_date,
+                  timer_label_color: block.settings.timer_label_color,
+                  timer_label_text_color: block.settings.timer_label_text_color
+                %}
+              {% elsif view == "product" %}
+                {%
                   render 'product--item',
                   product: block,
                   view: "slider",
                   unique_handle: unique_handle,
                   section_id: section_id
-                -%}
+                %}
 
-              {%- elsif view == "product-page" -%}
-                {%-
+              {% elsif view == "product-page" %}
+                {%
                   render "product--media",
                   media_view: "featured",
                   inside_carousel: true,
                   product: product,
                   product_media: block,
                   video_looping_enabled: video_looping_enabled,
-                  media_size: media_size,
-                -%}
+                  media_size: media_size
+                %}
 
-              {%- endif -%}
+              {% endif %}
             </div>
           </div>
-        {%- endfor -%}
-      {%- endif -%}
+
+        {% endfor %}
+
+      {% endif %}
 
       </div>
-    </transition-root>
+    </div>
 
     <div class="carousel--arrow-nav">
       <div class="carousel--next" tabindex="0">
-        {%- render 'css-icons', icon: 'next' -%}
+        {% render 'css-icons', icon: 'next' %}
       </div>
     </div>
 
   </div>
 
-  <div class="carousel--dot-container">
-    <div class="carousel--dot-viewport">
-      <div class="carousel--dot-nav"></div>
-    </div>
-  </div>
-</carousel-root>
+  <div class="carousel--dot-nav"></div>
+
+  {% if view == "product-page" %}
+    {%
+      render "product--media",
+      media_view: "media-dependencies",
+      product: product
+    %}
+  {% endif %}
+</div>

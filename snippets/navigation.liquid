@@ -10,24 +10,22 @@
   if show_browse_button or show_refine_button or show_sort_button
     assign show_filter = true
   endif
-
-  render 'section-assets', name: 'navigation'
 -%}
 
-<navigation-root
+<div
   class="navigation--root"
+  data-js-class="Navigation"
   data-section-id="{{ section.id }}"
   data-show-navigation="{% if show_filter or show_layout_buttons %}true{% else %}false{% endif %}"
   data-storage-name="{{ storage_name }}"
   data-url="{{ ajax_url }}"
-  style="display:block;"
 >
-  {%- if show_filter or show_layout_buttons -%}
+  {% if show_filter or show_layout_buttons %}
     <div class="navigation--container" data-container="block" data-mq="medium-large">
 
-      {%- if show_filter -%}
+      {% if show_filter %}
         <div class="navigation--filter" data-item="nav-text">
-          {%- if show_browse_button -%}
+          {% if show_browse_button %}
             <div
               class="navigation--button"
               tabindex="0"
@@ -38,8 +36,8 @@
             >
               {{ browse_t }}
             </div>
-          {%- endif -%}
-          {%- if show_sort_button -%}
+          {% endif %}
+          {% if show_sort_button %}
             <div
               class="navigation--button"
               tabindex="0"
@@ -50,8 +48,8 @@
             >
               {{ sort_by_t }}
             </div>
-          {%- endif -%}
-          {%- if show_refine_button -%}
+          {% endif %}
+          {% if show_refine_button %}
             <div
               class="navigation--button"
               tabindex="0"
@@ -60,45 +58,43 @@
               data-toggle-menu="refine-filter"
               aria-haspopup="menu"
             >
-              {{- refine_t -}}
+              {{ refine_t }}
             </div>
-          {%- endif -%}
+          {% endif %}
         </div>
-      {%- endif -%}
+      {% endif %}
 
-      {%- if results_string -%}
+      {% if results_string %}
         <div class="navigation--results" data-item="caption">
-          {{- results_string -}}
+          {{ results_string }}
         </div>
-      {%- endif -%}
+      {% endif %}
 
-      {%- if show_layout_buttons -%}
+      {% if show_layout_buttons %}
         <div class="navigation--layout">
           <div
             class="navigation--layout-button"
             tabindex="0"
             data-active="false"
             data-column-size="2"
-            role="button"
             aria-label="{{ large_layout_t }}"
           >
-            {%- render 'icons', icon: 'grid-large' -%}
+            {% render 'icons', icon: 'grid-large' %}
           </div>
           <div
             class="navigation--layout-button"
             tabindex="0"
             data-active="false"
             data-column-size
-            role="button"
             aria-label="{{ small_layout_t }}"
           >
-            {%- render 'icons', icon: 'grid-small' -%}
+            {% render 'icons', icon: 'grid-small' %}
           </div>
         </div>
-      {%- endif -%}
+      {% endif %}
 
     </div>
-  {%- endif -%}
+  {% endif %}
 
   <div class="navigation--mobile-header" data-container="block" data-mq="small">
     {%- if show_browse_button and mobile_buttons contains 'browse' -%}
@@ -111,7 +107,7 @@
         data-toggle-menu="browse-filter"
         aria-haspopup="menu"
       >
-        {{- browse_t -}}
+        {{ browse_t }}
       </div>
     {%- endif -%}
     {%- if show_sort_button and mobile_buttons contains 'sort' -%}
@@ -124,7 +120,7 @@
         data-toggle-menu="sort-filter"
         aria-haspopup="menu"
       >
-        {{- sort_by_t -}}
+        {{ sort_by_t }}
       </div>
     {%- endif -%}
     {%- if show_refine_button and mobile_buttons contains 'refine' -%}
@@ -137,20 +133,20 @@
         data-toggle-menu="refine-filter"
         aria-haspopup="menu"
       >
-        {{- refine_t -}}
+        {{ refine_t }}
       </div>
     {%- endif -%}
   </div>
 
-  {%- if show_sort_list or show_refine_list -%}
-    {%- comment -%} this is used to render active tags above the product grid {%- endcomment -%}
+  {% if show_sort_list or show_refine_list %}
+    {% comment %} this is used to render active tags above the product grid {% endcomment %}
     <div
       class="navigation--tags-container"
       data-container="block"
       style="display:none;"
     >
       <ul class="navigation--active-tags" data-item="nav-text--sub">
-        {%- if show_sort_list -%}
+        {% if show_sort_list %}
           <li
             class="navigation--active-tag"
             data-type="sort"
@@ -160,8 +156,8 @@
             {{ sort_by_t }}:&nbsp;<span></span>
             {%- render 'icons', icon: 'cross' -%}
           </li>
-        {%- endif -%}
-        {%- if show_refine_list -%}
+        {% endif %}
+        {% if show_refine_list %}
           <li
             class="navigation--active-tag"
             data-type="refine"
@@ -190,11 +186,11 @@
             <span data-max-price></span>
             {%- render 'icons', icon: 'cross' -%}
           </li>
-        {%- endif -%}
+        {% endif %}
         <li class="navigation--active-clear" tabindex="0" data-item="block-link">
           <span>{{ clear_all_t }}</span>
         </li>
       </ul>
     </div>
-  {%- endif -%}
-</navigation-root>
+  {% endif %}
+</div>

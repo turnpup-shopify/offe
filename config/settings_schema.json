@@ -15,14 +15,8 @@
         "content": "General"
       },
       {
-        "id": "color--accent-1",
-        "label": "Accent 1",
-        "type": "color",
-        "default": "#fff4cc"
-      },
-      {
-        "id": "color--accent-2",
-        "label": "Accent 2",
+        "id": "color--accent",
+        "label": "Accent",
         "type": "color",
         "default": "#fff4cc"
       },
@@ -192,36 +186,34 @@
           }
         ],
         "default": "medium"
+      },
+      {
+        "type": "header",
+        "content": "CUSTOM FONT OVERRIDE FOR PARAGRAPH"
+      },
+      {
+        "id": "offe-custom-paragraph-override",
+        "label": "Use Custom Font for paragraph?",
+        "type": "checkbox",
+        "default": false
+      },
+      {
+        "id": "offe-custom-paragraph-custom-font",
+        "label": "Paragraph Custom Font",
+        "type": "text",
+        "default": "Roc Grotesk"
+      },
+      {
+        "id": "offe-custom-paragraph-custom-weight",
+        "label": "Paragraph Custom Weight",
+        "type": "text",
+        "default": "700"
       }
     ]
   },
   {
     "name": "Product grid",
     "settings": [
-      {
-        "id": "product--image-size",
-        "label": "Image size",
-        "type": "select",
-        "options": [
-          {
-            "label": "Natural",
-            "value": "natural"
-          },
-          {
-            "label": "Square (1:1)",
-            "value": "square"
-          },
-          {
-            "label": "Landscape (4:3)",
-            "value": "landscape"
-          },
-          {
-            "label": "Portrait (2:3)",
-            "value": "portrait"
-          }
-        ],
-        "default": "portrait"
-      },
       {
         "type": "checkbox",
         "id": "product--hover-image-enabled",
@@ -293,10 +285,6 @@
         "type": "select",
         "options": [
           {
-            "label": "None",
-            "value": "none"
-          },
-          {
             "label": "Light",
             "value": "light"
           },
@@ -305,21 +293,27 @@
             "value": "dark"
           },
           {
-            "label": "Accent 1",
-            "value": "accent-1"
+            "label": "Accent with dark text",
+            "value": "accent-dark-text"
           },
           {
-            "label": "Accent 2",
-            "value": "accent-2"
+            "label": "Accent with light text",
+            "value": "accent-light-text"
           }
         ],
         "default": "light"
       },
       {
-        "id": "product--label-light-text",
-        "label": "Use light text color",
-        "type": "checkbox",
-        "default": false
+        "id": "turnpup-product--label-background-color",
+        "label": "Label Background Color - Product Tags",
+        "type": "color",
+        "default": "#fafafa"
+      },
+      {
+        "id": "turnpup-product--label-text-color",
+        "label": "Label Text Color - Product Tags",
+        "type": "color",
+        "default": "#fafafa"
       },
       {
         "id": "product--show-sale-label",
@@ -344,7 +338,7 @@
       {
         "type": "checkbox",
         "id": "product--show-new-label",
-        "label": "Show new label",
+        "label": "Show new label (use product tags instead)",
         "default": true
       },
       {
@@ -396,6 +390,13 @@
         "id": "product--show-quantity",
         "label": "Show quantity selector",
         "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "product--smart-payment-button",
+        "label": "Show dynamic checkout button",
+        "info": "Lets customers check out directly using a familiar payment method. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/change-the-layout\/dynamic-checkout)",
+        "default": true
       }
     ]
   },
@@ -420,12 +421,6 @@
         "type": "checkbox",
         "id": "search--show-articles",
         "label": "Show blog articles",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "search--show-collections",
-        "label": "Show collections",
         "default": true
       },
       {
@@ -581,12 +576,8 @@
             "value": "dark"
           },
           {
-            "label": "Accent 1",
-            "value": "accent-1"
-          },
-          {
-            "label": "Accent 1",
-            "value": "accent-2"
+            "label": "Accent",
+            "value": "accent"
           }
         ],
         "default": "light"
@@ -681,6 +672,17 @@
         "id": "cart--show-note",
         "label": "Enable order notes",
         "default": true
+      }
+    ]
+  },
+  {
+    "name": "Offe Custom",
+    "settings": [
+      {
+        "type": "text",
+        "id": "flash-sticker-url",
+        "label": "Flash Sticker URL",
+        "default": "https:\/\/cdn.shopify.com\/s\/files\/1\/0083\/9181\/9341\/files\/flash_sale_final.png?v=1644361491"
       }
     ]
   }

@@ -1,62 +1,211 @@
 {
   "sections": {
-    "slideshow": {
-      "type": "slideshow",
+    "1660069364d78f178e": {
+      "type": "image-with-text",
+      "settings": {
+        "text-color": "auto",
+        "background-color": "none",
+        "container-width": 3,
+        "spacing-above": false,
+        "spacing-below": false,
+        "image-height": 0,
+        "darken-image": false,
+        "parallax-enabled": false,
+        "text-position": "center",
+        "text-width": "medium",
+        "overlap": false,
+        "box-around-text": false,
+        "mobile-overlay": false,
+        "image": "shopify:\/\/shop_images\/updatedwebsitebanner.png",
+        "overline": "",
+        "title": "",
+        "description": "<p><\/p>",
+        "link-url": "",
+        "link-text": ""
+      }
+    },
+    "1663349653ec666f15": {
+      "type": "grid-with-overlay",
       "blocks": {
-        "slide-0": {
+        "1663349653bbf39c4c-0": {
           "type": "image",
           "settings": {
-            "text-position": "center",
-            "text-width": "medium",
-            "overline": "Overline text",
-            "title": "Slide heading",
-            "description": "<p>Combine imagery with text to create stand-out campaign sections, eye-catching promotions, information blocks and more.<\/p>",
-            "link-url": "\/",
-            "link-text": "View more"
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_9.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/80-off",
+            "link-text": "SHOP"
           }
         },
-        "slide-1": {
+        "1663349653bbf39c4c-1": {
           "type": "image",
           "settings": {
-            "text-position": "bottom-left",
-            "text-width": "medium",
-            "overline": "Overline text",
-            "title": "Slide heading",
-            "description": "<p>Combine imagery with text to create stand-out campaign sections, eye-catching promotions, information blocks and more.<\/p>",
-            "link-url": "\/",
-            "link-text": "View more"
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_13.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/70-off",
+            "link-text": "SHOP"
           }
         },
-        "slide-2": {
+        "1663349653bbf39c4c-2": {
           "type": "image",
           "settings": {
-            "text-position": "bottom-left",
-            "text-width": "medium",
-            "overline": "Overline text",
-            "title": "Slide heading",
-            "description": "<p>Combine imagery with text to create stand-out campaign sections, eye-catching promotions, information blocks and more.<\/p>",
-            "link-url": "\/",
-            "link-text": "View more"
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_10.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/60-off",
+            "link-text": "SHOP"
           }
         },
-        "slide-3": {
+        "1663349653bbf39c4c-3": {
           "type": "image",
           "settings": {
-            "text-position": "bottom-left",
-            "text-width": "medium",
-            "overline": "Overline text",
-            "title": "Slide heading",
-            "description": "<p>Combine imagery with text to create stand-out campaign sections, eye-catching promotions, information blocks and more.<\/p>",
-            "link-url": "\/",
-            "link-text": "View more"
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_14.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/50-off",
+            "link-text": "SHOP"
+          }
+        },
+        "98b54b4d-8236-4f78-8ace-7fd5c4986328": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_11.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/40-off",
+            "link-text": "SHOP"
           }
         }
       },
       "block_order": [
-        "slide-0",
-        "slide-1",
-        "slide-2",
-        "slide-3"
+        "1663349653bbf39c4c-0",
+        "1663349653bbf39c4c-1",
+        "1663349653bbf39c4c-2",
+        "1663349653bbf39c4c-3",
+        "98b54b4d-8236-4f78-8ace-7fd5c4986328"
+      ],
+      "settings": {
+        "text-style": "hover",
+        "background-color": "none",
+        "spacing": true,
+        "mobile-overlay": true,
+        "container-width": 5,
+        "spacing-above": true,
+        "spacing-below": true,
+        "width": 5,
+        "mobile-width": "2",
+        "heading": "NEW YEAR SALE",
+        "subtitle": "New markdowns just added, save up to 90% off MSRP!",
+        "link-url": "",
+        "link-text": ""
+      }
+    },
+    "16600699028b851273": {
+      "type": "slideshow",
+      "blocks": {
+        "16600699028cc1bb1c-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/NEWGIF2.gif",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "NEW IN!",
+            "timer_enabled": false,
+            "new_start_date": "2022-11-14T08:00:00Z",
+            "new_end_date": "2022-11-21T08:00:00Z",
+            "timer_label_color": "#e3c4e8",
+            "timer_label_text_color": "#ffffff",
+            "title": "VERLOOP",
+            "description": "<p>The coziest slippers and winter accessories at 50% off!<\/p>",
+            "link-url": "shopify:\/\/collections\/verloop",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e0f14e",
+            "link-text-hover-color": "#e3c4e8"
+          }
+        },
+        "16600699028cc1bb1c-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/PHAW9106_RB_d7c4bdc6-8a8f-40fd-9f60-fddcb855053f.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "MORE NEW!",
+            "timer_enabled": false,
+            "new_start_date": "2022-02-15T08:00:00Z",
+            "new_end_date": "2022-02-17T08:00:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "ARAMINTA JAMES",
+            "description": "<p>Sustainable lounge essentials, inspired by life at the beach. The core brand principle is effortless style, transforming the ordinary.<\/p>",
+            "link-url": "shopify:\/\/collections\/araminta-james",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#f07855",
+            "link-text-hover-color": "#e3c4e8"
+          }
+        },
+        "16600699028cc1bb1c-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/light_leak-2.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "GIFTS! GIFTS! GIFTS!",
+            "timer_enabled": false,
+            "new_start_date": "2022-02-15T08:00:00Z",
+            "new_end_date": "2022-02-17T08:00:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "Under $50",
+            "description": "<p>We've got great gifts at great prices, snag a gift for $50 and under.<\/p>",
+            "link-url": "shopify:\/\/collections\/gifts-under-51",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e3c4e8",
+            "link-text-hover-color": "#f07855"
+          }
+        },
+        "16600699028cc1bb1c-0": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/17366006_e4d364b1-14ec-456f-aed2-29eb9e9108d9.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "GIFTS! GIFTS! GIFTS!",
+            "timer_enabled": false,
+            "new_start_date": "2022-02-15T08:00:00Z",
+            "new_end_date": "2022-02-17T08:00:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "Under $100",
+            "description": "<p>We see ya, big spender. Get them something they'll remember.<\/p>",
+            "link-url": "shopify:\/\/collections\/gifts-under-100",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e3c4e8",
+            "link-text-hover-color": "#f07855"
+          }
+        }
+      },
+      "block_order": [
+        "16600699028cc1bb1c-3",
+        "16600699028cc1bb1c-2",
+        "16600699028cc1bb1c-1",
+        "16600699028cc1bb1c-0"
       ],
       "settings": {
         "text-color": "auto",
@@ -66,32 +215,204 @@
         "spacing-around-blocks": false,
         "image-height": 3,
         "darken-image": true,
-        "blocks_per_slide": 1,
+        "blocks_per_slide": 2,
         "blocks_per_slide_mobile": "1",
-        "box-around-text": true,
+        "box-around-text": false,
         "mobile-overlay": true,
         "auto-rotate": false,
         "rotate-frequency": 7,
         "transition_type": "slide"
       }
     },
-    "featured-text": {
-      "type": "featured-text",
+    "1663280613f3192a7f": {
+      "type": "image-with-text",
+      "disabled": true,
       "settings": {
+        "text-color": "light",
         "background-color": "none",
-        "light-text": false,
-        "container-width": 4,
-        "spacing-above": true,
+        "container-width": 6,
+        "spacing-above": false,
+        "spacing-below": true,
+        "image-height": 3,
+        "darken-image": true,
+        "parallax-enabled": true,
+        "text-position": "center",
+        "text-width": "large",
+        "overlap": false,
+        "box-around-text": false,
+        "mobile-overlay": true,
+        "image": "shopify:\/\/shop_images\/Rationalle_FW21_PC-KatieBorrazzo_161_1_1200x_bb1ed76b-892d-414e-b91d-0e1aef6442ca.jpg",
+        "overline": "THESE JUST IN",
+        "title": "New Arrivals",
+        "description": "<p>This season's must-haves, all on sale.<\/p>",
+        "link-url": "shopify:\/\/collections\/new",
+        "link-text": "SEE WHAT'S NEW"
+      }
+    },
+    "slideshow": {
+      "type": "slideshow",
+      "disabled": true,
+      "blocks": {
+        "slide-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MG2201550_841_5000x_1500x_6d345e20-a9ec-4622-b723-29bfb15f01fe.webp",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "70% off",
+            "timer_enabled": true,
+            "new_start_date": "2022-10-25T20:00:00Z",
+            "new_end_date": "2022-11-02T20:00:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "MINKPINK",
+            "description": "<p>Shop 70% off pretty florals and feminine silhouettes by Australian-based MINKPINK. <\/p>",
+            "link-url": "shopify:\/\/collections\/minkpink",
+            "link-text": "SHOP THE FLASH SALE",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e0f14e",
+            "link-text-hover-color": "#e8d2e9"
+          }
+        },
+        "slide-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/17018529_b5133bf4-c53f-4686-a771-4a979bf091ae.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "BACK IN STOCK",
+            "timer_enabled": false,
+            "new_start_date": "2022-09-01T08:00:00Z",
+            "new_end_date": "2022-09-06T20:00:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "The Boots",
+            "description": "<p>It's all about the platform, high-knee boots this season. Your faves have been restocked and are now available in more colors! Grab 'em before they sell out again.<\/p>",
+            "link-url": "shopify:\/\/products\/oasis-society-juniper-platform-knee-high-boots-1",
+            "link-text": "SHOP THE JUNIPER BOOTS",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e0f14e",
+            "link-text-hover-color": "#e8d2e9"
+          }
+        },
+        "slide-0": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/StyledYolkDuvet_FawnFittedFlat_AzulClassicPC.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "30% Off",
+            "timer_enabled": true,
+            "new_start_date": "2022-08-16T08:00:00Z",
+            "new_end_date": "2022-08-21T07:59:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "Morrow Soft Goods",
+            "description": "<p>Cozy up your home with earth toned linen bedding, rugs, and throw pillows<\/p>",
+            "link-url": "shopify:\/\/collections\/morrow-soft-goods",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e8d2e9",
+            "link-text-hover-color": "#e0f14e"
+          }
+        },
+        "f163d9de-8deb-4bcb-a657-79552060105b": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/PowerLunch_02_1_1200x.progressive_48ab9bf0-4d87-46ca-8e3e-fadd2375e1b8.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "50% off",
+            "timer_enabled": true,
+            "new_start_date": "2022-08-16T08:00:00Z",
+            "new_end_date": "2022-08-21T07:59:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "Piecework Puzzles",
+            "description": "<p>Happy puzzles for lazy days, Piecework's fun designs will entertain you for days<\/p>",
+            "link-url": "shopify:\/\/collections\/piecework",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e0f14e",
+            "link-text-hover-color": "#e8d2e9"
+          }
+        },
+        "slide-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ahabhatoner_02_720x_3000x_b1e4accd-295a-4b5d-b2a5-4b55bd899230.webp",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "New Category",
+            "timer_enabled": false,
+            "new_start_date": "2022-08-04T08:00:00Z",
+            "new_end_date": "2022-08-09T07:30:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "Beauty and Wellness",
+            "description": "<p>Shop skincare lovers' favorites at deep discounts<\/p>",
+            "link-url": "shopify:\/\/collections\/beauty-wellness",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e8d2e9",
+            "link-text-hover-color": "#e0f14e"
+          }
+        },
+        "311d3252-deef-464b-8c95-a8c7205fdcf0": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ahabhatoner_02_720x_3000x_b1e4accd-295a-4b5d-b2a5-4b55bd899230.webp",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "You look like you deserve some",
+            "timer_enabled": false,
+            "new_start_date": "2022-02-14T08:00:00Z",
+            "new_end_date": "2022-02-18T07:59:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "New 'Fits",
+            "description": "<p>Shop our selection thoughtful clothing at 30-70% off<\/p>",
+            "link-url": "shopify:\/\/collections\/rachel-antonoff-feb-flash",
+            "link-text": "SHOP NOW",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e0f14e",
+            "link-text-hover-color": "#f8f6f4"
+          }
+        }
+      },
+      "block_order": [
+        "slide-2",
+        "slide-3",
+        "slide-0",
+        "f163d9de-8deb-4bcb-a657-79552060105b",
+        "slide-1",
+        "311d3252-deef-464b-8c95-a8c7205fdcf0"
+      ],
+      "settings": {
+        "text-color": "auto",
+        "background-color": "none",
+        "spacing-above": false,
         "spacing-below": false,
-        "overline": "Overline text",
-        "heading": "Introduce your brand",
-        "text": "<p>Introduce your brand, products and vision statement and welcome customers to your store.<\/p>"
+        "spacing-around-blocks": false,
+        "image-height": 3,
+        "darken-image": true,
+        "blocks_per_slide": 2,
+        "blocks_per_slide_mobile": "1",
+        "box-around-text": false,
+        "mobile-overlay": true,
+        "auto-rotate": false,
+        "rotate-frequency": 7,
+        "transition_type": "slide"
       }
     },
     "featured-collection-grid": {
       "type": "featured-collection",
       "settings": {
-        "collection": "",
+        "collection": "new",
         "background-color": "none",
         "light-text": false,
         "spacing-above": true,
@@ -99,201 +420,41 @@
         "featured-collection--image--show": false,
         "featured-collection--description--show": false,
         "display-type": "slider",
-        "products-per-row--desktop": "3",
-        "products-per-row--mobile": "1"
+        "products-per-row--desktop": "4",
+        "products-per-row--mobile": "2"
       }
     },
-    "image-with-text": {
+    "1642100983e6a55fd9": {
       "type": "image-with-text",
+      "disabled": true,
       "settings": {
         "text-color": "auto",
         "background-color": "none",
-        "container-width": 5,
+        "container-width": 2,
         "spacing-above": false,
         "spacing-below": false,
-        "image-height": 3,
-        "darken-image": true,
-        "parallax-enabled": false,
-        "text-position": "bottom-left",
-        "text-width": "medium",
-        "overlap": true,
-        "box-around-text": false,
-        "mobile-overlay": true,
-        "overline": "Overline text",
-        "title": "Image with Text",
-        "description": "<p>Combine imagery with text to create stand-out campaign sections, eye-catching promotions, information blocks and more.<\/p>",
-        "link-url": "",
-        "link-text": ""
-      }
-    },
-    "1640170917ff79e864": {
-      "type": "featured-product",
-      "blocks": {
-        "1640170917806de03a-0": {
-          "type": "overline",
-          "settings": {
-            "text": "Overline text"
-          }
-        },
-        "1640170917806de03a-1": {
-          "type": "heading",
-          "settings": {
-          }
-        },
-        "1640170917806de03a-2": {
-          "type": "vendor",
-          "settings": {
-          }
-        },
-        "1640170917806de03a-3": {
-          "type": "price",
-          "settings": {
-          }
-        },
-        "1640170917806de03a-4": {
-          "type": "options",
-          "settings": {
-            "variant-style": "buttons",
-            "swatches-enabled": true,
-            "size-chart-enabled": true,
-            "size-chart-option": "size",
-            "size-chart-content": ""
-          }
-        },
-        "1640170917806de03a-5": {
-          "type": "buy-buttons",
-          "settings": {
-            "smart-payment-enabled": true
-          }
-        }
-      },
-      "block_order": [
-        "1640170917806de03a-0",
-        "1640170917806de03a-1",
-        "1640170917806de03a-2",
-        "1640170917806de03a-3",
-        "1640170917806de03a-4",
-        "1640170917806de03a-5"
-      ],
-      "settings": {
-        "background-color": "none",
-        "container-width": 4,
-        "spacing-above": true,
-        "spacing-below": true,
-        "featured_product": "",
-        "loop-enabled": false
-      }
-    },
-    "grid-with-overlay": {
-      "type": "grid-with-overlay",
-      "blocks": {
-        "overlay-block-0": {
-          "type": "image",
-          "settings": {
-            "wide": true,
-            "tall": true,
-            "retain-ratio": false,
-            "title": "Grid image",
-            "link-url": "",
-            "link-text": "View more"
-          }
-        },
-        "overlay-block-1": {
-          "type": "image",
-          "settings": {
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "Grid image",
-            "link-url": "",
-            "link-text": "View more"
-          }
-        },
-        "overlay-block-2": {
-          "type": "image",
-          "settings": {
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "Grid image",
-            "link-url": "",
-            "link-text": "View more"
-          }
-        },
-        "overlay-block-3": {
-          "type": "image",
-          "settings": {
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "Grid image",
-            "link-url": "",
-            "link-text": "View more"
-          }
-        },
-        "298d7e72-882e-4dab-8ecf-0a81eeefbf39": {
-          "type": "image",
-          "settings": {
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "Grid image",
-            "link-url": "",
-            "link-text": "View more"
-          }
-        }
-      },
-      "block_order": [
-        "overlay-block-0",
-        "overlay-block-1",
-        "overlay-block-2",
-        "overlay-block-3",
-        "298d7e72-882e-4dab-8ecf-0a81eeefbf39"
-      ],
-      "settings": {
-        "text-style": "hover",
-        "background-color": "light",
-        "mobile-overlay": true,
-        "container-width": 4,
-        "spacing": true,
-        "spacing-above": true,
-        "spacing-below": true,
-        "width": 4,
-        "mobile-width": "2",
-        "heading": "Grid with overlay",
-        "subtitle": "",
-        "link-url": "",
-        "link-text": ""
-      }
-    },
-    "16401711977d36dc6c": {
-      "type": "image-with-text",
-      "settings": {
-        "text-color": "auto",
-        "background-color": "none",
-        "container-width": 5,
-        "spacing-above": true,
-        "spacing-below": false,
-        "image-height": 1,
-        "darken-image": true,
+        "image-height": 0,
+        "darken-image": false,
         "parallax-enabled": false,
         "text-position": "center",
-        "text-width": "small",
+        "text-width": "medium",
         "overlap": false,
         "box-around-text": false,
         "mobile-overlay": true,
-        "overline": "Overline text",
-        "title": "Image with text",
-        "description": "<p>Combine imagery with text to create stand-out campaign sections, eye-catching promotions, information blocks and more.<\/p>",
-        "link-url": "",
+        "image": "shopify:\/\/shop_images\/banners_Main_Web_Block_copy_8.png",
+        "overline": "",
+        "title": "",
+        "description": "<p><\/p>",
+        "link-url": "shopify:\/\/collections\/home-flash-sale",
         "link-text": ""
       }
     },
     "featured-collection-slider": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
-        "collection": "",
-        "background-color": "none",
+        "collection": "kule-flash-sale",
+        "background-color": "light",
         "light-text": false,
         "spacing-above": true,
         "spacing-below": true,
@@ -304,8 +465,110 @@
         "products-per-row--mobile": "1"
       }
     },
+    "grid-with-overlay": {
+      "type": "grid-with-overlay",
+      "disabled": true,
+      "blocks": {
+        "overlay-block-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG_5993.jpg",
+            "wide": true,
+            "tall": true,
+            "retain-ratio": false,
+            "title": "CLOTHES",
+            "link-url": "shopify:\/\/collections\/clothing",
+            "link-text": ""
+          }
+        },
+        "overlay-block-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG_1736_4ead9dbc-9885-4759-81e2-23cdcd3bda8c.jpg",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "ACCESSORIES",
+            "link-url": "shopify:\/\/collections\/accessories",
+            "link-text": ""
+          }
+        },
+        "24eb0f80-f1ba-4658-b58c-4b8aaa4d7edd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG_5693.jpg",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "SHOES",
+            "link-url": "shopify:\/\/collections\/shoes",
+            "link-text": ""
+          }
+        },
+        "overlay-block-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG_1681.jpg",
+            "wide": true,
+            "tall": true,
+            "retain-ratio": false,
+            "title": "BAGS",
+            "link-url": "shopify:\/\/collections\/bags",
+            "link-text": ""
+          }
+        },
+        "overlay-block-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Sunbloom_SC33-2.jpg",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "HOME",
+            "link-url": "shopify:\/\/collections\/living",
+            "link-text": ""
+          }
+        },
+        "d464f9d2-7f6d-4fcf-90cd-5e16278f9834": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG_1052.jpg",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "SUNGLASSES",
+            "link-url": "shopify:\/\/collections\/sunglasses",
+            "link-text": ""
+          }
+        }
+      },
+      "block_order": [
+        "overlay-block-0",
+        "overlay-block-3",
+        "24eb0f80-f1ba-4658-b58c-4b8aaa4d7edd",
+        "overlay-block-2",
+        "overlay-block-1",
+        "d464f9d2-7f6d-4fcf-90cd-5e16278f9834"
+      ],
+      "settings": {
+        "text-style": "hover",
+        "background-color": "light",
+        "spacing": true,
+        "mobile-overlay": true,
+        "container-width": 4,
+        "spacing-above": true,
+        "spacing-below": true,
+        "width": 4,
+        "mobile-width": "2",
+        "heading": "",
+        "subtitle": "",
+        "link-url": "",
+        "link-text": ""
+      }
+    },
     "featured-video": {
       "type": "featured-video",
+      "disabled": true,
       "settings": {
         "video-url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
         "full-width": true,
@@ -319,110 +582,253 @@
         "button-url": ""
       }
     },
+    "1663621169aa442f54": {
+      "type": "featured-product",
+      "disabled": true,
+      "blocks": {
+        "1663621168d5235e73-0": {
+          "type": "overline",
+          "settings": {
+            "text": "DEAL OF THE DAY"
+          }
+        },
+        "1663621168d5235e73-1": {
+          "type": "heading",
+          "settings": {
+          }
+        },
+        "f4f2e2a9-c77c-488a-8d8e-d63b22f8b963": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "1663621168d5235e73-2": {
+          "type": "vendor",
+          "settings": {
+          }
+        },
+        "1663621168d5235e73-3": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "1663621168d5235e73-4": {
+          "type": "options",
+          "settings": {
+            "variant-style": "buttons",
+            "swatches-enabled": true,
+            "size-chart-enabled": true,
+            "size-chart-option": "size",
+            "size-chart-content": ""
+          }
+        },
+        "1663621168d5235e73-5": {
+          "type": "buy-buttons",
+          "settings": {
+            "smart-payment-enabled": true
+          }
+        }
+      },
+      "block_order": [
+        "1663621168d5235e73-0",
+        "1663621168d5235e73-1",
+        "f4f2e2a9-c77c-488a-8d8e-d63b22f8b963",
+        "1663621168d5235e73-2",
+        "1663621168d5235e73-3",
+        "1663621168d5235e73-4",
+        "1663621168d5235e73-5"
+      ],
+      "settings": {
+        "background-color": "none",
+        "container-width": 4,
+        "spacing-above": false,
+        "spacing-below": false,
+        "featured_product": "caution-clip-black-white",
+        "loop-enabled": false
+      }
+    },
     "text-columns": {
       "type": "text-columns",
       "blocks": {
-        "text-below-block-0": {
+        "text-below-block-3": {
           "type": "image",
           "settings": {
             "show-image": true,
-            "title": "Grid image",
-            "description": "<p>Explain a set of product features, add illustrations, infographics, logo lists, or link to pages.<\/p>",
-            "link-url": "",
-            "link-text": "View more"
-          }
-        },
-        "text-below-block-1": {
-          "type": "image",
-          "settings": {
-            "show-image": true,
-            "title": "Grid image",
-            "description": "<p>Explain a set of product features, add illustrations, infographics, logo lists, or link to pages.<\/p>",
-            "link-url": "",
-            "link-text": "View more"
+            "image": "shopify:\/\/shop_images\/business_insider_-_press.png",
+            "title": "",
+            "description": "<p>\"For the T.J. Maxx customer of the future\"<\/p>",
+            "link-url": "https:\/\/www.businessinsider.com\/cara-cara-discount-store-the-tj-maxx-of-future-2020-1",
+            "link-text": "Read More"
           }
         },
         "text-below-block-2": {
           "type": "image",
           "settings": {
             "show-image": true,
-            "title": "Grid image",
-            "description": "<p>Explain a set of product features, add illustrations, infographics, logo lists, or link to pages.<\/p>",
-            "link-url": "",
-            "link-text": "View more"
+            "image": "shopify:\/\/shop_images\/fashionistalogo-04.png",
+            "title": "",
+            "description": "<p>\"The Off-Price Fashion Retail Revolution is Here\"<\/p>",
+            "link-url": "https:\/\/fashionista.com\/2022\/07\/off-price-retail-future-gen-z",
+            "link-text": "Read More"
           }
         },
-        "text-below-block-3": {
+        "text-below-block-1": {
           "type": "image",
           "settings": {
             "show-image": true,
-            "title": "Grid image",
-            "description": "<p>Explain a set of product features, add illustrations, infographics, logo lists, or link to pages.<\/p>",
-            "link-url": "",
-            "link-text": "View more"
+            "image": "shopify:\/\/shop_images\/nylon_-_press.png",
+            "title": "",
+            "description": "<p>\"T.J. Maxx's cooler little sister\"<\/p>",
+            "link-url": "https:\/\/www.nylon.com\/cara-cara-online-shop-discounts",
+            "link-text": "Read More"
+          }
+        },
+        "text-below-block-0": {
+          "type": "image",
+          "settings": {
+            "show-image": true,
+            "image": "shopify:\/\/shop_images\/refinery_-_press.png",
+            "title": "",
+            "description": "<p>\"Off-price destination for your fav indie brands\" <\/p>",
+            "link-url": "https:\/\/www.refinery29.com\/en-us\/2019\/10\/8518425\/cara-cara-discount-indie-brands",
+            "link-text": "Read more"
           }
         }
       },
       "block_order": [
-        "text-below-block-0",
-        "text-below-block-1",
+        "text-below-block-3",
         "text-below-block-2",
-        "text-below-block-3"
+        "text-below-block-1",
+        "text-below-block-0"
       ],
       "settings": {
-        "background-color": "light",
+        "background-color": "none",
         "light-text": false,
         "block-spacing": true,
-        "container-width": 4,
+        "container-width": 2,
         "spacing-above": true,
         "spacing-below": true,
         "width": 4,
         "image-width": 0,
         "mobile-width": "2",
         "text-alignment": "center",
-        "heading": "Text columns with images",
+        "heading": "In The Media",
         "subtitle": "",
+        "link-url": "",
+        "link-text": ""
+      }
+    },
+    "16403189605c9596c6": {
+      "type": "collapsible-tabs",
+      "blocks": {
+        "16403189592d97ac1f-0": {
+          "type": "collapsible-tab",
+          "settings": {
+            "heading": "About us",
+            "description": "<p><\/p>",
+            "page-content": "about-offe-market"
+          }
+        },
+        "16403189592d97ac1f-1": {
+          "type": "collapsible-tab",
+          "settings": {
+            "heading": "How it works",
+            "description": "<p><\/p>",
+            "page-content": "how-offe-market-works-center"
+          }
+        },
+        "16403189592d97ac1f-2": {
+          "type": "collapsible-tab",
+          "settings": {
+            "heading": "Contact us",
+            "description": "<p><\/p>",
+            "page-content": "contact-offe-market"
+          }
+        }
+      },
+      "block_order": [
+        "16403189592d97ac1f-0",
+        "16403189592d97ac1f-1",
+        "16403189592d97ac1f-2"
+      ],
+      "settings": {
+        "background-color": "accent",
+        "light-text": true,
+        "heading": "Learn More",
+        "title-alignment": "left",
+        "container-width": 4,
+        "spacing-above": true,
+        "spacing-below": true
+      }
+    },
+    "image-with-text": {
+      "type": "image-with-text",
+      "disabled": true,
+      "settings": {
+        "text-color": "dark",
+        "background-color": "dark",
+        "container-width": 6,
+        "spacing-above": false,
+        "spacing-below": false,
+        "image-height": 1,
+        "darken-image": false,
+        "parallax-enabled": true,
+        "text-position": "center",
+        "text-width": "large",
+        "overlap": true,
+        "box-around-text": false,
+        "mobile-overlay": true,
+        "image": "shopify:\/\/shop_images\/Gradient1_7a9c5540-f2af-4455-96ac-92f39cb96c61.png",
+        "overline": "we love a good deal",
+        "title": "30-80% off everything, all the time",
+        "description": "<p>How does it work? We carry discounted overstock or end of season products from thoughtful, high quality brands and pass those savings on to you.<\/p>",
         "link-url": "",
         "link-text": ""
       }
     },
     "featured-blog": {
       "type": "featured-blog",
+      "disabled": true,
+      "settings": {
+        "background-color": "none",
+        "btn_hover_color": "#95c3df",
+        "light-text": false,
+        "container-width": 1,
+        "spacing-above": true,
+        "spacing-below": true,
+        "blog-heading": "The Latest",
+        "blog": "thelatest",
+        "tag-select": "pinned",
+        "show-date": false,
+        "show-excerpt": false,
+        "view-more-text": "view more"
+      }
+    },
+    "featured-text": {
+      "type": "featured-text",
+      "disabled": true,
       "settings": {
         "background-color": "none",
         "light-text": false,
         "container-width": 4,
         "spacing-above": true,
         "spacing-below": true,
-        "blog-heading": "Blog posts",
-        "blog": "news",
-        "tag-select": "pinned",
-        "show-date": true,
-        "show-excerpt": true,
-        "view-more-text": "View more"
+        "overline": "Overline text",
+        "heading": "Introduce your brand",
+        "text": "<p>Introduce your brand, products and vision statement and welcome customers to your store.<\/p>"
       }
     },
-    "1640171307ebc6c538": {
-      "type": "image-with-text",
+    "newsletter": {
+      "type": "newsletter",
+      "disabled": true,
       "settings": {
-        "text-color": "auto",
-        "background-color": "light",
-        "container-width": 6,
-        "spacing-above": false,
-        "spacing-below": false,
-        "image-height": 2,
-        "darken-image": true,
-        "parallax-enabled": false,
-        "text-position": "left",
-        "text-width": "medium",
-        "overlap": false,
-        "box-around-text": false,
-        "mobile-overlay": true,
-        "overline": "Overline text",
-        "title": "Image with text",
-        "description": "<p>Combine imagery with text to create stand-out campaign sections, eye-catching promotions, information blocks and more.<\/p>",
-        "link-url": "",
-        "link-text": ""
+        "background-color": "none",
+        "light-text": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "heading": "Subscribe to our newsletter",
+        "newsletter--subheading": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
       }
     },
     "map": {
@@ -434,64 +840,33 @@
         "container-width": 4,
         "spacing-above": true,
         "spacing-below": true,
-        "background-color": "none",
+        "background-color": "light",
         "light-text": false,
         "theme": "grayscale",
         "heading": "Our store",
         "address": "<p>391 Sunrise Blvd,<br\/>Los Angeles<br\/>CA 94108, USA<\/p>",
         "hours": "<p>Monday - Friday<br\/>10am - 6pm<br\/><br\/>Saturday - Sunday<br\/>12pm - 5pm<\/p>"
       }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "background-color": "none",
-        "light-text": false,
-        "spacing-above": true,
-        "spacing-below": true,
-        "heading": "Subscribe to our newsletter",
-        "newsletter--subheading": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
-      }
-    },
-    "1640171389ee0b18f2": {
-      "type": "image-with-text",
-      "settings": {
-        "text-color": "auto",
-        "background-color": "none",
-        "container-width": 6,
-        "spacing-above": false,
-        "spacing-below": false,
-        "image-height": 3,
-        "darken-image": true,
-        "parallax-enabled": false,
-        "text-position": "center",
-        "text-width": "small",
-        "overlap": false,
-        "box-around-text": true,
-        "mobile-overlay": true,
-        "overline": "Overline text",
-        "title": "Image with text",
-        "description": "<p>Combine imagery with text to create stand-out campaign sections, eye-catching promotions, information blocks and more.<\/p>",
-        "link-url": "",
-        "link-text": ""
-      }
     }
   },
   "order": [
+    "1660069364d78f178e",
+    "1663349653ec666f15",
+    "16600699028b851273",
+    "1663280613f3192a7f",
     "slideshow",
-    "featured-text",
     "featured-collection-grid",
-    "image-with-text",
-    "1640170917ff79e864",
-    "grid-with-overlay",
-    "16401711977d36dc6c",
+    "1642100983e6a55fd9",
     "featured-collection-slider",
+    "grid-with-overlay",
     "featured-video",
+    "1663621169aa442f54",
     "text-columns",
+    "16403189605c9596c6",
+    "image-with-text",
     "featured-blog",
-    "1640171307ebc6c538",
-    "map",
+    "featured-text",
     "newsletter",
-    "1640171389ee0b18f2"
+    "map"
   ]
 }

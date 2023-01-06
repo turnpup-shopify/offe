@@ -53,12 +53,22 @@
       assign promo_width = alotted_width
     endif
 
+    assign text_exists = false
+    if overline != blank or title != blank or description != blank or link_text != blank
+      assign text_exists = true
+    endif
+
     if promo_width == products_per_row_desktop
       assign banner_promo = true
       assign text_width = 'large'
     else
       assign banner_promo = false
       assign text_width = 'medium'
+    endif
+
+    assign cover_link = false
+    if link_text == blank and link_url != blank and description == blank
+      assign cover_link = true
     endif
 
     if image_size == 'aspect-ratio' and image
@@ -100,7 +110,7 @@
         echo promo_html | append: '|'
       endunless
 
-      render 'featured-content', text_color: block.settings.text-color, attributes: block.shopify_attributes, banner_promo: banner_promo, bg_color: block.settings.background-color, box_around_text: false, container_width: '6', cover_image: cover_image, cover_image_mobile: cover_image, darken_image: block.settings.darken-image, description: description, disable_placeholder: disable_placeholder, image: image, link_text: link_text, link_url: link_url, mobile_overlay: true, overlap: section.settings.overlap, overline: overline, promo_width: promo_width, spacing_above: false, spacing_below: false, text_position: 'center', text_width: text_width, title: title
+      render 'featured-content', text_color: block.settings.text-color, banner_promo: banner_promo, bg_color: block.settings.background-color, box_around_text: false, container_width: '6', cover_image: cover_image, cover_image_mobile: cover_image, darken_image: block.settings.darken-image, description: description, disable_placeholder: disable_placeholder, image: image, link_text: link_text, link_url: link_url, mobile_overlay: true, overlap: section.settings.overlap, overline: overline, promo_width: promo_width, spacing_above: false, spacing_below: false, text_position: 'center', text_width: text_width, title: title
     endcapture
   endfor
 
@@ -110,13 +120,12 @@
   assign promo_grid_coords_arr = promo_grid_coords | split: '|'
   assign promo_widths_arr = promo_widths | split: '|'
   assign promo_html_arr = promo_html | split: '|'
-
-  render 'section-assets', name: 'collection--body', type: 'style'
 -%}
 
 <div
   class="collection--body--root"
   id="collection-root"
+  data-js-class="Collection"
   data-section-id="{{ section.id }}"
   data-section-type="collection"
   data-container="section"
@@ -134,22 +143,21 @@
     </div>
   </div>
 
-  {%- paginate collection.products by products_per_page -%}
-    {%- if paginate.pages > 1 -%}
+  {% paginate collection.products by products_per_page %}
+    {% if paginate.pages > 1 %}
       <a data-item="a11y-button" href='#collection-pagination' data-body-pagination-link>
         {{ skip_link_t }}
       </a>
-    {%- endif -%}
+    {% endif %}
 
-    <product-grid-root
+    <div
       class="collection--body--grid"
       data-body-grid
       data-container="panel"
       data-columns="{{ products_per_row_desktop }}"
-      data-image-size="{{ settings.product--image-size }}"
       data-mobile-columns="{{ products_per_row_mobile }}"
     >
-      {%- if collection.products_count > 0 -%}
+      {% if collection.products_count > 0 %}
         {%- liquid
           assign current_block_num = 1
 
@@ -265,25 +273,25 @@
           endfor
         -%}
 
-      {%- elsif current_tags == blank -%}
+      {% elsif current_tags == blank %}
         <div class="collection--body--empty" data-container="block">
           <p data-item="paragraph">
-            {{- no_products_t -}}
+            {{ no_products_t }}
           </p>
           <a href="{{ routes.root_url }}" data-item="block-link">
             <div>{{ continue_shopping_t }}</div>
           </a>
         </div>
 
-      {%- else -%}
+      {% else %}
         <div class="collection--body--empty" data-container="block">
           <p data-item="paragraph">
-            {{- filter_feedback_t -}}
+            {{ filter_feedback_t }}
           </p>
         </div>
 
-      {%- endif -%}
-    </product-grid-root>
+      {% endif %}
+    </div>
 
     <div
       class="collection--body--pagination"
@@ -297,8 +305,48 @@
         endif
       -%}
     </div>
-  {%- endpaginate -%}
+  {% endpaginate %}
+
 </div>
+<!-- offe custom turnpup styling --> 
+<style>
+  .collection--body--grid .featured-content--link a
+  {
+    color: {{section.settings.offe-custom-link-color}} !important;
+    border-color: {{section.settings.offe-custom-link-color}} !important;
+  }
+  .collection--body--grid .featured-content--link a:hover, 
+  .collection--body--grid .featured-content--link a:focus, 
+  .collection--body--grid .featured-content--link a:visited
+  {
+    color: {{section.settings.offe-custom-link-hover-color}} !important;
+    border-color: {{section.settings.offe-custom-link-hover-color}} !important;
+  }
+  .collection--body--grid [data-item=block-link]>:after {
+    border-color: {{section.settings.offe-custom-link-color}} !important;
+  }
+  .collection--body--grid [data-item=block-link]>:hover:after {
+    border-color: {{section.settings.offe-custom-link-hover-color}} !important;
+  }  
+  .image-with-text--root .featured-content--link a
+  {
+    color: {{section.settings.offe-custom-link-color}} !important;
+    border-color: {{section.settings.offe-custom-link-color}} !important;
+  }
+  .image-with-text--root .featured-content--link a:hover, 
+  .image-with-text--root .featured-content--link a:focus, 
+  .image-with-text--root .featured-content--link a:visited
+  {
+    color: {{section.settings.offe-custom-link-hover-color}} !important;
+    border-color: {{section.settings.offe-custom-link-hover-color}} !important;
+  }
+  .image-with-text--root [data-item=block-link]>:after {
+    border-color: {{section.settings.offe-custom-link-color}} !important;
+  }
+  .image-with-text--root [data-item=block-link]>:hover:after {
+    border-color: {{section.settings.offe-custom-link-hover-color}} !important;
+  }
+</style>
 
 {% schema %}
 {
@@ -330,6 +378,18 @@
       "max": 12,
       "step": 1,
       "default": 4
+    },
+    {
+      "type": "color",
+      "id": "offe-custom-link-color",
+      "label": "Link Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "offe-custom-link-hover-color",
+      "label": "Link Hover Color",
+      "default": "#000000"
     }
   ],
   "blocks": [
@@ -376,8 +436,7 @@
             { "label": "None", "value": "none" },
             { "label": "Light", "value": "light" },
             { "label": "Dark", "value": "dark" },
-            { "label": "Accent 1", "value": "accent-1" },
-            { "label": "Accent 2", "value": "accent-2" }
+            { "label": "Accent", "value": "accent" }
           ],
           "default": "light"
         },
@@ -438,8 +497,7 @@
         {
           "type": "url",
           "id": "link-url",
-          "label": "Link",
-          "info": "Entire block will become a link when no link text or description."
+          "label": "Link"
         },
         {
           "type": "text",

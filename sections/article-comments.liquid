@@ -19,9 +19,9 @@
     data-spacing-above="false"
   >
     <div class="article-comments-wrapper">
-      {%- if disqus_enabled -%}
-        <h2 class="article-comments--heading" data-item="section-heading">
-          {{- comments_t -}}
+      {% if disqus_enabled %}
+        <h2 class="article-comments--heading" data-item='section-heading'>
+          {{ comments_t }}
         </h2>
         <div id="disqus_thread" class="article-comments--disqus"></div>
         <script>
@@ -30,17 +30,16 @@
             this.page.title = '{{ shop.name }} - {{ article.title }}';
             this.page.url = '{{ canonical_url }}';
           }
-
-          theme.utils.libraryLoader('disqus', "https://{{ disqus_shortname }}.disqus.com/embed.js");
         </script>
+        <script src="https://{{ disqus_shortname }}.disqus.com/embed.js" defer="defer"></script>
 
-      {%- elsif show_comments -%}
+      {% elsif show_comments %}
         <h2 class="article-comments--heading" data-item='section-heading'>
-          {{- comments_t -}}
+          {{ comments_t }}
         </h2>
-        {%- render 'comments' -%}
+        {% render "comments" %}
 
-      {%- endif -%}
+      {% endif %}
     </div>
   </div>
 

@@ -1346,9 +1346,9 @@
           return;
         }
         option_selected_value = this.dataset.value;
-        option_selected_name = this.innerHTML;
+        option_selected_name = this.textContent;
         _this.toggleFormDisplay(false);
-        _this.current_option.html(option_selected_name);
+        _this.current_option.text(option_selected_name);
         _this.links.attr('aria-current', false);
         this.setAttribute('aria-current', true);
         _this.input.val(option_selected_value);
@@ -2344,15 +2344,15 @@
       _this.play_buttons = _this.root.find('.featured-video--play svg, .featured-video--play-mobile svg');
       _this.section_id = _this.root.attr('data-section-id');
       _this.thumbnail = _this.root.data('thumbnail');
-      _this.video_type = _this.root.attr('data-video-type');
-      _this.video_id = _this.root.attr('data-video-id');
-      _this.vimeo_vars = {
+      _this.video_type = _this.root.data('video-type');
+      _this.video_id = _this.root.data('video-id');
+      _this.vimeoVars = {
         id: _this.video_id,
         autopause: 0,
         playsinline: 0,
         title: 0
       };
-      _this.youtube_vars = {};
+      _this.youtubeVars = {};
       if (_this.thumbnail) {
         _this.playButtonListener();
       } else {
@@ -2425,17 +2425,17 @@
       var _this;
       _this = this;
       if (!_this.thumbnail) {
-        _this.youtube_vars.enablejsapi = 1;
-        _this.youtube_vars.origin = window.location.href;
-        _this.youtube_vars.playsinline = 1;
-        _this.youtube_vars.fs = 0;
-        _this.youtube_vars.loop = 1;
-        _this.youtube_vars.playlist = _this.video_id;
+        _this.youtubeVars.enablejsapi = 1;
+        _this.youtubeVars.origin = window.location.href;
+        _this.youtubeVars.playsinline = 1;
+        _this.youtubeVars.fs = 0;
+        _this.youtubeVars.loop = 1;
+        _this.youtubeVars.playlist = _this.video_id;
       }
       if (typeof YT !== 'undefined') {
         return _this.player = new YT.Player("player-" + _this.section_id, {
           videoId: _this.video_id,
-          playerVars: _this.youtube_vars,
+          playerVars: _this.youtubeVars,
           events: {
             'onReady': _this.youtubeReady,
             'onStateChange': _this.youtubeEvents
@@ -2480,12 +2480,12 @@
       var _this;
       _this = this;
       if (!_this.thumbnail) {
-        _this.vimeo_vars.playsinline = 1;
-        _this.vimeo_vars.muted = 1;
-        _this.vimeo_vars.background = 1;
-        _this.vimeo_vars.loop = 1;
+        _this.vimeoVars.playsinline = 1;
+        _this.vimeoVars.muted = 1;
+        _this.vimeoVars.background = 1;
+        _this.vimeoVars.loop = 1;
       }
-      _this.player = new Vimeo.Player("player-" + _this.section_id, _this.vimeo_vars);
+      _this.player = new Vimeo.Player("player-" + _this.section_id, _this.vimeoVars);
       if (_this.thumbnail) {
         _this.vimeoEvents();
       } else {
@@ -6045,14 +6045,12 @@
     function CoreUtils() {
       this.isTouchDevice = bind(this.isTouchDevice, this);
       this.loadJsClasses = bind(this.loadJsClasses, this);
-      this.checkFlexBoxGap = bind(this.checkFlexBoxGap, this);
       this.getHiddenElHeight = bind(this.getHiddenElHeight, this);
       this.detectTabDirection = bind(this.detectTabDirection, this);
       this.detectTabbing = bind(this.detectTabbing, this);
       var _this;
       _this = this;
       _this.mqs = new theme.classes.CoreMediaQueries();
-      _this.checkFlexBoxGap();
       _this.detectTabbing();
       _this.detectTabDirection();
     }
@@ -6258,23 +6256,6 @@
           }
         });
       });
-    };
-
-    CoreUtils.prototype.checkFlexBoxGap = function() {
-      var flex, is_supported;
-      flex = document.createElement("div");
-      flex.style.display = "flex";
-      flex.style.flexDirection = "column";
-      flex.style.rowGap = "1px";
-      flex.appendChild(document.createElement("div"));
-      flex.appendChild(document.createElement("div"));
-      document.body.appendChild(flex);
-      is_supported = flex.scrollHeight > 0;
-      flex.parentNode.removeChild(flex);
-      if (!is_supported) {
-        document.documentElement.classList.remove("flexbox-gap");
-        return document.documentElement.classList.add("no-flexbox-gap");
-      }
     };
 
     CoreUtils.prototype.loadJsClasses = function(container) {

@@ -1,5 +1,4 @@
 {%- liquid
-  assign aspect_ratio = section.settings.aspect-ratio
   assign bg_color = section.settings.background-color
   assign block_spacing = section.settings.block-spacing
   assign container_width = section.settings.container-width
@@ -30,14 +29,12 @@
   if bg_color == 'dark'
     assign dark_background = true
   endif
-
-  render 'section-assets', name: 'featured-grid', type: 'style'
 -%}
 
 <div
   class="featured-grid--root"
   data-section-id="{{ section.id }}"
-  data-aspect-ratio="{{ aspect_ratio }}"
+  data-js-class="CoreFeaturedGrid"
   data-background-color="{{ bg_color }}"
   data-block-spacing="{{ block_spacing }}"
   data-container="section"
@@ -53,21 +50,21 @@
   data-text-alignment="{{ text_alignment }}"
   data-text-position="bottom"
 >
-  {%- if header_text_exists -%}
+  {% if header_text_exists %}
     <div class="featured-grid--header" data-container="block">
-      {%- if heading != blank -%}
+      {% if heading != blank %}
         <h2 class="featured-grid--heading" data-item="section-heading">
-          {{- heading | escape -}}
+          {{ heading | escape }}
         </h2>
-      {%- endif -%}
+      {% endif %}
 
-      {%- if subtitle != blank -%}
+      {% if subtitle != blank %}
         <h3 class="featured-grid--subtitle" data-item="paragraph">
-          {{- subtitle | escape -}}
+          {{ subtitle | escape }}
         </h3>
-      {%- endif -%}
+      {% endif %}
     </div>
-  {%- endif -%}
+  {% endif %}
 
   <div class="featured-grid--body">
     <div
@@ -77,8 +74,8 @@
       data-mobile-columns="{{ mobile_width }}"
       data-block-spacing="{{ block_spacing }}"
     >
-      {%- for block in section.blocks -%}
-        {%- liquid
+      {% for block in section.blocks %}
+        {% liquid
           assign block_link_url = block.settings.link-url
           assign block_link_text = block.settings.link-text
           assign description = block.settings.description
@@ -90,29 +87,27 @@
           if block_link_text == blank and block_link_url != blank and description == blank
             assign link_wrapper = true
           endif
-        -%}
+        %}
 
         <div
           class="featured-grid--item"
           data-image-enabled="{{ show_image }}"
           {{ block.shopify_attributes }}
         >
-          {%- if link_wrapper -%}
+          {% if link_wrapper %}
             <a
               class="featured-grid--item--link-wrapper"
               href="{{ block_link_url }}"
               {%- if title != blank -%}
                 aria-label="{{ title }}"
-              {%- elsif heading != blank -%}
-                aria-label="{{ heading }}"
               {%- else -%}
-                aria-label="{{ image.alt }}"
+                aria-label="{{ heading }}"
               {%- endif -%}
             >
-          {%- endif -%}
+          {% endif %}
 
           <div class="featured-grid--item--container">
-            {%- if show_image -%}
+            {% if show_image %}
               <div
                 class="featured-grid--item--image"
                 data-item="image"
@@ -120,31 +115,37 @@
                   style="max-width:{{ image_width | plus: 16 }}px;"
                 {% endif %}
               >
-                {%- liquid
-                  if image
-                    render "image", image: image, full_width: true
-                  else
-                    render "placeholder", type: "image", aspect_ratio: 1
-                  endif
-                -%}
+                {% if image %}
+                  {%
+                    render "image",
+                    image: image,
+                    full_width: true
+                  %}
+                {% else %}
+                  {%
+                    render "placeholder",
+                    type: "image",
+                    aspect_ratio: 1,
+                  %}
+                {% endif %}
               </div>
-            {%- endif -%}
+            {% endif %}
 
-            {%- if title != blank or description != blank or block_link_text != blank -%}
+            {% if title != blank or description != blank or block_link_text != blank %}
               <div class="featured-grid--item--text-container">
-                {%- if title != blank -%}
+                {% if title != blank %}
                   <h3 class="featured-grid--item--title" data-item="block-heading">
-                    {{- title | escape -}}
+                    {{ title | escape }}
                   </h3>
-                {%- endif -%}
+                {% endif %}
 
-                {%- if description != blank -%}
+                {% if description != blank %}
                   <div class="featured-grid--item--description" data-item="rte-content">
-                    {{- description -}}
+                    {{ description }}
                   </div>
-                {%- endif -%}
+                {% endif %}
 
-                {%- if block_link_text != blank -%}
+                {% if block_link_text != blank %}
                   <div class="featured-grid--item--link" data-item="block-link">
                     <a
                       class="featured-grid--item--link-container"
@@ -152,25 +153,25 @@
                         href="{{ block_link_url }}"
                       {% endif %}
                     >
-                      {{- block_link_text -}}
+                      {{ block_link_text }}
                     </a>
                   </div>
-                {%- endif -%}
+                {% endif %}
               </div>
-            {%- endif -%}
+            {% endif %}
 
             </div>
 
-          {%- if link_wrapper -%}
+          {% if link_wrapper %}
             </a>
-          {%- endif -%}
+          {% endif %}
         </div>
 
-      {%- endfor -%}
+      {% endfor %}
     </div>
   </div>
 
-  {%- if footer_text_exists -%}
+  {% if footer_text_exists %}
     <div class="featured-grid--footer" data-container="panel">
       <div class="featured-grid--footer--block" data-container="block">
         <a
@@ -179,12 +180,12 @@
           href="{{ link_url }}"
         >
           <div class="featured-grid--footer--button-container">
-            {{- link_text -}}
+            {{ link_text }}
           </div>
         </a>
       </div>
     </div>
-  {%- endif -%}
+  {% endif %}
 </div>
 
 {% schema %}
@@ -203,8 +204,7 @@
         { "label": "None", "value": "none" },
         { "label": "Light", "value": "light" },
         { "label": "Dark", "value": "dark" },
-        { "label": "Accent 1", "value": "accent-1" },
-        { "label": "Accent 2", "value": "accent-2" }
+        { "label": "Accent", "value": "accent" }
       ],
       "default": "none"
     },
@@ -222,7 +222,7 @@
     },
     {
       "id": "container-width",
-      "label": "Maximum width of container",
+      "label": "Width of container",
       "type": "range",
       "min": 1,
       "max": 5,
@@ -249,18 +249,6 @@
       "max": 6,
       "step": 1,
       "default": 4
-    },
-    {
-      "id": "aspect-ratio",
-      "label": "Image size",
-      "type": "select",
-      "options": [
-        { "label": "Natural", "value": "natural" },
-        { "label": "Square (1:1)", "value": "square" },
-        { "label": "Landscape (4:3)", "value": "landscape" },
-        { "label": "Portrait (2:3)", "value": "portrait" }
-      ],
-      "default": "square"
     },
     {
       "id": "image-width",

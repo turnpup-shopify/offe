@@ -31,26 +31,23 @@
       endif
     endfor
   endif
-
-  render 'section-assets', name: 'pagination', type: 'style'
 -%}
 
 <div class="pagination--root" data-item="accent-text">
   <a
     class="pagination--link"
-    {%- if paginate.previous -%}
+    {% if paginate.previous %}
       href="{{ first_link }}{{ hash }}"
-    {%- else -%}
+    {% else %}
       tabindex="-1"
-    {%- endif -%}
-    role="button"
+    {% endif %}
     aria-label="{{ first_t }}"
   >
     <div
       class="pagination--first-arrow"
-      {%- unless paginate.previous -%}
+      {% unless paginate.previous %}
         aria-hidden="true"
-      {%- endunless -%}
+      {% endunless %}
     >
       {%- liquid
         if paginate.previous
@@ -62,19 +59,18 @@
 
   <a
     class="pagination--link"
-    {%- if paginate.previous -%}
+    {% if paginate.previous %}
       href="{{ paginate.previous.url }}{{ hash }}"
-    {%- else -%}
+    {% else %}
       tabindex="-1"
-    {%- endif -%}
-    role="button"
+    {% endif %}
     aria-label="{{ previous_t }}"
   >
     <div
       class="pagination--left-arrow"
-      {%- unless paginate.previous -%}
+      {% unless paginate.previous %}
         aria-hidden="true"
-      {%- endunless -%}
+      {% endunless %}
     >
       {%- liquid
         if paginate.previous
@@ -85,24 +81,23 @@
   </a>
 
   <div class="pagination--of">
-    {{- paginate.current_page }} {{ of_t }} {{ paginate.pages -}}
+    {{ paginate.current_page }} {{ of_t }} {{ paginate.pages }}
   </div>
 
   <a
     class="pagination--link"
-    {%- if paginate.next -%}
+    {% if paginate.next %}
       href="{{ paginate.next.url }}{{ hash }}"
-    {%- else -%}
+    {% else %}
       tabindex="-1"
-    {%- endif -%}
-    role="button"
+    {% endif %}
     aria-label="{{ next_t }}"
   >
     <div
       class="pagination--right-arrow"
-      {%- unless paginate.next -%}
+      {% unless paginate.next %}
         aria-hidden="true"
-      {%- endunless -%}
+      {% endunless %}
     >
       {%- liquid
         if paginate.next
@@ -114,19 +109,18 @@
 
   <a
     class="pagination--link"
-    {%- if paginate.next -%}
+    {% if paginate.next %}
       href="{{ last_link }}{{ hash }}"
-    {%- else -%}
+    {% else %}
       tabindex="-1"
-    {%- endif -%}
-    role="button"
+    {% endif %}
     aria-label="{{ last_t }}"
   >
     <div
       class="pagination--last-arrow"
-      {%- unless paginate.next -%}
+      {% unless paginate.next %}
         aria-hidden="true"
-      {%- endunless -%}
+      {% endunless %}
     >
       {%- liquid
         if paginate.next

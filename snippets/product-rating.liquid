@@ -7,8 +7,6 @@
 
   assign product_rating_t = 'products.star_reviews_info' | t: rating_value: rating_value, rating_max: rating_max
   assign total_reviews_t = 'products.total_reviews' | t
-
-  render 'section-assets', name: 'product-rating', type: 'style'
 -%}
 
 {%- if reviews.rating.value != blank and reviews.rating_count != 0 -%}

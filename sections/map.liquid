@@ -13,21 +13,34 @@
   assign spacing_above = section.settings.spacing-above
   assign spacing_below = section.settings.spacing-below
   assign theme = section.settings.theme
-
-  capture image
-    if section.settings.image == blank
-      render "placeholder", type: "lifestyle", aspect_ratio: 1.5, placeholder_index: 2
-    else
-      render "image", image: section.settings.image, full_width: true
-    endif
-  endcapture
-
-  render 'section-assets', name: 'map'
 -%}
 
+{% if section.settings.image != blank %}
+  {% capture image %}
+    {%
+      render "image",
+      image: section.settings.image,
+      full_width: true
+    %}
+  {% endcapture %}
+{% endif %}
+
+{% comment %} Onboarding {% endcomment %}
+{% if section.settings.image == blank %}
+  {% capture image %}
+    {%
+      render "placeholder",
+      type: "lifestyle",
+      aspect_ratio: 1.5,
+      placeholder_index: 2
+    %}
+  {% endcapture %}
+{% endif %}
+
 {% comment %} View {% endcomment %}
-<map-root
+<div
   class="map--root"
+  data-js-class="Map"
   data-section-id="{{ section.id }}"
   data-address="{{ map_address }}"
   data-api-key="{{ api_key }}"
@@ -37,24 +50,23 @@
   data-spacing-above="{{ spacing_above }}"
   data-spacing-below="{{ spacing_below }}"
   data-theme="{{ theme }}"
-  style="display:block;"
 >
   <div class="map--wrapper">
     <div class="map--body">
       <div class="map--info">
-        {%- if heading != blank -%}
+        {% if heading != blank %}
           <h2 class="map--heading" data-item="section-heading">
-            {{- heading -}}
+            {{ heading }}
           </h2>
-        {%- endif -%}
+        {% endif %}
 
-        {%- if address != blank -%}
+        {% if address != blank %}
           <div class="map--address">
             <div class="map--address-content" data-item="rte-content">
-              {{- address -}}
+              {{ address }}
             </div>
 
-            {%- if map_address != blank -%}
+            {% if map_address != blank %}
               <div class="map--open-maps-link" data-item="block-link">
                 <a
                   href="{{ map_link }}"
@@ -65,44 +77,43 @@
                   {{ open_map_t }}
                 </a>
               </div>
-            {%- endif -%}
+            {% endif %}
 
           </div>
-        {%- endif -%}
+        {% endif %}
 
-        {%- if hours != blank -%}
+        {% if hours != blank %}
           <div class="map--hours" data-item="rte-content">{{ hours }}</div>
-        {%- endif -%}
+        {% endif %}
 
       </div>
 
       <div class="map--media">
-        {%- if api_key != blank -%}
+        {% if api_key != blank %}
           <div class="map--google-maps"></div>
-        {%- endif -%}
+        {% endif %}
 
-        {%- if section.settings.api-key == blank -%}
-          {%- if map_address != blank -%}
+        {% if section.settings.api-key == blank %}
+          {% if map_address != blank %}
             <a
               href="{{ map_link }}"
               target="_blank"
               rel="noreferrer"
               aria-label="{{ open_map_t }}"
             >
-          {%- endif -%}
+          {% endif %}
 
-          <div class="map--image">
-            {{- image -}}
-          </div>
+            <div class="map--image">{{ image }}</div>
 
-          {%- if map_address != blank -%}
+          {% if map_address != blank %}
             </a>
-          {%- endif -%}
-        {%- endif -%}
+          {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
-</map-root>
+
+</div>
 
 {% schema %}
   {
@@ -124,7 +135,7 @@
       },
       {
         "id": "container-width",
-        "label": "Maximum width of container",
+        "label": "Width of container",
         "type": "range",
         "min": 1,
         "max": 5,
@@ -155,8 +166,7 @@
           { "label": "None", "value": "none" },
           { "label": "Light", "value": "light" },
           { "label": "Dark", "value": "dark" },
-          { "label": "Accent 1", "value": "accent-1" },
-          { "label": "Accent 2", "value": "accent-2" }
+          { "label": "Accent", "value": "accent" }
         ],
         "default": "none"
       },

@@ -1,15 +1,20 @@
 <script>
   var theme = theme || {};
   theme.assets = theme.assets || {};
+  theme.carousels = theme.carousels || {};
+  theme.classes = theme.classes || {};
+  theme.libraries = theme.libraries || {};
   theme.local_storage = theme.local_storage || {};
+  theme.partials = theme.partials || {};
   theme.settings = theme.settings || {};
-  theme.scripts = theme.scripts || {};
-  theme.styles = theme.styles || {};
+  theme.shop = theme.shop || {};
+  theme.swatches = theme.swatches || {};
   theme.translations = theme.translations || {};
   theme.urls = theme.urls || {};
 
-  theme.assets.masonry = '{{ "masonry.min.js" | asset_url }}';
   theme.assets.swipe = '{{ "swipe-listener.min.js" | asset_url }}';
+  theme.assets.masonry = '{{ "masonry.min.js" | asset_url }}';
+  theme.assets.stylesheet = '{{ 'theme--async.css' | asset_url }}';
 
   theme.local_storage.cart_items = 'maker_cart_items';
   theme.local_storage.collection_layout = 'maker_collection_layout';
@@ -18,9 +23,10 @@
   theme.local_storage.search_layout = 'maker_search_layout';
 
   theme.settings.cart_type = '{{ settings.cart--type }}';
-  theme.settings.hover_image_enabled = '{{ settings.product--hover-image-enabled }}' === 'true';
-  theme.settings.quick_add = '{{ settings.product--quick-add-enabled }}' === 'true';
-  theme.settings.money_format = {{ shop.money_format | json }};
+  theme.settings.hover_image_enabled = '{{ settings.product--hover-image-enabled }}' == 'true';
+  theme.settings.quick_add = '{{ settings.product--quick-add-enabled }}' == 'true';
+
+  theme.shop.money_format = {{ shop.money_format | json }};
 
   theme.translations.add_to_cart = '{{ "products.add_to_cart" | t }}';
   theme.translations.cart_subtotal = '{{ "cart.subtotal" | t }}';
@@ -48,6 +54,8 @@
   {% else %}
     theme.urls.root = '{{ routes.root_url }}';
   {% endif %}
+
+  {% render 'swatch-colors' %}
 
   // LazySizes
   window.lazySizesConfig = window.lazySizesConfig || {};

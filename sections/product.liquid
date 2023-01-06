@@ -6,7 +6,7 @@
   assign featured_media = current_variant.featured_media | default: product.featured_media
   assign hide_variant_media = section.settings.hide-variant-media
   assign load_model = false
-  assign load_video = false
+  assign load_youtube = false
   assign modal_enabled = section.settings.modal-enabled
   assign move_to_next_container = false
   assign featured_blocks = false
@@ -21,28 +21,28 @@
   assign variant_media_ids = variant_media_ids | split: ','
 -%}
 
-{%- for media in product.media -%}
+{% for media in product.media %}
   {%- liquid
     if media.media_type == "model"
       assign load_model = true
-    elsif media.media_type == "video" or media.media_type == "external_video"
-      assign load_video = true
+    elsif media.media_type == "external_video"
+      assign load_youtube = true
     endif
   -%}
 
-  {%- if modal_enabled -%}
+  {% if modal_enabled %}
     {%- capture modal_media -%}
-      {{- modal_media -}}
+      {{ modal_media }}
 
-      {%- if media.media_type == "image" -%}
+      {% if media.media_type == "image" %}
         <div class="modal--content">
           <div class="product-page--modal-image" data-id="{{ media.id }}">
-            {%- render 'image', image: media -%}
+            {% render 'image', image: media %}
           </div>
         </div>
-      {%- endif -%}
+      {% endif %}
     {%- endcapture -%}
-  {%- endif -%}
+  {% endif %}
 
   {%- capture variant_media -%}
     {%- liquid
@@ -57,43 +57,43 @@
       endcapture
     -%}
 
-    {%- if hide_variant_media and variant_media_ids contains media_id -%}
+    {% if hide_variant_media and variant_media_ids contains media_id %}
       <a
         class="product-page--hidden-variant"
         aria-label="{{ product_media_t }}"
         data-mq="none"
       >
-        {%-
+        {%
           render "product--media",
           media_view: "featured",
           product_media: media,
           inside_carousel: false,
           video_looping_enabled: video_looping_enabled
-        -%}
+        %}
       </a>
 
-      {%- continue -%}
-    {%- endif -%}
+      {% continue %}
+    {% endif %}
 
     <div class="product-page--media-variant">
-      {%- if modal_enabled and media.media_type == 'image' -%}
+      {% if modal_enabled and media.media_type == 'image' %}
         <a class="modal--link" tabindex="0" aria-label="{{ product_media_t }}">
-      {%- endif -%}
+      {% endif %}
 
-      {%-
+      {%
         render "product--media",
         media_view: "featured",
         product_media: media,
         inside_carousel: false,
         video_looping_enabled: video_looping_enabled
-      -%}
+      %}
 
-      {%- if modal_enabled and media.media_type == 'image' -%}
+      {% if modal_enabled and media.media_type == 'image' %}
         </a>
-      {%- endif -%}
+      {% endif %}
     </div>
   {%- endcapture -%}
-{%- endfor -%}
+{% endfor %}
 
 {%- for block in section.blocks -%}
   {%- liquid
@@ -101,38 +101,92 @@
       assign move_to_next_container = true
       continue
     endif
-
-    assign fit_together = false
-    if block.type == 'collapsible-row'
-      assign fit_together = true
-    elsif block.type == 'complementary-products' and block.settings.collapsible-row-enabled
-      assign fit_together = true
-    endif
   -%}
 
   {%- capture block_html -%}
     <div
       class="product-page--block"
+      id="offe-custom-product-header"
       data-product-block
       data-block-type="{{ block.type }}"
-      data-fit-together="{{ fit_together }}"
       {{ block.shopify_attributes }}
     >
       {%- case block.type -%}
         {%- when 'overline' -%}
           <div class="product-page--overline" data-item="overline">
-            {{- block.settings.text -}}
+            {{ block.settings.text }}
           </div>
 
         {%- when 'heading' -%}
           <h2 class="product-page--heading" data-item="section-heading">
-            {{- product.title -}}
+            {{ product.title }}
           </h2>
-
+     
+<!-- Stamped - Begin badge -->
+<span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" data-product-title="{{ product.title | escape }}" data-product-type="{{ product.type }}" style="display: block; margin-top: 15px;">{{ product.metafields.stamped.badge }}</span>
+<!-- Stamped - End badge -->
+      
+      {% assign timer_label_text_color = product.metafields['header']['timer_label_text_color'] | default: "#000000" %}
+        <div style="display:none;" class="timer_label_text_color"> {{ timer_label_text_color }} </div>
+ 
+      
+      {% comment %} TURNPUP OFFE CUSTOM - COLLECTION WAY OF DOING THINGS {% endcomment %}
+        {% assign similar_collections = product.collections %}
+        {% if product.metafields['header']['force_block_flash_sale'] != "BLOCK" %}
+          {% for collect in similar_collections %}
+            {% if collect.metafields['header']['timer_enabled'] == true and collect.metafields['header']['timer_start_date'] and collect.metafields['header']['timer_label_color'] and collect.metafields['header']['timer_end_date']%}
+              {% assign collect_start_date = collect.metafields['header']['timer_start_date'] %}
+              {% assign collect_end_date = collect.metafields['header']['timer_end_date'] %}
+              {% assign collect_timer_label_color = collect.metafields['header']['timer_label_color'] %}
+              {% assign collect_timer_label_text_color = collect.metafields['header']['timer_label_text_color'] %}              
+            {% endif %}
+          {% endfor %}  
+          <div style="display:none;" class="timer_label_text_color"> {{ product.metafields['header']['timer_enabled'] }} </div>
+          {% render 'countdown-timer', 
+             start_date: collect_start_date,
+             end_date: collect_end_date,
+             block_id: "offe-custom-product-header",
+             timer_label_color: collect_timer_label_color,
+             timer_label_text_color: collect_timer_label_text_color;
+          %}
+        {% endif %}
+        
+        {% if collect_start_date == blank %}
+          {% if product.metafields['header']['timer_enabled'] == true and product.metafields['header']['timer_start_date'] and product.metafields['header']['timer_label_color'] and product.metafields['header']['timer_end_date'] %}
+            <div style="display:none;" class="timer_label_text_color"> {{ product.metafields['header']['timer_enabled'] }} </div>
+            {% render 'countdown-timer', 
+               start_date: product.metafields['header']['timer_start_date'],
+               end_date: product.metafields['header']['timer_end_date'],
+               block_id: "offe-custom-product-header",
+               timer_label_color: product.metafields['header']['timer_label_color'],
+               timer_label_text_color: timer_label_text_color;
+            %}
+          {% endif %}
+        {% endif %}
+        
+      {% comment %}
+        {% if product.metafields['header']['timer_enabled'] == true and product.metafields['header']['timer_start_date'] and product.metafields['header']['timer_label_color'] and product.metafields['header']['timer_end_date']%}
+          <div style="display:none;" class="timer_label_text_color"> {{ product.metafields['header']['timer_enabled'] }} </div>
+          {% render 'countdown-timer', 
+             start_date: product.metafields['header']['timer_start_date'],
+             end_date: product.metafields['header']['timer_end_date'],
+             block_id: "offe-custom-product-header",
+             timer_label_color: product.metafields['header']['timer_label_color'],
+             timer_label_text_color: timer_label_text_color;
+          %}
+        {% endif %}
+      {% endcomment %}
+      
+      
         {%- when 'vendor' -%}
-          <div class="product-page--vendor" data-item="light-accent-text">
+          <div
+            class="product-page--vendor"
+            data-item="light-accent-text"
+            itemprop="brand"
+            content="{{ product.vendor }}"
+          >
             <a href="{{ product.vendor | url_for_vendor }}">
-              {{- product.vendor -}}
+              {{ product.vendor }}
             </a>
           </div>
 
@@ -140,12 +194,12 @@
           {%- render 'product-price', product: product, id: product_id -%}
 
         {%- when 'low-stock' -%}
-          {%-
+          {%
             render 'product-low-stock',
             id: product_id,
             current_variant: current_variant,
             threshold: block.settings.threshold
-          -%}
+          %}
 
         {%- when 'options' -%}
           {%-
@@ -157,8 +211,12 @@
 
         {%- when 'quantity-input' -%}
           {%- render 'product-quantity', id: product_id -%}
-
+     
+      
         {%- when 'buy-buttons' -%}
+      	<!-- Seel Code 1/18/22 -->
+		<div class="ra-product-widget"></div>
+		<!-- End Seel Code --> 
           {%-
             render 'product-buy-buttons',
             id: product_id,
@@ -174,32 +232,20 @@
 
         {%- when 'description' -%}
           {%- unless product.description == blank -%}
-            <div class="product-page--description" data-item="rte-content">
+            <div
+              class="product-page--description"
+              data-item="rte-content"
+              itemprop="description"
+            >
               {{ product.description }}
             </div>
           {%- endunless -%}
 
-        {%- when 'collapsible-row' -%}
-          {%- assign unique_id = section.id | append: '--collapsible-row--' | append: forloop.index -%}
-          {%-
-            render 'collapsible-row',
-            heading: block.settings.heading,
-            page_content: block.settings.page-content,
-            description: block.settings.description,
-            unique_id: unique_id
-          -%}
+        {%- when 'collapsible-tab' -%}
+          {%- render 'collapsible-tab', block: block -%}
 
         {%- when 'rating' -%}
           {%- render 'product-rating' -%}
-
-        {%- when 'complementary-products' -%}
-          {%-
-            render 'complementary-products',
-            heading: block.settings.title,
-            max_products: block.settings.max-products,
-            collapsible_row: block.settings.collapsible-row-enabled,
-            product_id: product.id
-          -%}
 
         {%- when 'liquid' -%}
           {{- block.settings.custom-liquid -}}
@@ -227,18 +273,23 @@
   -%}
 {%- endfor -%}
 
-<product-root
+<div
   class="product-page--root"
   data-featured-blocks="{{ featured_blocks }}"
   data-section-id="{{ section.id }}"
   data-section-type="product_page"
+  data-js-class="Product"
   data-spacing="none"
   data-product-id="{{ product_id }}"
   data-handle="{{ product.handle }}"
 >
-  {%- if modal_enabled -%}
-    <modal-root class="modal--root" data-modal-view="product-media">
-  {%- endif -%}
+  {% if modal_enabled %}
+    <div
+      class="modal--root"
+      data-js-class="CoreModal"
+      data-modal-view="product-media"
+    >
+  {% endif %}
 
   <div class="product-page--top-panel">
     {%- if featured_blocks -%}
@@ -246,9 +297,9 @@
     {%- endif -%}
 
     <div class="product-page--featured-media">
-      {%- if modal_enabled and featured_media.media_type == 'image' -%}
+      {% if modal_enabled and featured_media.media_type == 'image' %}
         <a class="modal--link" href="#" aria-label="{{ image_modal_t }}">
-      {%- endif -%}
+      {% endif %}
 
       {%- liquid
         if featured_media
@@ -256,16 +307,16 @@
         else
           render 'placeholder', type: 'product', aspect_ratio: 1, placeholder_index: 1
         endif
-      -%}
+      %}
 
-      {%- if modal_enabled and featured_media.media_type == 'image' -%}
+      {% if modal_enabled and featured_media.media_type == 'image' %}
         </a>
-      {%- endif -%}
+      {% endif %}
     </div>
 
     {%- if featured_blocks -%}
         <div class="product-page--featured-blocks">
-          {{- featured_blocks_html -}}
+          {{ featured_blocks_html }}
         </div>
       </div>
     {%- endif -%}
@@ -280,7 +331,9 @@
     <div class="product-page--single-column">
       {%- liquid
         unless content_blocks == blank
-          echo '<div class="product-page--content-blocks">' | append: content_blocks | append: '</div>'
+          echo '<div class="product-page--content-blocks">'
+          echo content_blocks
+          echo '</div>'
         endunless
 
         echo variant_media
@@ -288,21 +341,23 @@
     </div>
   </div>
 
-  {%- if modal_enabled -%}
+  {% if modal_enabled %}
       <div class="product-page--modal-wrapper">
-        {{- modal_media -}}
+        {{ modal_media }}
       </div>
-    </modal-root>
-  {%- endif -%}
-</product-root>
+    </div>
+  {% endif %}
+</div>
 
-{%-
+{%
   render "product--scripts",
   product: product,
   id: product_id,
   load_model: load_model,
-  load_video: load_video
--%}
+  load_youtube: load_youtube
+%}
+
+{% render 'product-schema', product: product %}
 
 {% schema %}
 {
@@ -352,7 +407,7 @@
     },
     {
       "type": "heading",
-      "name": "Title",
+      "name": "Heading",
       "limit": 1,
       "settings": []
     },
@@ -475,26 +530,26 @@
       "settings": []
     },
     {
-      "type": "collapsible-row",
-      "name": "Collapsible row",
+      "type": "collapsible-tab",
+      "name": "Collapsible tab",
       "settings": [
         {
           "id": "heading",
           "label": "Heading",
           "type": "text",
-          "default": "Collapsible row"
+          "default": "Collapsible tab"
         },
         {
           "type": "richtext",
           "id": "description",
           "label": "Text",
-          "default": "<p>Use rows to highlight unique features, <br/>sizing information, <br/>or other sales information.</p>",
-          "info": "You can use product metafields to assign content to this row that is unique to an individual product. Learn more about [metafields](https://help.shopify.com/en/manual/metafields/displaying-metafields-on-your-online-store)."
+          "default": "<p>Use tabs to highlight unique features, sizing information, or other sales information.</p>",
+          "info": "You can use product metafields to assign content to this tab that is unique to an individual product. Learn more about [metafields](https://help.shopify.com/en/manual/metafields/displaying-metafields-on-your-online-store)."
         },
         {
           "type": "page",
           "id": "page-content",
-          "label": "Row content from page"
+          "label": "Tab content from page"
         }
       ]
     },
@@ -502,35 +557,6 @@
       "type": "rating",
       "name": "Product rating",
       "limit": 1
-    },
-    {
-      "type": "complementary-products",
-      "name": "Complementary products",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Heading",
-          "default": "Pairs well with"
-        },
-        {
-          "id": "max-products",
-          "label": "Maximum products to show",
-          "type": "range",
-          "min": 1,
-          "max": 4,
-          "step": 1,
-          "default": 2,
-          "info": "To select complementary products, add the Search & Discovery app. [Learn more](https://shopify.dev/themes/product-merchandising/recommendations)"
-        },
-        {
-          "type": "checkbox",
-          "id": "collapsible-row-enabled",
-          "label": "Show as collapsible row",
-          "default": false
-        }
-      ]
     },
     {
       "type": "liquid",

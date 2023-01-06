@@ -10,34 +10,23 @@
     Variables
   endcomment
 
-  assign bg_color = section.settings.background-color
   assign menu = section.settings.menu
-  assign light_text = section.settings.light-text
+  assign mobile_menu = section.settings.mobile_menu
   assign logo = section.settings.logo
-  assign logo_height = section.settings.logo-height
-  assign mobile_logo_height = section.settings.mobile-logo-height
-  assign popup_enabled = settings.popup--enabled
+  assign logo_height = section.settings.logo-height-range
   assign show_search = settings.search--show-in-header
   assign cart_type = settings.cart--type
-
-  render 'section-assets', name: 'header', type: 'script'
 -%}
 
-<header-root
+<header
   class="header--root"
   data-section-id="{{ section.id }}"
   data-section-type="header"
-  data-background-color="{{ bg_color }}"
-  data-light-text="{{ light_text }}"
+  data-js-class="Header"
   {% if logo and logo_height <= 45 %}
     data-header-logo-type="inline"
   {% elsif logo %}
     data-header-logo-type="overflowing"
-  {% endif %}
-  {% if logo and mobile_logo_height <= 40 %}
-    data-header-mobile-logo-type="inline"
-  {% elsif logo %}
-    data-header-mobile-logo-type="overflowing"
   {% endif %}
 >
   <noscript>
@@ -48,8 +37,7 @@
             {%
               render 'logo',
               logo: logo,
-              height: logo_height,
-              mobile_height: mobile_logo_height
+              height_range: logo_height
             %}
           </h1>
         {% else %}
@@ -57,18 +45,17 @@
             {%
               render 'logo',
               logo: logo,
-              height: logo_height,
-              mobile_height: mobile_logo_height
+              height_range: logo_height
             %}
           </div>
         {% endif %}
 
         {%
           render 'x-menu',
+          js_class: 'XMenu',
           overlap_parent: 1,
           off_canvas: 'right-sidebar',
-          handle: menu,
-          noscript: true
+          handle: menu
         %}
       </div>
       <div class="header--right-side" data-item="nav-text">
@@ -88,7 +75,7 @@
   </noscript>
 
   <div class="header--y-menu-for-off-canvas" style="display:none;">
-    {% render 'y-menu', handle: menu %}
+    {% render 'y-menu', handle: mobile_menu %}
   </div>
 
   <div class="header--container">
@@ -98,8 +85,7 @@
           {%
             render 'logo',
             logo: logo,
-            height: logo_height,
-            mobile_height: mobile_logo_height
+            height_range: logo_height
           %}
         </h1>
       {% else %}
@@ -107,13 +93,13 @@
           {%
             render 'logo',
             logo: logo,
-            height: logo_height,
-            mobile_height: mobile_logo_height
+            height_range: logo_height
           %}
         </div>
       {% endif %}
       {%
         render 'x-menu',
+        js_class: 'XMenu',
         overlap_parent: 1,
         off_canvas: 'right-sidebar',
         handle: menu
@@ -127,13 +113,8 @@
         </div>
       {% endif %}
 
-      {%- liquid
-        render 'login'
-
-        if popup_enabled
-          render 'popup', component: 'link'
-        endif
-      -%}
+      {% render 'login' %}
+      {% render 'popup', component: 'link' %}
 
       <div class="cart-link">
         <a
@@ -147,7 +128,7 @@
           {% endif %}
         >
           {{ cart_title_t }}&nbsp;
-          <span class="cart--external--icon" data-item-count="{{ cart.item_count }}">
+          <span class="header--cart-number" data-item-count="{{ cart.item_count }}">
           (<span class="cart--external--total-items">{{ cart.item_count }}</span>)
           </span>
         </a>
@@ -179,32 +160,13 @@
       </div>
     </div>
   </div>
+
 </header>
 
 {% schema %}
 {
   "name": "Header",
-  "tag": "header",
   "settings": [
-    {
-      "id": "background-color",
-      "label": "Background color",
-      "type": "select",
-      "options": [
-        { "label": "None", "value": "none" },
-        { "label": "Light", "value": "light" },
-        { "label": "Dark", "value": "dark" },
-        { "label": "Accent 1", "value": "accent-1" },
-        { "label": "Accent 2", "value": "accent-2" }
-      ],
-      "default": "none"
-    },
-    {
-      "id": "light-text",
-      "label": "Use light text color",
-      "type": "checkbox",
-      "default": false
-    },
     {
       "type": "image_picker",
       "id": "logo",
@@ -212,29 +174,25 @@
     },
     {
       "label": "Custom logo height",
-      "id": "logo-height",
+      "id": "logo-height-range",
       "type": "range",
       "min": 15,
-      "max": 100,
+      "max": 200,
       "step": 5,
       "unit": "px",
       "default": 35,
       "info": "This is referring to the natural height and should be half the height of the image you uploaded to ensure it stays sharp on retina screens."
     },
     {
-      "label": "Mobile logo height",
-      "id": "mobile-logo-height",
-      "type": "range",
-      "min": 15,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
       "type": "link_list",
       "id": "menu",
       "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "mobile_menu",
+      "label": "Mobile Menu",
       "default": "main-menu"
     }
   ]

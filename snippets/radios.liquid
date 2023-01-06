@@ -23,8 +23,9 @@
   endunless
 -%}
 
-<radios-root
+<div
   class="radios--root"
+  data-js-class="Radios"
   data-is-swatches="{{ is_swatches }}"
   data-display-only="{{ display_swatches_only }}"
 >
@@ -41,17 +42,15 @@
       {{ option.name | escape }}
     </label>
 
-    {%- liquid
-      if display_swatches_only == false and is_swatches
-        echo '<span class="radios--option-current" data-item="light-accent-text">'
-        for value in option.values
-          if value == option.selected_value
-            echo value | escape
-          endif
-        endfor
-        echo '</span>'
-      endif
-    -%}
+    {% if display_swatches_only == false and is_swatches %}
+      <span class="radios--option-current" data-item="light-accent-text">
+        {% for value in option.values %}
+          {% if value == option.selected_value %}
+            {{ value | escape }}
+          {% endif %}
+        {% endfor %}
+      </span>
+    {% endif %}
   </div>
 
   <div
@@ -59,7 +58,7 @@
     role="radiogroup"
     aria-labelledby="{{ radios_name }}"
   >
-    {%- for value in option.values -%}
+    {% for value in option.values %}
       <div class="radios--main">
         <input
           class="radios--input"
@@ -75,7 +74,7 @@
           {% endif %}
         />
 
-        {%- if is_swatches -%}
+        {% if is_swatches %}
           <label
             class="radios--swatch-button"
             data-item="swatch"
@@ -83,7 +82,7 @@
             aria-label="{{ value | escape }}"
           ></label>
 
-        {%- else -%}
+        {% else %}
           <label
             class="radios--value-button"
             data-item="button"
@@ -91,9 +90,9 @@
           >
             <div>{{ value | escape }}</div>
           </label>
-        {%- endif -%}
+        {% endif %}
 
       </div>
-    {%- endfor -%}
+    {% endfor %}
   </div>
-</radios-root>
+</div>

@@ -1,18 +1,13 @@
 {
+  "layout": false,
   "sections": {
-    "navigation": {
-      "type": "search--navigation",
-      "settings": {
-      }
-    },
     "main": {
-      "type": "search-results",
+      "type": "search-product",
       "settings": {
       }
     }
   },
   "order": [
-    "navigation",
     "main"
   ]
 }
