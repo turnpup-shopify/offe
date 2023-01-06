@@ -98,9 +98,10 @@
       "settings": {
         "text-style": "hover",
         "background-color": "none",
-        "spacing": true,
+        "light-text": false,
         "mobile-overlay": true,
         "container-width": 5,
+        "spacing": true,
         "spacing-above": true,
         "spacing-below": true,
         "width": 5,
@@ -413,13 +414,14 @@
       "type": "featured-collection",
       "settings": {
         "collection": "new",
+        "max-products": 8,
         "background-color": "none",
         "light-text": false,
         "spacing-above": true,
         "spacing-below": true,
         "featured-collection--image--show": false,
         "featured-collection--description--show": false,
-        "display-type": "slider",
+        "display-type": "slideshow",
         "products-per-row--desktop": "4",
         "products-per-row--mobile": "2"
       }
@@ -454,6 +456,7 @@
       "disabled": true,
       "settings": {
         "collection": "kule-flash-sale",
+        "max-products": 8,
         "background-color": "light",
         "light-text": false,
         "spacing-above": true,
@@ -553,9 +556,10 @@
       "settings": {
         "text-style": "hover",
         "background-color": "light",
-        "spacing": true,
+        "light-text": false,
         "mobile-overlay": true,
         "container-width": 4,
+        "spacing": true,
         "spacing-above": true,
         "spacing-below": true,
         "width": 4,
@@ -710,6 +714,7 @@
         "spacing-above": true,
         "spacing-below": true,
         "width": 4,
+        "aspect-ratio": "square",
         "image-width": 0,
         "mobile-width": "2",
         "text-alignment": "center",
@@ -791,6 +796,7 @@
       "type": "featured-blog",
       "disabled": true,
       "settings": {
+        "aspect-ratio": "landscape",
         "background-color": "none",
         "btn_hover_color": "#95c3df",
         "light-text": false,
