@@ -5,7 +5,7 @@
   endif
 
   assign cover_link = false
-  if link_text == blank and link_url != blank and description == blank
+  if link_url != blank and description == blank
     assign cover_link = true
   endif
 
@@ -21,6 +21,7 @@
   endif
 
   unless promo_width
+    assign promo_width = false
     assign cover_image = true
     if image_height == 0
       assign cover_image = false
@@ -54,7 +55,8 @@
   if overline != blank or title != blank or description != blank or link_text != blank
     assign text_exists = true
   endif
- 
+
+  render 'section-assets', name: 'featured-content', type: 'style'
 %}
 
 <div
@@ -79,16 +81,32 @@
   data-text-position="{{ text_position }}"
   data-text-width="{{ text_width }}"
   data-placeholder-image="{{ show_placeholder_image }}"
->
-  {% if cover_link %}
-    <a href="{{ link_url }}">
+  {% unless image and promo_width %}
+    data-background-color="{{ bg_color }}"
+  {% endunless %}
+  {% if attributes %}
+    {{ attributes }}
   {% endif %}
+>
+  {%- if cover_link -%}
+    <a
+      class="featured-content--cover-link"
+      href="{{ link_url }}"
+      {%- if title != blank -%}
+        aria-label="{{ title }}"
+      {%- else -%}
+        aria-label="{{ image.alt }}"
+      {%- endif -%}
+    >
+  {%- endif -%}
 
   {% comment %}Add bg color here as well so that you can set the outer div to transparent for
   container width 5 and left and right positions {% endcomment %}
   <div
     class="featured-content--container"
-    data-background-color="{{ bg_color }}"
+    {% unless image and promo_width %}
+      data-background-color="{{ bg_color }}"
+    {% endunless %}
   >
     <div class="featured-content--image">
       {% if collection.metafields['marketing-tile']['image-link'] != blank and isGridPromo != 'false' %}
@@ -99,7 +117,7 @@
             position: absolute;
             width: 100%;
             background-image: url('{{collection.metafields['marketing-tile']['image-link']}}')";>
-         </div>
+    </div>
       {% elsif image %}
         {%
           render "image",
@@ -133,7 +151,7 @@
       <div class="featured-content--text">
         <div class="featured-content--text-container">
           {% if overline != blank or timer_enabled %}
-            <h2 class="featured-content--overline" data-item="overline">              
+            <h2 class="featured-content--overline" data-item="overline">
               {% if timer_enabled %}
                 {% render 'countdown-timer', 
                    start_date: new_start_date,
@@ -156,12 +174,12 @@
               {% else %}
                 {{ title | escape }}                               
                 {% endif %}
-              
+
               {% endif %}
             </h3>
           {% endif %}
 
-          {% if description != blank %}
+          {%- if description != blank -%}
             <div class="featured-content--description" data-item="rte-content">
               {% if collection.metafields['marketing-tile']['description'] != blank and isGridPromo != 'false' %}
                 {{ collection.metafields['marketing-tile']['description'] }}                                                              	
@@ -169,8 +187,8 @@
                 {{ description}}                                  	
               {% endif %} 
             </div>
-          {% endif %}
-         
+          {%- endif -%}
+
           {% if link_text != blank %}
             <div class="featured-content--link"  data-item="block-link">
               {% if collection.metafields['marketing-tile']['link-text'] == blank and make_klaviyo_form  %}
@@ -192,19 +210,18 @@
                       {{ link_text }}                                  	
                     {% endif %} 
                 </a>
-              {% endif %}
+              {%- endif -%}
             </div>
-          {% endif %}
+          {%- endif -%}
         </div>
       </div>
-    {% endif %}
+    {%- endif -%}
 
     </div>
 
-  {% if cover_link %}
+  {%- if cover_link -%}
     </a>
-  {% endif %}
-
+  {%- endif -%}
 </div>
 
 <!-- TURNPUP ADD STYLING -->
