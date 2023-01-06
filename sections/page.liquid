@@ -7,11 +7,10 @@
   assign spacing_below = section.settings.spacing-below
 -%}
 
-{% if page.content != blank or show_title %}
+{%- if page.content != blank or show_title -%}
   <div
     class="template-page--root"
     data-section-id="{{ section.id }}"
-    data-js-class="Page"
     data-background-color="{{ bg_color }}"
     data-container-width="{{ container_width }}"
     data-spacing-above="{{ spacing_above }}"
@@ -22,18 +21,18 @@
     {% endif %}
   >
     <div class="template-page--root">
-      {% if show_title %}
+      {%- if show_title -%}
         <h1 class="template-page--heading" data-item="section-heading">
-          {{ page.title }}
+          {{- page.title -}}
         </h1>
-      {% endif %}
+      {%- endif -%}
 
       <div data-item="rte-content">
-        {{ page.content }}
+        {{- page.content -}}
       </div>
     </div>
   </div>
-{% endif %}
+{%- endif -%}
 
 {% schema %}
   {
@@ -53,7 +52,8 @@
           { "label": "None", "value": "none" },
           { "label": "Light", "value": "light" },
           { "label": "Dark", "value": "dark" },
-          { "label": "Accent", "value": "accent" }
+          { "label": "Accent 1", "value": "accent-1" },
+          { "label": "Accent 2", "value": "accent-2" }
         ],
         "default": "none"
       },
@@ -65,7 +65,7 @@
       },
       {
         "id": "container-width",
-        "label": "Width of container",
+        "label": "Maximum width of container",
         "type": "range",
         "min": 1,
         "max": 6,

@@ -3,7 +3,7 @@
     "name": "theme_info",
     "theme_name": "Maker",
     "theme_author": "Troop Themes",
-    "theme_version": "7.1.0",
+    "theme_version": "7.6.1",
     "theme_documentation_url": "https:\/\/support.troopthemes.com\/guide\/getting-started\/",
     "theme_support_url": "http:\/\/support.troopthemes.com\/"
   },
@@ -15,8 +15,14 @@
         "content": "General"
       },
       {
-        "id": "color--accent",
-        "label": "Accent",
+        "id": "color--accent-1",
+        "label": "Accent 1",
+        "type": "color",
+        "default": "#fff4cc"
+      },
+      {
+        "id": "color--accent-2",
+        "label": "Accent 2",
         "type": "color",
         "default": "#fff4cc"
       },
@@ -58,27 +64,6 @@
         "type": "color",
         "id": "bg-color--button",
         "label": "Button background"
-      },
-      {
-        "type": "color",
-        "id": "color--header",
-        "label": "Header text"
-      },
-      {
-        "type": "color",
-        "id": "color--footer",
-        "label": "Footer text"
-      },
-      {
-        "type": "color",
-        "id": "bg-color--footer",
-        "label": "Footer background"
-      },
-      {
-        "id": "nav-hover-color-offe-custom",
-        "label": "Custom Nav Color - Hover",
-        "type": "color",
-        "default": "#000000"
       }
     ]
   },
@@ -127,28 +112,6 @@
       },
       {
         "type": "header",
-        "content": "CUSTOM FONT OVERRIDE FOR HEADERS"
-      },
-      {
-        "id": "offe-custom-heading-override",
-        "label": "Use Custom Font for Heading?",
-        "type": "checkbox",
-        "default": false
-      },
-      {
-        "id": "offe-custom-heading-custom-font",
-        "label": "Heading Custom Font",
-        "type": "text",
-        "default": "Swear Display"
-      },
-      {
-        "id": "offe-custom-heading-custom-weight",
-        "label": "Heading Custom Weight",
-        "type": "text",
-        "default": "700"
-      },
-      {
-        "type": "header",
         "content": "Navigation and buttons"
       },
       {
@@ -186,34 +149,36 @@
           }
         ],
         "default": "medium"
-      },
-      {
-        "type": "header",
-        "content": "CUSTOM FONT OVERRIDE FOR PARAGRAPH"
-      },
-      {
-        "id": "offe-custom-paragraph-override",
-        "label": "Use Custom Font for paragraph?",
-        "type": "checkbox",
-        "default": false
-      },
-      {
-        "id": "offe-custom-paragraph-custom-font",
-        "label": "Paragraph Custom Font",
-        "type": "text",
-        "default": "Roc Grotesk"
-      },
-      {
-        "id": "offe-custom-paragraph-custom-weight",
-        "label": "Paragraph Custom Weight",
-        "type": "text",
-        "default": "700"
       }
     ]
   },
   {
     "name": "Product grid",
     "settings": [
+      {
+        "id": "product--image-size",
+        "label": "Image size",
+        "type": "select",
+        "options": [
+          {
+            "label": "Natural",
+            "value": "natural"
+          },
+          {
+            "label": "Square (1:1)",
+            "value": "square"
+          },
+          {
+            "label": "Landscape (4:3)",
+            "value": "landscape"
+          },
+          {
+            "label": "Portrait (2:3)",
+            "value": "portrait"
+          }
+        ],
+        "default": "portrait"
+      },
       {
         "type": "checkbox",
         "id": "product--hover-image-enabled",
@@ -285,6 +250,10 @@
         "type": "select",
         "options": [
           {
+            "label": "None",
+            "value": "none"
+          },
+          {
             "label": "Light",
             "value": "light"
           },
@@ -293,27 +262,21 @@
             "value": "dark"
           },
           {
-            "label": "Accent with dark text",
-            "value": "accent-dark-text"
+            "label": "Accent 1",
+            "value": "accent-1"
           },
           {
-            "label": "Accent with light text",
-            "value": "accent-light-text"
+            "label": "Accent 2",
+            "value": "accent-2"
           }
         ],
         "default": "light"
       },
       {
-        "id": "turnpup-product--label-background-color",
-        "label": "Label Background Color - Product Tags",
-        "type": "color",
-        "default": "#fafafa"
-      },
-      {
-        "id": "turnpup-product--label-text-color",
-        "label": "Label Text Color - Product Tags",
-        "type": "color",
-        "default": "#fafafa"
+        "id": "product--label-light-text",
+        "label": "Use light text color",
+        "type": "checkbox",
+        "default": false
       },
       {
         "id": "product--show-sale-label",
@@ -338,7 +301,7 @@
       {
         "type": "checkbox",
         "id": "product--show-new-label",
-        "label": "Show new label (use product tags instead)",
+        "label": "Show new label",
         "default": true
       },
       {
@@ -390,13 +353,6 @@
         "id": "product--show-quantity",
         "label": "Show quantity selector",
         "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "product--smart-payment-button",
-        "label": "Show dynamic checkout button",
-        "info": "Lets customers check out directly using a familiar payment method. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/change-the-layout\/dynamic-checkout)",
-        "default": true
       }
     ]
   },
@@ -421,6 +377,12 @@
         "type": "checkbox",
         "id": "search--show-articles",
         "label": "Show blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "search--show-collections",
+        "label": "Show collections",
         "default": true
       },
       {
@@ -576,8 +538,12 @@
             "value": "dark"
           },
           {
-            "label": "Accent",
-            "value": "accent"
+            "label": "Accent 1",
+            "value": "accent-1"
+          },
+          {
+            "label": "Accent 1",
+            "value": "accent-2"
           }
         ],
         "default": "light"
@@ -672,17 +638,6 @@
         "id": "cart--show-note",
         "label": "Enable order notes",
         "default": true
-      }
-    ]
-  },
-  {
-    "name": "Offe Custom",
-    "settings": [
-      {
-        "type": "text",
-        "id": "flash-sticker-url",
-        "label": "Flash Sticker URL",
-        "default": "https:\/\/cdn.shopify.com\/s\/files\/1\/0083\/9181\/9341\/files\/flash_sale_final.png?v=1644361491"
       }
     ]
   }

@@ -17,86 +17,50 @@
   For more info see: https://support.troopthemes.com/guide/color-swatch-guide
 {% endcomment %}
 
-
 {% capture swatch_color_list %}
-      taromix taromix.png
-      bluebell bluebell.png
-      chestnut #672E26
-      turmeric #B37E2F
-      collagedfruit #D43993
-      calicoflorals #695D28
-      happymix happymix.png
-      mushroommix #AE7C34
-      wildflowers #296FA9
-      jessicawilliams #3E4228
-      mosstrippychecker mosstrippychecker.png
-      embroideredditsyfloralblack ditsyfloral.png
-      trippyswirlsalmon trippyswirlsalmon.png
-      baylaurel #1B2310
-      blackcalicofloral blackcalicofloral.png
-      raisindaisy raisindaisy.png
-      mushrooms mushrooms.png
-      trailmix trailmix.png
-      keroppi keroppi.png
-      flowerbed flowerbed.png
-      pinkfern pinkfern.png
-      mediumcheckmulti mediumcheckmulti.png
-      gem gem.png
-      trail trail.png
-      indigotrippychecker indigotrippychecker.png
-      raisindaisy raisindaisy.png
-      raisin #5B4B54
-      ditsyfloral ditsyfloral.png
-      medallionfloral medallionfloral.png
-      blueditsyfloral ditsyfloralblue.png
-      archiveforest archiveforest.png
-      checksonchecks checksonchecks.png
-      consignmentflorals consignmentflorals.png
-      sanriofriends sanriofriends.png
-      woodblockmix woodblockmix.png
-      candywoodgrain candywoodgrain.png
-      dustylilac #BDA3CE
-      limerose limerose.png
-      nasturtium #F07655
-      wilddaisy wilddaisy.png
-      woodblockfloralblack woodblockfloralblack.png
-      raspberryhappy raspberryhappy.png
-      sagebrush #9B9D7C
-      banana #DBC31D
-      butterhappy butterhappy.png
-      butterflykaleidoscope butterflykaleidoscope.png
-      hellokittypersimmon hellokittypersimmon.png
-      horsecollage horsecollage.png
-      ladybug ladybug.png
-      farmersmarket #536DAB
-      70smadras 70smadras.png
-      blackconstellation blackconstellation.png
-      malachite #366E6C
-      grapefruitcollage #434A9C
-      nasturium #F28B6A
-      camel #91623E
-      lime #CBC19C
-      nude #D7B593
-      gold #BBB297
-      taupe #B68868
-      beige rgb(209,202,188)
-      brick #DC9079
-      slateblue #9BA0BE
+  {% comment %} remove this line and add your first color here {% endcomment %}
 {% endcapture %}
 
+{% comment %} Don't change anything below this comment {% endcomment %}
 
-{%- assign swatch_colors = swatch_color_list | newline_to_br | split: '<br />' -%}
+<script>
+  theme.swatches = new class Swatches {
+    constructor() {
+      this.getColors();
+    }
 
-{%- for color in swatch_colors -%}
-  {%- unless color == blank -%}
-    {% assign key = color | downcase | split: ' ' | first %}
-    {% assign value = color | downcase | split: ' ' | last %}
+    getColors() {
+      {%- assign swatch_colors = swatch_color_list | newline_to_br | split: '<br />' -%}
+      {%- for color in swatch_colors -%}
+        {%- unless color == blank -%}
+          {%- assign key = color | downcase | split: ' ' | first -%}
+          {%- assign value = color | downcase | split: ' ' | last -%}
 
-    {% if value contains '.png' or value contains '.jp' or value contains '.gif' %}
-      theme.swatches['{{ key }}'] = '{{ value | file_img_url: "100x" }}';
-    {% else %}
-      theme.swatches['{{ key }}'] = '{{ value }}';
-    {% endif %}
+          {% if value contains '.png' or value contains '.jp' or value contains '.gif' %}
+            this['{{ key }}'] = '{{ value | file_img_url: "100x" }}';
+          {% else %}
+            this['{{ key }}'] = '{{ value }}';
+          {% endif %}
 
-  {%- endunless -%}
-{%- endfor -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    }
+
+    setColors(inputs = false) {
+      if (!inputs) return
+
+      inputs.forEach(input => {
+        const swatch = input.nextElementSibling;
+        const swatch_color = input.value.toLowerCase().replace(/\s+/g, '');
+
+        if (this[swatch_color] === undefined) {
+          swatch.style['background-color'] = swatch_color;
+        } else if (this[swatch_color].indexOf('cdn.shopify.com') > -1) {
+          swatch.style['background-image'] = `url(${this[swatch_color]})`;
+        } else {
+          swatch.style['background-color'] = this[swatch_color];
+        }
+      });
+    }
+  };
+</script>

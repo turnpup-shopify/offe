@@ -206,8 +206,9 @@
       "addresses": "addresses",
       "activate_account": "activate account"
     },
+    "browser_unsupported": "Browser unsupported, please update or try an alternative",
     "localization": {
-      "currency": "Currency selector",
+      "region": "Country selector",
       "language": "Language selector"
     },
     "mailing_list": {
@@ -235,10 +236,12 @@
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
     },
     "search": {
-      "articles": "Articles",
+      "blog": "Blog",
+      "collections": "Collections",
       "filter_feedback": "No products match this filter.",
       "no_results": "No results were found",
       "placeholder": "Search store",
+      "pages": "Pages",
       "products": "Products",
       "search": "Search",
       "search_again": "Search again",
@@ -305,7 +308,7 @@
     "add_to_cart": "Add to Cart",
     "back_on_kickstarter": "Back on Kickstarter",
     "color": "color",
-    "empty_page_content_html": "You haven't linked a page yet. To configure this you'll need to go to your {{ size_chart_path }} section.",
+    "empty_page_content_html": "You haven't linked a page yet. To configure this you'll need to go to the {{ size_chart_path }} block.",
     "from": "From",
     "image_modal": "Enlarge product image",
     "low_in_stock": {
@@ -334,7 +337,7 @@
     "sale": "Sale",
     "select_options": "select options",
     "size_chart": "Size chart",
-    "size_chart_path": "Theme settings > Product page > Size chart",
+    "size_chart_path": "Product page > Variant picker",
     "sold_out": {
       "form_notification": "Thanks! We will notify you when it becomes available!",
       "signed_up": "We will notify you when this becomes available.",

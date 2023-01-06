@@ -3,18 +3,6 @@
     "main": {
       "type": "blog",
       "settings": {
-        "show-title": true,
-        "show-tag-filter": false,
-        "show-author": true,
-        "show-excerpt": false,
-        "show-rss": false,
-        "columns": 2,
-        "show-featured": false,
-        "tag": "featured",
-        "image-height": "medium",
-        "alt-color": true,
-        "parallax-enabled": false,
-        "apply-overlay": true
       }
     }
   },

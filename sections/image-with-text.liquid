@@ -1,12 +1,14 @@
 {%- liquid
   assign settings_link = settings.color--alternative
+  render 'section-assets', name: 'image-with-text', type: 'style'
 -%}
 
 <div
   class="image-with-text--root"
   data-section-id="{{ section.id }}"
 >
-  {% render 'featured-content',
+  {%-
+    render 'featured-content',
     text_color: section.settings.text-color,
     bg_color: section.settings.background-color,
     box_around_text: section.settings.box-around-text,
@@ -25,9 +27,8 @@
     spacing_below: section.settings.spacing-below,
     text_position: section.settings.text-position,
     text_width: section.settings.text-width,
-    title: section.settings.title,
-    isGridPromo: "false"
-  %}
+    title: section.settings.title
+  -%}
 </div>
 
 {% schema %}
@@ -57,13 +58,14 @@
         { "label": "None", "value": "none" },
         { "label": "Light", "value": "light" },
         { "label": "Dark", "value": "dark" },
-        { "label": "Accent", "value": "accent" }
+        { "label": "Accent 1", "value": "accent-1" },
+        { "label": "Accent 2", "value": "accent-2" }
       ],
       "default": "none"
     },
     {
       "id": "container-width",
-      "label": "Width of container",
+      "label": "Maximum width of container",
       "type": "range",
       "min": 1,
       "max": 6,
@@ -180,7 +182,8 @@
     {
       "id": "link-url",
       "label": "Link",
-      "type": "url"
+      "type": "url",
+      "info": "Entire block will become a link when no link text or description."
     },
     {
       "id": "link-text",

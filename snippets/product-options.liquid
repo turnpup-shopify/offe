@@ -3,12 +3,14 @@
   assign out_of_stock_t = 'products.out_of_stock' | t
 
   assign current_variant = product.selected_or_first_available_variant
-  assign size_chart_content = block_settings.size-chart-content
-  assign size_chart_enabled = block_settings.size-chart-enabled
-  assign size_chart_option = block_settings.size-chart-option | strip | downcase
-  assign swatches_enabled = block_settings.swatches-enabled
-  assign quick_add = settings.product--quick-add-enabled
-  assign variant_style = block_settings.variant-style
+
+  if block_settings
+    assign variant_style = block_settings.variant-style
+    assign size_chart_content = block_settings.size-chart-content
+    assign size_chart_enabled = block_settings.size-chart-enabled
+    assign size_chart_option = block_settings.size-chart-option | strip | downcase
+    assign swatches_enabled = block_settings.swatches-enabled
+  endif
 
   unless unique_handle
     assign unique_id = id
@@ -18,6 +20,8 @@
 -%}
 
 {%- unless product.has_only_default_variant -%}
+  {%- render 'section-assets', name: 'product-options', type: 'script' -%}
+
   <product-options-root
     class="product-options--root"
     data-handle="{{ product.handle }}"
@@ -34,7 +38,7 @@
             if swatches_enabled and option_name == color_t
               render 'radios', option: option, id: unique_id, is_swatches: true
             elsif variant_style == 'dropdowns'
-              render 'disclosure', display_label: true, label_name: option_name, option_names: option.values, current_value: option.selected_value, id: unique_id
+              render 'disclosure', display_label: true, label_name: option_name, option_names: option.values, current_value: option.selected_value, id: unique_id, type: 'option-picker'
             else
               render 'radios', option: option, id: unique_id
             endif
@@ -70,15 +74,9 @@
       </select>
     </noscript>
 
-    <textarea class="product-options--json" style="display:none;">
+    <script type="application/json" id="product-options--json-{{ unique_id }}">
       {{- product.variants | json -}}
-    </textarea>
+    </script>
   </product-options-root>
 
-  {%- unless quick_add -%}
-    <script>
-      // loaded globally when quick add enabled
-      libraryLoader('product_options', "{{ 'product-options.js' | asset_url }}");
-    </script>
-  {%- endunless -%}
 {%- endunless -%}

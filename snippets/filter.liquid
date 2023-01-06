@@ -1,25 +1,25 @@
 {%- liquid
   assign apply_t = 'filter.apply' | t
   assign collection_t = 'collections.collection' | t
+  assign color_t = 'products.color' | t
   assign no_filters_t = 'filter.no_filters' | t
   assign reset_t = 'filter.reset' | t
   assign search_text_t = 'filter.search_by_name' | t
   assign sort_by_t = 'filter.sort_by' | t
 
+  assign collections_list = linklists[custom_collection_list].links
   if custom_collection_list == blank
     assign collections_list = collections
-  else
-    assign collections_list = linklists[custom_collection_list].links
   endif
+
+  render 'section-assets', name: 'filter', type: 'style'
 -%}
 
 <div class="filter--root">
   <div class="filter--wrapper">
-
-    {% if show_collection_list or show_sort_list or show_refine_list %}
+    {%- if show_collection_list or show_sort_list or show_refine_list -%}
       <form class="filter--form">
-
-        {% if show_collection_list %}
+        {%- if show_collection_list -%}
           <div class="filter--category">
             <div
               class="filter--toggle"
@@ -27,10 +27,11 @@
               data-item="nav-text"
               aria-expanded="false"
               aria-controls="browse-filter"
+              role="button"
             >
-              {{ collection_t }}
-              {% render 'icons', icon: 'chevron-up' %}
-              {% render 'icons', icon: 'chevron-down' %}
+              {{- collection_t }}
+              {%- render 'icons', icon: 'chevron-up' -%}
+              {%- render 'icons', icon: 'chevron-down' -%}
             </div>
 
             <ul
@@ -65,9 +66,9 @@
               {%- endfor -%}
             </ul>
           </div>
-        {% endif %}
+        {%- endif -%}
 
-        {% if show_sort_list %}
+        {%- if show_sort_list -%}
           <div class="filter--category">
             <div
               class="filter--toggle"
@@ -75,10 +76,11 @@
               data-item="nav-text"
               aria-expanded="false"
               aria-controls="sort-filter"
+              role="button"
             >
-              {{ sort_by_t }}
-              {% render 'icons', icon: 'chevron-up' %}
-              {% render 'icons', icon: 'chevron-down' %}
+              {{- sort_by_t }}
+              {%- render 'icons', icon: 'chevron-up' -%}
+              {%- render 'icons', icon: 'chevron-down' -%}
             </div>
 
             <ul
@@ -111,14 +113,14 @@
                     {%- render 'icons', icon: 'cross' -%}
                   </label>
                 </li>
-              {% endfor %}
+              {%- endfor -%}
             </ul>
           </div>
-        {% endif %}
+        {%- endif -%}
 
-        {% if show_refine_list %}
-          {% if filters.size > 0 %}
-            {% for filter in filters %}
+        {%- if show_refine_list -%}
+          {%- if filters.size > 0 -%}
+            {%- for filter in filters -%}
               <div class="filter--category">
                 <div
                   class="filter--toggle"
@@ -126,190 +128,94 @@
                   data-item="nav-text"
                   aria-expanded="false"
                   aria-controls="{{ filter.label | handle | downcase }}-refine-filter"
+                  role="button"
                 >
-                  {{ filter.label }}
-                  {% render 'icons', icon: 'chevron-up' %}
-                  {% render 'icons', icon: 'chevron-down' %}
+                  {{- filter.label }}
+                  {%- render 'icons', icon: 'chevron-up' -%}
+                  {%- render 'icons', icon: 'chevron-down' -%}
                 </div>
 
-                {% if filter.type == 'price_range' %}
-                  <div
-                    class="filter--menu"
-                    data-item="nav-text--sub"
-                    id="{{ filter.label | handle | downcase }}-refine-filter"
-                    data-transition="fade-out"
-                  >
-                    <div class="filter--price--container">
-                      {%- liquid
-                        assign from_t = 'filter.from' | t
-                        assign to_t = 'filter.to' | t
-
-                        assign min_value = filter.min_value.value | money_without_currency
-                        assign max_value = filter.max_value.value | money_without_currency
-                        assign range_max = filter.range_max | money_without_currency
-
-                        assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
-                        assign uses_comma_decimals = false
-                        if currencies_using_comma_decimals contains cart.currency.iso_code
-                          assign uses_comma_decimals = true
-                        endif
-                      -%}
-
-                      <div class="filter--price-range">
-                        <div class="filter--price-range--button" data-min-price>
-                          <div>&nbsp;</div>
-                        </div>
-                        <div class="filter--price-range--line">
-                          <div></div>
-                        </div>
-                        <div class="filter--price-range--button" data-max-price>
-                          <div>&nbsp;</div>
-                        </div>
-                      </div>
-                      <div class="filter--price-fields">
-                        <div class="filter--price-field">
-                          <span class="filter--price-currency">
-                            {{- cart.currency.symbol -}}
-                          </span>
-                          <input
-                            class="filter--price-input"
-                            name="{{ filter.min_value.param_name }}"
-                            id="filter--price--min"
-                            {%- if filter.min_value.value and uses_comma_decimals -%}
-                              value="{{ min_value | replace: '.', '' | round }}"
-                            {%- elsif filter.min_value.value -%}
-                              value="{{ min_value | replace: ',', '' | round }}"
-                            {%- else -%}
-                              value="0"
-                            {%- endif -%}
-                            type="number"
-                            pattern="[0-9]*"
-                            min="0"
-                            {%- if uses_comma_decimals -%}
-                              max="{{ range_max | replace: '.', '' | round }}"
-                            {%- else -%}
-                              max="{{ range_max | replace: ',', '' | round }}"
-                            {%- endif -%}
-                            data-min-price
-                          >
-                          <label
-                            class="filter--price-label"
-                            for="filter--price--min"
-                            data-item="hidden-text"
-                          >
-                            {{ from_t }}
-                          </label>
-                        </div>
-                        <div class="filter--price-separator">
-                          &mdash;
-                        </div>
-                        <div class="filter--price-field">
-                          <span class="filter--price-currency">
-                            {{ cart.currency.symbol }}
-                          </span>
-                          <input
-                            class="filter--price-input"
-                            name="{{ filter.max_value.param_name }}"
-                            id="filter--price-max"
-                            {%- if filter.max_value.value and uses_comma_decimals -%}
-                              value="{{ max_value | replace: '.', '' | round }}"
-                            {%- elsif filter.max_value.value -%}
-                              value="{{ max_value | replace: ',', '' | round }}"
-                            {% elsif uses_comma_decimals %}
-                              value="{{ range_max | replace: '.', '' | round }}"
-                            {%- else -%}
-                              value="{{ range_max | replace: ',', '' | round }}"
-                            {%- endif -%}
-                            type="number"
-                            pattern="[0-9]*"
-                            min="0"
-                            {%- if uses_comma_decimals -%}
-                              max="{{ range_max | replace: '.', '' | round }}"
-                            {%- else -%}
-                              max="{{ range_max | replace: ',', '' | round }}"
-                            {%- endif -%}
-                            data-max-price
-                          >
-                          <label
-                            class="filter--price-label"
-                            for="filter--price-max"
-                            data-item="hidden-text"
-                          >
-                            {{ to_t }}
-                          </label>
-                        </div>
+                {%- case filter.type -%}
+                  {%- when 'price_range' -%}
+                    <div
+                      class="filter--menu"
+                      data-item="nav-text--sub"
+                      id="{{ filter.label | handle | downcase }}-refine-filter"
+                      data-transition="fade-out"
+                    >
+                      <div class="filter--price--container">
+                        {%- render 'price-range', filter: filter -%}
                       </div>
                     </div>
-                  </div>
 
-                {% else %}
-                  {%- liquid
-                    assign is_swatches = false
-                    if filter.param_name contains 'color' and swatches_enabled
-                      assign is_swatches = true
-                    endif
-                  -%}
+                  {%- when 'boolean' or 'list' -%}
+                    {%- liquid
+                      assign is_swatches = false
+                      if filter.param_name contains color_t and swatches_enabled
+                        assign is_swatches = true
+                      endif
+                    -%}
 
-                  <ul
-                    class="filter--menu"
-                    id="{{ filter.label | handle | downcase }}-refine-filter"
-                    {% if is_swatches %}
-                      data-is-swatches="true"
-                    {% endif %}
-                    data-transition="fade-out"
-                  >
-                    {% for filter_value in filter.values %}
-                      <li class="filter--link" data-type="refine">
-                        <input
-                          id="filter--refine--{{ filter.label | handle | downcase }}-{{ filter_value.label | handle | downcase }}"
-                          class="filter--input"
-                          type="checkbox"
-                          name="{{ filter_value.param_name }}"
-                          value="{{ filter_value.value }}"
-                          data-label="{{ filter_value.label }}"
-                          tabindex="-1"
-                          {% if filter_value.active %}
-                            checked
-                          {% endif %}
-                        >
-                        <label
-                          class="filter--label"
-                          for="filter--refine--{{ filter.label | handle | downcase }}-{{ filter_value.label | handle | downcase }}"
-                          tabindex="0"
-                          {% if is_swatches %}
-                            data-item="swatch"
-                          {% endif %}
-                        >
-                          {%- liquid
-                            assign filter_label = filter_value.label
-                            echo '<span data-item="nav-text--sub">'
-                            echo filter_label | append: '</span>'
+                    <ul
+                      class="filter--menu"
+                      id="{{ filter.label | handle | downcase }}-refine-filter"
+                      {% if is_swatches %}
+                        data-is-swatches="true"
+                      {% endif %}
+                      data-transition="fade-out"
+                    >
+                      {%- for filter_value in filter.values -%}
+                        <li class="filter--link" data-type="refine">
+                          <input
+                            id="filter--refine--{{ filter.label | handle | downcase }}-{{ filter_value.label | handle | downcase }}"
+                            class="filter--input"
+                            type="checkbox"
+                            name="{{ filter_value.param_name }}"
+                            value="{{ filter_value.value }}"
+                            data-label="{% if filter.type == 'boolean' %}{{ filter.label }}: {% endif %}{{ filter_value.label }}"
+                            tabindex="-1"
+                            {% if filter_value.active %}
+                              checked
+                            {% endif %}
+                          >
+                          <label
+                            class="filter--label"
+                            for="filter--refine--{{ filter.label | handle | downcase }}-{{ filter_value.label | handle | downcase }}"
+                            tabindex="0"
+                            {% if is_swatches %}
+                              data-item="swatch"
+                            {% endif %}
+                          >
+                            {%- liquid
+                              assign filter_label = filter_value.label | capitalize
+                              echo '<span data-item="nav-text--sub">'
+                              echo filter_label | append: '</span>'
 
-                            unless is_swatches
-                              render 'icons', icon: 'cross'
-                            endunless
-                          -%}
-                        </label>
-                      </li>
-                    {% endfor %}
-                  </ul>
+                              unless is_swatches
+                                render 'icons', icon: 'cross'
+                              endunless
+                            -%}
+                          </label>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
 
-                {% endif %}
+                {%- endcase -%}
               </div>
-            {% endfor %}
+            {%- endfor -%}
 
-          {% else %}
+          {%- else -%}
             <div class="filter--no-filters" data-item="caption">
-              {{ no_filters_t }}
+              {{- no_filters_t -}}
             </div>
 
-          {% endif %}
-        {% endif %}
+          {%- endif -%}
+        {%- endif -%}
 
       </form>
-    {% endif %}
+    {%- endif -%}
 
-    {% if show_search_link %}
+    {%- if show_search_link -%}
       <div class="filter--search">
         <a
           class="filter--search-link"
@@ -318,16 +224,15 @@
           aria-haspopup="true"
         >
           <div class="filter--search-icon">
-            {% render 'icons', icon: 'search' %}
+            {%- render 'icons', icon: 'search' -%}
           </div>
 
           <div class="filter--search-text" data-item="nav-text--sub">
-            {{ search_text_t }}
+            {{- search_text_t -}}
           </div>
         </a>
       </div>
-    {% endif %}
-
+    {%- endif -%}
   </div>
 
   <div class="filter--button-container">
@@ -340,7 +245,12 @@
     >
       <span>{{ apply_t }}</span>
     </div>
-    <div class="filter--button" data-type="reset" data-item="secondary-button" tabindex="0">
+    <div
+      class="filter--button"
+      data-type="reset"
+      data-item="secondary-button"
+      tabindex="0"
+    >
       <span>{{ reset_t }}</span>
     </div>
   </div>

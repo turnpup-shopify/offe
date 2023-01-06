@@ -1,9 +1,10 @@
-{% assign settings_link = settings.color--alternative %}
-<div
-  class="slideshow--root"
-  data-section-id="{{ section.id }}"
->
-  {%
+{%- liquid
+  assign settings_link = settings.color--alternative
+  render 'section-assets', name: 'slideshow', type: 'style'
+-%}
+
+<div class="slideshow--root" data-section-id="{{ section.id }}">
+  {%-
     render 'carousel',
     section_id: section.id,
     view: 'featured-content',
@@ -24,7 +25,7 @@
     rotate_frequency: section.settings.rotate-frequency,
     transition_type: section.settings.transition_type,
     spacing_around_blocks: section.settings.spacing-around-blocks
-  %}
+  -%}
 </div>
 
 {% schema %}
@@ -51,7 +52,8 @@
         { "label": "None", "value": "none" },
         { "label": "Light", "value": "light" },
         { "label": "Dark", "value": "dark" },
-        { "label": "Accent", "value": "accent" }
+        { "label": "Accent 1", "value": "accent-1" },
+        { "label": "Accent 2", "value": "accent-2" }
       ],
       "default": "none"
     },
@@ -163,6 +165,11 @@
           "type": "image_picker"
         },
         {
+          "id": "mobile-image",
+          "label": "Mobile image",
+          "type": "image_picker"
+        },
+        {
           "id": "text-position",
           "label": "Text Position",
           "type": "select",
@@ -190,38 +197,6 @@
           "default": "Overline text"
         },
         {
-          "type": "checkbox",
-          "id": "timer_enabled",
-          "label": "Show timer",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "new_start_date",
-          "label": "Start Date '2022-02-15T08:00:00Z",
-          "info": "only edit the date before the T08:00:00z",
-          "default": "2022-02-15T08:00:00Z"
-        },
-        {
-          "type": "text",
-          "id": "new_end_date",
-          "label": "End Date '2022-02-17T07:30:00Z'",
-          "info": "only edit the date before the T07:30:00z",
-          "default": "2022-02-17T08:00:00Z"
-        },
-        {
-          "type": "color",
-          "id": "timer_label_color",
-          "label": "Timer Label Background Color",
-          "default": "#3473e5"
-        },
-        {
-          "type": "color",
-          "id": "timer_label_text_color",
-          "label": "Timer Label Text Color",
-          "default": "#ffffff"
-        },
-        {
           "id": "title",
           "label": "Heading",
           "type": "text",
@@ -237,31 +212,14 @@
           "id": "link-url",
           "label": "Link",
           "type": "url",
-          "default": "/"
+          "default": "/",
+          "info": "Entire block will become a link when no link text or description."
         },
         {
           "id": "link-text",
           "label": "Link text",
           "type": "text",
           "default": "View more"
-        },
-        {
-          "id": "make-klaviyo-form",
-          "label": "Make Klaviyo Email Pop-Up",
-          "type": "checkbox",
-          "default": false
-        },
-        {
-          "id": "link-text-color",
-          "label": "Link text color",
-          "type": "color",
-          "default": "#000000"
-        },
-        {
-          "id": "link-text-hover-color",
-          "label": "Link text hover color",
-          "type": "color",
-          "default": "#000000"
         }
       ]
     }

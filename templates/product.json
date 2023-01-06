@@ -8,12 +8,6 @@
           "settings": {
           }
         },
-        "313c393f-07b6-45c1-abbf-87f9dc891f9b": {
-          "type": "low-stock",
-          "settings": {
-            "threshold": 5
-          }
-        },
         "vendor": {
           "type": "vendor",
           "settings": {
@@ -27,17 +21,11 @@
         "options": {
           "type": "options",
           "settings": {
-            "variant-style": "buttons",
-            "swatches-enabled": true,
-            "size-chart-enabled": false,
-            "size-chart-option": "size",
-            "size-chart-content": ""
           }
         },
         "buy-buttons": {
           "type": "buy-buttons",
           "settings": {
-            "smart-payment-enabled": true
           }
         },
         "pickup": {
@@ -58,7 +46,6 @@
       },
       "block_order": [
         "heading",
-        "313c393f-07b6-45c1-abbf-87f9dc891f9b",
         "vendor",
         "price",
         "options",
@@ -68,33 +55,24 @@
         "description"
       ],
       "settings": {
-        "modal-enabled": true,
-        "hide-variant-media": false,
-        "loop-enabled": false
       }
     },
     "social-sharing": {
       "type": "product-social",
       "settings": {
-        "enable-social": false,
-        "spacing-above": false,
-        "spacing-below": true
+        "spacing-above": false
       }
     },
-    "recommendations": {
-      "type": "product-recommendations",
+    "related-products": {
+      "type": "related-products",
       "settings": {
-        "show": true,
-        "title": "More good deals ↓",
-        "container-width": 4,
-        "spacing-above": false,
-        "spacing-below": true
+        "spacing-above": false
       }
     }
   },
   "order": [
+    "related-products",
     "main",
-    "social-sharing",
-    "recommendations"
+    "social-sharing"
   ]
 }

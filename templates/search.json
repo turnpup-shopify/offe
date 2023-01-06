@@ -6,13 +6,13 @@
       }
     },
     "main": {
-      "type": "search--body",
+      "type": "search-results",
       "settings": {
       }
     }
   },
   "order": [
-    "navigation",
-    "main"
+    "main",
+    "navigation"
   ]
 }

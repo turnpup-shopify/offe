@@ -151,9 +151,9 @@
       "settings": {
         "text-style": "light-with-overlay",
         "background-color": "none",
-        "spacing": true,
         "mobile-overlay": true,
         "container-width": 3,
+        "spacing": true,
         "spacing-above": false,
         "spacing-below": true,
         "width": 3,
@@ -197,9 +197,9 @@
       "settings": {
         "text-style": "light-with-overlay",
         "background-color": "none",
-        "spacing": true,
         "mobile-overlay": true,
         "container-width": 4,
+        "spacing": true,
         "spacing-above": false,
         "spacing-below": true,
         "width": 2,

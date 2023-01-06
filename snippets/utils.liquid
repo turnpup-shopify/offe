@@ -1,11 +1,11 @@
-{% comment %} utilities {% endcomment %}
+{%- comment -%} utilities {%- endcomment -%}
 
-{% case utility %}
+{%- case utility -%}
 
-  {% comment %} 'timesince' requires passing 'created_at' {% endcomment %}
-  {% when 'timesince' %}
+  {%- comment -%} 'timesince' requires passing 'created_at' {%- endcomment -%}
+  {%- when 'timesince' -%}
 
-    {% comment %} Variables {% endcomment %}
+    {%- comment -%} Variables {%- endcomment -%}
     {%- liquid
       assign now_timestamp = 'now' | date: '%s'
       assign date_start = created_at | date: '%s'
@@ -27,7 +27,7 @@
       endif
     -%}
 
-  {% comment %} uncomment for next utility {% endcomment %}
-  {% comment %} {% when 'next_utility' %} {% endcomment %}
+  {%- comment -%} uncomment for next utility {%- endcomment -%}
+  {%- comment -%} {%- when 'next_utility' -%} {%- endcomment -%}
 
-{% endcase %}
+{%- endcase -%}
