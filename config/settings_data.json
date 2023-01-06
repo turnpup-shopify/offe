@@ -110,9 +110,9 @@
         ],
         "settings": {
           "background-color": "dark",
-          "light-text": false,
-          "show-region-selector": true,
-          "show-locale-selector": true,
+          "light-text": true,
+          "show-region-selector": false,
+          "show-locale-selector": false,
           "show-payment-icons": false
         }
       },
