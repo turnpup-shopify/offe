@@ -1,0 +1,262 @@
+{% liquid
+  assign dark_background = false
+  if bg_color == 'dark'
+    assign dark_background = true
+  endif
+
+  assign cover_link = false
+  if link_text == blank and link_url != blank and description == blank
+    assign cover_link = true
+  endif
+
+  assign cover_image_mobile = false
+  assign mobile_heading_type = 'section-heading--mobile'
+  if mobile_overlay and box_around_text == false
+    assign mobile_heading_type = 'featured-heading'
+    assign cover_image_mobile = true
+  endif
+
+  if mobile_overlay or image_height != 0
+    assign cover_image_mobile = true
+  endif
+
+  unless promo_width
+    assign cover_image = true
+    if image_height == 0
+      assign cover_image = false
+      assign cover_image_mobile = false
+    endif
+  endunless
+
+  assign darken_image_mobile = false
+  if darken_image
+    assign darken_image = true
+    if mobile_overlay
+      assign darken_image_mobile = true
+    endif
+  endif
+
+  assign show_placeholder_image = false
+  unless image
+    assign show_placeholder_image = true
+  endunless
+
+  if disable_placeholder
+    assign show_placeholder_image = false
+  endif
+
+  assign heading_type = 'section-heading'
+  if box_around_text == false and text_position == 'center' or text_position == 'bottom-left'
+    assign heading_type = 'featured-heading'
+  endif
+
+  assign text_exists = false
+  if overline != blank or title != blank or description != blank or link_text != blank
+    assign text_exists = true
+  endif
+ 
+%}
+
+<div
+  id="{{ block_id }}"
+  class="featured-content--root custom-featured-{{ block_id }}"
+  data-background-color="{{ bg_color }}"
+  data-banner-promo="{{ banner_promo }}"
+  data-box-around-text="{{ box_around_text }}"
+  data-container-width="{{ container_width }}"
+  data-cover-image="{{ cover_image }}"
+  data-cover-image-mobile="{{ cover_image_mobile }}"
+  data-dark-background="{{ dark_background }}"
+  data-darken-image="{{ darken_image }}"
+  data-image-height="{{ image_height }}"
+  data-mobile-overlay="{{ mobile_overlay }}"
+  data-overlap="{{ overlap }}"
+  data-promo-width="{{ promo_width }}"
+  data-spacing-above="{{ spacing_above }}"
+  data-spacing-below="{{ spacing_below }}"
+  data-text-color="{{ text_color }}"
+  data-text-exists="{{ text_exists }}"
+  data-text-position="{{ text_position }}"
+  data-text-width="{{ text_width }}"
+  data-placeholder-image="{{ show_placeholder_image }}"
+>
+  {% if cover_link %}
+    <a href="{{ link_url }}">
+  {% endif %}
+
+  {% comment %}Add bg color here as well so that you can set the outer div to transparent for
+  container width 5 and left and right positions {% endcomment %}
+  <div
+    class="featured-content--container"
+    data-background-color="{{ bg_color }}"
+  >
+    <div class="featured-content--image">
+      {% if collection.metafields['marketing-tile']['image-link'] != blank and isGridPromo != 'false' %}
+         <div class="offe-custom-collection-marketing-tile-image" data-darken-mobile="true" style="
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: absolute;
+            width: 100%;
+            background-image: url('{{collection.metafields['marketing-tile']['image-link']}}')";>
+         </div>
+      {% elsif image %}
+        {%
+          render "image",
+          image: image,
+          full_width: true,
+          parallax: parallax_enabled,
+          cover: cover_image,
+          cover_mobile: cover_image_mobile,
+          darken: darken_image,
+          darken_mobile: darken_image_mobile
+        %}
+      {% elsif show_placeholder_image %}
+        {%
+          render "placeholder",
+          type: "lifestyle",
+          aspect_ratio: 2.4,
+          placeholder_index: 2,
+          cover: cover_image,
+          cover_mobile: cover_image_mobile,
+          darken: darken_image,
+          darken_mobile: darken_image_mobile
+        %}
+      {% endif %}
+    </div>
+    {% if timer_enabled %}
+      <div class="flash-sale-sticker"> 
+        <img src="{{ settings.flash-sticker-url }}">
+      </div>
+    {% endif %}    
+    {% if text_exists %}
+      <div class="featured-content--text">
+        <div class="featured-content--text-container">
+          {% if overline != blank or timer_enabled %}
+            <h2 class="featured-content--overline" data-item="overline">              
+              {% if timer_enabled %}
+                {% render 'countdown-timer', 
+                   start_date: new_start_date,
+                   end_date: new_end_date,
+                   block_id: block_id,
+                   timer_label_color: timer_label_color,
+                   timer_label_text_color: timer_label_text_color;
+                %}
+              {% elsif collection.metafields['marketing-tile']['subtitle'] != blank and isGridPromo != 'false' %}
+                {{ collection.metafields['marketing-tile']['subtitle'] }}                                                              	
+              {% else %}
+                {{ overline | escape }}                                               
+            </h2>
+          {% endif %}
+          {% if title != blank or collection.metafields['custom']['header_title'] != blank %}
+            <h3 class="featured-content--title" data-item="{{ heading_type }} {{ mobile_heading_type }}">
+              {% comment %}{{ title | escape }}{% endcomment %}
+              {% if collection.metafields['marketing-tile']['header'] != blank and isGridPromo != 'false' %}
+                {{ collection.metafields['marketing-tile']['header'] }}                                                              	
+              {% else %}
+                {{ title | escape }}                               
+                {% endif %}
+              
+              {% endif %}
+            </h3>
+          {% endif %}
+
+          {% if description != blank %}
+            <div class="featured-content--description" data-item="rte-content">
+              {% if collection.metafields['marketing-tile']['description'] != blank and isGridPromo != 'false' %}
+                {{ collection.metafields['marketing-tile']['description'] }}                                                              	
+              {% else %}
+                {{ description}}                                  	
+              {% endif %} 
+            </div>
+          {% endif %}
+         
+          {% if link_text != blank %}
+            <div class="featured-content--link"  data-item="block-link">
+              {% if collection.metafields['marketing-tile']['link-text'] == blank and make_klaviyo_form  %}
+                <button class="{{ title | remove:" " }}" id="klaviyo_form_button">{{ link_text }}</button>                            	
+              {% else %}
+                <a href="
+
+                  {% if collection.metafields['marketing-tile']['link'] != blank and isGridPromo != 'false' %}
+                    {{ collection.metafields['marketing-tile']['link'] }}                                                              	
+                  {% else %}
+                    {{ link_url }}                                  	
+                  {% endif %} 
+
+
+                 " id="{{ block_id }}">
+                    {% if collection.metafields['marketing-tile']['link-text'] != blank and isGridPromo != 'false' %}
+                      {{ collection.metafields['marketing-tile']['link-text'] }}                                                              	
+                    {% else %}                                     
+                      {{ link_text }}                                  	
+                    {% endif %} 
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    </div>
+
+  {% if cover_link %}
+    </a>
+  {% endif %}
+
+</div>
+
+<!-- TURNPUP ADD STYLING -->
+<style>  
+  .custom-featured-{{ block_id }} button.{{title|remove:" "}} {
+    background-color: transparent !important;
+    color: {{ link_url_color }} !important;
+    border-color: {{ link_url_color }} !important;
+    padding: 0px;
+  }
+  .custom-featured-{{ block_id }} button.{{title|remove:" "}}:hover {
+    color: {{ link_url_hover_color }} !important;
+    border-color: {{ link_url_hover_color }} !important;
+  }
+  .custom-featured-{{ block_id }} .{{title|remove:" "}}:after  {
+    border-color: {{ link_url_color }} !important;
+    content: '';
+  }
+  
+  .custom-featured-{{ block_id }} button.{{title|remove:" "}}:hover:after {
+    border-color: {{ link_url_hover_color }} !important;
+  }
+  .custom-featured-{{ block_id }} a {
+    color: {{ link_url_color }} !important;
+    border-color: {{ link_url_color }} !important;
+  }
+  
+  .custom-featured-{{ block_id }} a:hover {
+    color: {{ link_url_hover_color }} !important;
+    border-color: {{ link_url_hover_color }} !important;
+  }  
+  .custom-featured-{{ block_id }} a:after {
+    border-color: {{ link_url_color }} !important;
+  }
+  
+  .custom-featured-{{ block_id }} a:hover:after {
+    border-color: {{ link_url_hover_color }} !important;
+  }
+  .flash-sale-sticker img {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 40px;
+    right: 40px; 
+  }  
+  @media only screen and (max-width: 767px) {
+    .flash-sale-sticker img {
+      position: absolute;
+      height: 60px;
+      width: 60px;
+      top: 20px;
+      right: 20px; 
+    }
+  }
+</style>
