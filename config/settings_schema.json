@@ -85,6 +85,22 @@
         "label": "Custom Nav Color - Hover",
         "type": "color",
         "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Product Tag Colors"
+      },
+      {
+        "id": "product-tag-one",
+        "label": "Product Tag One",
+        "type": "color",
+        "default": "#f07855"
+      },
+      {
+        "id": "product-tag-two",
+        "label": "Product Tag Two",
+        "type": "color",
+        "default": "#eaaaa7"
       }
     ]
   },

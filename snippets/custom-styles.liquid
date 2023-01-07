@@ -25,6 +25,56 @@
   color: white;
 }
 
+.product--label:not(:last-child) {
+  color: var(--color--alternative);
+  background-color: {{ settings.product-tag-one }};
+  border: none;
+}
+
+.product--label:last-child {
+    background-color: {{ settings.product-tag-two }};
+    color: var(--offe-custom-product-tag-alt-text-color);
+}
+
+.collapsible-tab--toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    padding: 16px;
+}
+
+.collapsible-tabs--header {
+    padding-bottom: 32px;
+}
+
+
+[data-item~=section-heading], .font--featured-heading, [data-item~=featured-heading], h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font--heading--family);
+}
+.collapsible-tab--content {
+    padding: 16px;
+    text-align: left;
+}
+
+[data-transition=fade-out] {
+    transition: opacity .4s cubic-bezier(.45,.05,.55,.95);
+    opacity: 0;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+[data-item=accent-text], input, label:not([data-item]), textarea {
+    font-size: 13px;
+}
+}
+
+{% comment %} flwr market  {% endcomment %}
+
+
 /* Troop - Quick add and label positions */
  @media only screen and (max-width: 767px) {
 .product--label-container[data-item] {
