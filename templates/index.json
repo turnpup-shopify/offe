@@ -767,6 +767,49 @@
         "spacing-below": true
       }
     },
+    "2916ee5e-2658-43a6-9550-5a5553fce836": {
+      "type": "collapsible-rows",
+      "blocks": {
+        "template--16660038484216__2916ee5e-2658-43a6-9550-5a5553fce836-16730501867f6a5e51-0": {
+          "type": "collapsible-row",
+          "settings": {
+            "heading": "About Us",
+            "description": "",
+            "page-content": "about-offe-market"
+          }
+        },
+        "template--16660038484216__2916ee5e-2658-43a6-9550-5a5553fce836-16730501867f6a5e51-1": {
+          "type": "collapsible-row",
+          "settings": {
+            "heading": "HOW IT WORKS",
+            "description": "",
+            "page-content": "how-offe-market-works-center"
+          }
+        },
+        "template--16660038484216__2916ee5e-2658-43a6-9550-5a5553fce836-16730501867f6a5e51-2": {
+          "type": "collapsible-row",
+          "settings": {
+            "heading": "CONTACT US",
+            "description": "",
+            "page-content": "contact-offe-market"
+          }
+        }
+      },
+      "block_order": [
+        "template--16660038484216__2916ee5e-2658-43a6-9550-5a5553fce836-16730501867f6a5e51-0",
+        "template--16660038484216__2916ee5e-2658-43a6-9550-5a5553fce836-16730501867f6a5e51-1",
+        "template--16660038484216__2916ee5e-2658-43a6-9550-5a5553fce836-16730501867f6a5e51-2"
+      ],
+      "settings": {
+        "background-color": "light",
+        "light-text": false,
+        "heading": "Learn More",
+        "title-alignment": "left",
+        "container-width": 4,
+        "spacing-above": true,
+        "spacing-below": true
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "disabled": true,
@@ -869,6 +912,7 @@
     "1663621169aa442f54",
     "text-columns",
     "16403189605c9596c6",
+    "2916ee5e-2658-43a6-9550-5a5553fce836",
     "image-with-text",
     "featured-blog",
     "featured-text",
