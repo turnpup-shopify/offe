@@ -1,5 +1,7 @@
 {
   "current": {
+    "color--accent-1": "#f07855",
+    "color--accent-2": "#bbd0e3",
     "bg-color--light": "#e3c4e8",
     "bg-color--dark": "#bdaf50",
     "bg-color--body": "#f8f6f4",
