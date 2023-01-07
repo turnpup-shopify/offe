@@ -726,6 +726,7 @@
     },
     "16403189605c9596c6": {
       "type": "collapsible-tabs",
+      "disabled": true,
       "blocks": {
         "16403189592d97ac1f-0": {
           "type": "collapsible-tab",
