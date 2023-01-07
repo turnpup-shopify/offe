@@ -2,7 +2,7 @@
   assign bg_color = section.settings.background-color
   assign container_width = section.settings.container-width
   assign heading = section.settings.heading
-  assign light_text = section.settings.light-text
+  assign text_color = section.settings.text-color
   assign spacing_above = section.settings.spacing-above
   assign spacing_below = section.settings.spacing-below
   assign title_alignment = section.settings.title-alignment
@@ -14,9 +14,8 @@
   <div
     class="collapsible-rows--root"
     data-section-id="{{ section.id }}"
-    style="background-color: {{ bg_color }};"
+    style="background-color: {{ bg_color }}; color: {{text_color }};"
     data-container-width="{{ container_width }}"
-    data-light-text="{{ light_text }}"
     data-spacing-above="{{ spacing_above }}"
     data-spacing-below="{{ spacing_below }}"
     data-title-alignment="{{ title_alignment }}"
@@ -34,8 +33,6 @@
         {%- assign unique_id = section.id | append: '--collapsible-row--' | append: forloop.index -%}
         <div
           class="collapsible-rows--block"
-          data-light-text="{{ light_text }}"
-          style="background-color: {{ section.settings.background-color }};"
           data-fit-together="true"
           {{ block.shopify_attributes }}
         >
@@ -53,6 +50,13 @@
   </div>
 {%- endif -%}
 
+<style>
+  .collapsible-rows--block button {
+    color: {{ text_color }};
+    background-color: {{ background_color }};
+  }
+</style>
+
 {% schema %}
   {
     "name": "Collapsible rows",
@@ -64,10 +68,10 @@
         "default": "#f07855"
       },
       {
-        "id": "light-text",
-        "label": "Use light text color",
-        "type": "checkbox",
-        "default": false
+        "id": "text-color",
+        "label": "Text Color",
+        "type": "color",
+        "default": "#ffffff"
       },
       {
         "label": "Heading",
