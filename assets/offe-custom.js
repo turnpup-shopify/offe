@@ -52,13 +52,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
        var tempNumber = Math.floor(toLaunchDistance / (day));  
        if (tempNumber == 1) { var temp = "SALE STARTS IN " + tempNumber + " DAY" }
        else { var temp = "SALE STARTS IN " + tempNumber + " DAYS" }       
-       document.getElementById(tp_block_id).querySelector(".js-timer").innerText = temp;  
+       el.querySelector(".js-timer").innerText = temp;  
       } 
       else {      
        var tempNumber = Math.floor((toLaunchDistance % (day)) / (hour));  
        if (tempNumber == 1) { var temp = "SALE STARTS IN " + tempNumber + " HOUR" }
        else { var temp = "SALE STARTS IN " + tempNumber + " HOURS" }      
-       document.getElementById(tp_block_id).querySelector(".js-timer").innerText = temp;  
+       el.querySelector(".js-timer").innerText = temp;  
       }
       
     } else {
@@ -68,12 +68,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
        var tempNumber = Math.floor(distance / (day)) + 1;  
        if (tempNumber == 1) { var temp = "SALE ENDS IN " + tempNumber + " DAY" }
        else { var temp = "SALE ENDS IN " + tempNumber + " DAYS" }       
-       document.getElementById(tp_block_id).querySelector(".js-timer").innerText = temp;  
+       el.querySelector(".js-timer").innerText = temp;  
       } else {
        var tempNumber = Math.floor((distance % (day)) / (hour)); 
        if (tempNumber == 1) { var temp = "SALE ENDS IN " + tempNumber + " HOUR" }
        else { var temp = "SALE ENDS IN " + tempNumber + " HOURS" }       
-       document.getElementById(tp_block_id).querySelector(".js-timer").innerText = temp;  
+       el.querySelector(".js-timer").innerText = temp;  
       }
       
     }
