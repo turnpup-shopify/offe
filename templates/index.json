@@ -803,7 +803,7 @@
       ],
       "settings": {
         "background-color": "#f07855",
-        "light-text": false,
+        "light-text": true,
         "heading": "Learn More",
         "title-alignment": "left",
         "container-width": 4,
