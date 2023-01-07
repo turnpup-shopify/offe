@@ -714,7 +714,7 @@
         "spacing-above": true,
         "spacing-below": true,
         "width": 4,
-        "aspect-ratio": "square",
+        "aspect-ratio": "natural",
         "image-width": 0,
         "mobile-width": "2",
         "text-alignment": "center",
