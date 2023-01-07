@@ -61,8 +61,8 @@
 </product-price-root>
 
 {%- unless settings.product--quick-add-enabled -%}
-  <script>
+  {% comment %} <script>
     // loaded globally when quick add enabled
     libraryLoader('product_price', "{{ 'product-price.js' | asset_url }}");
-  </script>
+  </script> {% endcomment %}
 {%- endunless -%}

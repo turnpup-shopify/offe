@@ -78,8 +78,8 @@
 </product-buy-buttons-root>
 
 {%- if settings.product--quick-add-enabled == false -%}
-  <script>
+  {% comment %} <script>
     // loaded globally when quick add enabled
     libraryLoader('product_buy_buttons', "{{ 'product-buy-buttons.js' | asset_url }}");
-  </script>
+  </script> {% endcomment %}
 {%- endif -%}

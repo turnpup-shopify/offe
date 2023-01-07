@@ -80,9 +80,10 @@
   </product-options-root>
 
   {%- unless quick_add -%}
-    <script>
+    {% comment %} <script>
       // loaded globally when quick add enabled
       libraryLoader('product_options', "{{ 'product-options.js' | asset_url }}");
-    </script>
+    </script> {% endcomment %}
   {%- endunless -%}
+
 {%- endunless -%}
