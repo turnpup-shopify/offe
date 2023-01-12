@@ -139,7 +139,7 @@
         "16600699028cc1bb1c-2": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/PHAW9106_RB_d7c4bdc6-8a8f-40fd-9f60-fddcb855053f.jpg",
+            "image": "shopify:\/\/shop_images\/PRISM_MAY_31_146.jpg",
             "text-position": "bottom-left",
             "text-width": "medium",
             "overline": "MORE NEW!",
@@ -148,9 +148,9 @@
             "new_end_date": "2022-02-17T08:00:00Z",
             "timer_label_color": "#3473e5",
             "timer_label_text_color": "#ffffff",
-            "title": "ARAMINTA JAMES",
-            "description": "<p>Sustainable lounge essentials, inspired by life at the beach. The core brand principle is effortless style, transforming the ordinary.<\/p>",
-            "link-url": "shopify:\/\/collections\/araminta-james",
+            "title": "New year, new shoes",
+            "description": "<p>Shop our assortment of sneakers, boots, heels and clogs. All on sale, all the time.<\/p>",
+            "link-url": "shopify:\/\/collections\/shoes",
             "link-text": "Shop Now",
             "make-klaviyo-form": false,
             "link-text-color": "#f07855",
