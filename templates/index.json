@@ -118,7 +118,7 @@
         "16600699028cc1bb1c-3": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/NEWGIF2.gif",
+            "image": "shopify:\/\/shop_images\/PhotoJul13_15753PM_d1939a85-bcf8-4349-8297-d53a6831959f.jpg",
             "text-position": "bottom-left",
             "text-width": "medium",
             "overline": "NEW IN!",
@@ -803,7 +803,7 @@
       ],
       "settings": {
         "background-color": "#f07855",
-        "light-text": true,
+        "text-color": "#ffffff",
         "heading": "Learn More",
         "title-alignment": "left",
         "container-width": 4,
