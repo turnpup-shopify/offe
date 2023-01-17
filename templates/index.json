@@ -1,5 +1,30 @@
 {
   "sections": {
+    "1663280613f3192a7f": {
+      "type": "image-with-text",
+      "disabled": true,
+      "settings": {
+        "text-color": "light",
+        "background-color": "none",
+        "container-width": 6,
+        "spacing-above": true,
+        "spacing-below": true,
+        "image-height": 2,
+        "darken-image": true,
+        "parallax-enabled": true,
+        "text-position": "center",
+        "text-width": "large",
+        "overlap": false,
+        "box-around-text": false,
+        "mobile-overlay": true,
+        "image": "shopify:\/\/shop_images\/IMG_2288-2.jpg",
+        "overline": "WE LOVE A GOOD DEAL",
+        "title": "25-80% off everything, all the time",
+        "description": "<p>How does it work? We carry discounted overstock or end-of-season products from thoughtful, high-quality brands and pass those savings onto you.<\/p>",
+        "link-url": "shopify:\/\/collections\/new",
+        "link-text": "SEE WHAT'S NEW"
+      }
+    },
     "1660069364d78f178e": {
       "type": "image-with-text",
       "settings": {
@@ -19,9 +44,33 @@
         "image": "shopify:\/\/shop_images\/updatedwebsitebanner.png",
         "overline": "",
         "title": "",
-        "description": "<p><\/p>",
+        "description": "",
         "link-url": "",
         "link-text": ""
+      }
+    },
+    "8da8ca36-e6dd-45f4-9d26-12c1dee3ec42": {
+      "type": "image-with-text",
+      "settings": {
+        "text-color": "auto",
+        "background-color": "none",
+        "container-width": 6,
+        "spacing-above": false,
+        "spacing-below": true,
+        "image-height": 2,
+        "darken-image": true,
+        "parallax-enabled": false,
+        "text-position": "center",
+        "text-width": "medium",
+        "overlap": false,
+        "box-around-text": false,
+        "mobile-overlay": true,
+        "image": "shopify:\/\/shop_images\/ZenBone_BlackFloral_a72cda8b-0af5-48da-b407-46d5ab9e242b.jpg",
+        "overline": "STUFF FOR YOUR PETS",
+        "title": "from Modern Beast",
+        "description": "<p>Because they deserve new things!<\/p>",
+        "link-url": "shopify:\/\/collections\/pets",
+        "link-text": "Shop For Your Pets"
       }
     },
     "16600699028b851273": {
@@ -133,31 +182,6 @@
         "auto-rotate": false,
         "rotate-frequency": 7,
         "transition_type": "slide"
-      }
-    },
-    "1663280613f3192a7f": {
-      "type": "image-with-text",
-      "disabled": true,
-      "settings": {
-        "text-color": "light",
-        "background-color": "none",
-        "container-width": 6,
-        "spacing-above": false,
-        "spacing-below": true,
-        "image-height": 3,
-        "darken-image": true,
-        "parallax-enabled": true,
-        "text-position": "center",
-        "text-width": "large",
-        "overlap": false,
-        "box-around-text": false,
-        "mobile-overlay": true,
-        "image": "shopify:\/\/shop_images\/Rationalle_FW21_PC-KatieBorrazzo_161_1_1200x_bb1ed76b-892d-414e-b91d-0e1aef6442ca.jpg",
-        "overline": "THESE JUST IN",
-        "title": "New Arrivals",
-        "description": "<p>This season's must-haves, all on sale.<\/p>",
-        "link-url": "shopify:\/\/collections\/new",
-        "link-text": "SEE WHAT'S NEW"
       }
     },
     "slideshow": {
@@ -899,9 +923,10 @@
     }
   },
   "order": [
-    "1660069364d78f178e",
-    "16600699028b851273",
     "1663280613f3192a7f",
+    "1660069364d78f178e",
+    "8da8ca36-e6dd-45f4-9d26-12c1dee3ec42",
+    "16600699028b851273",
     "slideshow",
     "featured-collection-grid",
     "1663349653ec666f15",
