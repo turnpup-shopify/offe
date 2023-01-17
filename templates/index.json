@@ -24,95 +24,6 @@
         "link-text": ""
       }
     },
-    "1663349653ec666f15": {
-      "type": "grid-with-overlay",
-      "blocks": {
-        "1663349653bbf39c4c-0": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/My_project_copy-1_16.png",
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "",
-            "link-url": "shopify:\/\/collections\/80-off",
-            "link-text": "SHOP"
-          }
-        },
-        "1663349653bbf39c4c-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/My_project_copy-1_13.png",
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "",
-            "link-url": "shopify:\/\/collections\/70-off",
-            "link-text": "SHOP"
-          }
-        },
-        "1663349653bbf39c4c-2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/My_project_copy-1_10.png",
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "",
-            "link-url": "shopify:\/\/collections\/60-off",
-            "link-text": "SHOP"
-          }
-        },
-        "1663349653bbf39c4c-3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/My_project_copy-1_15.png",
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "",
-            "link-url": "shopify:\/\/collections\/50-off",
-            "link-text": "SHOP"
-          }
-        },
-        "98b54b4d-8236-4f78-8ace-7fd5c4986328": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify:\/\/shop_images\/My_project_copy-1_11.png",
-            "wide": false,
-            "tall": false,
-            "retain-ratio": false,
-            "title": "",
-            "link-url": "shopify:\/\/collections\/40-off",
-            "link-text": "SHOP"
-          }
-        }
-      },
-      "block_order": [
-        "1663349653bbf39c4c-0",
-        "1663349653bbf39c4c-1",
-        "1663349653bbf39c4c-2",
-        "1663349653bbf39c4c-3",
-        "98b54b4d-8236-4f78-8ace-7fd5c4986328"
-      ],
-      "settings": {
-        "text-style": "hover",
-        "background-color": "none",
-        "light-text": false,
-        "mobile-overlay": true,
-        "container-width": 6,
-        "spacing": false,
-        "spacing-above": true,
-        "spacing-below": true,
-        "width": 2,
-        "mobile-width": "2",
-        "heading": "NEW YEAR SALE",
-        "subtitle": "New markdowns just added, save up to 90% off MSRP!",
-        "link-url": "",
-        "link-text": ""
-      }
-    },
     "16600699028b851273": {
       "type": "slideshow",
       "blocks": {
@@ -423,6 +334,95 @@
         "display-type": "slideshow",
         "products-per-row--desktop": "4",
         "products-per-row--mobile": "2"
+      }
+    },
+    "1663349653ec666f15": {
+      "type": "grid-with-overlay",
+      "blocks": {
+        "1663349653bbf39c4c-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_16.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/80-off",
+            "link-text": "SHOP"
+          }
+        },
+        "1663349653bbf39c4c-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_13.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/70-off",
+            "link-text": "SHOP"
+          }
+        },
+        "1663349653bbf39c4c-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_10.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/60-off",
+            "link-text": "SHOP"
+          }
+        },
+        "1663349653bbf39c4c-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_15.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/50-off",
+            "link-text": "SHOP"
+          }
+        },
+        "98b54b4d-8236-4f78-8ace-7fd5c4986328": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/My_project_copy-1_11.png",
+            "wide": false,
+            "tall": false,
+            "retain-ratio": false,
+            "title": "",
+            "link-url": "shopify:\/\/collections\/40-off",
+            "link-text": "SHOP"
+          }
+        }
+      },
+      "block_order": [
+        "1663349653bbf39c4c-0",
+        "1663349653bbf39c4c-1",
+        "1663349653bbf39c4c-2",
+        "1663349653bbf39c4c-3",
+        "98b54b4d-8236-4f78-8ace-7fd5c4986328"
+      ],
+      "settings": {
+        "text-style": "hover",
+        "background-color": "none",
+        "light-text": false,
+        "mobile-overlay": true,
+        "container-width": 6,
+        "spacing": false,
+        "spacing-above": true,
+        "spacing-below": true,
+        "width": 2,
+        "mobile-width": "2",
+        "heading": "NEW YEAR SALE",
+        "subtitle": "New markdowns just added, save up to 90% off MSRP!",
+        "link-url": "",
+        "link-text": ""
       }
     },
     "1642100983e6a55fd9": {
@@ -900,11 +900,11 @@
   },
   "order": [
     "1660069364d78f178e",
-    "1663349653ec666f15",
     "16600699028b851273",
     "1663280613f3192a7f",
     "slideshow",
     "featured-collection-grid",
+    "1663349653ec666f15",
     "1642100983e6a55fd9",
     "featured-collection-slider",
     "grid-with-overlay",
