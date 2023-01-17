@@ -27,6 +27,27 @@
     "16600699028b851273": {
       "type": "slideshow",
       "blocks": {
+        "16600699028cc1bb1c-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/VERLOOP-QuiltBlock-Throw-Slippers.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "FROM VERLOOP",
+            "timer_enabled": false,
+            "new_start_date": "2022-02-15T08:00:00Z",
+            "new_end_date": "2022-02-17T08:00:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "Cozy updates",
+            "description": "<p>Slippers, scarves, blankets and more! Everything you need for a cozy night at home.<\/p>",
+            "link-url": "shopify:\/\/collections\/verloop",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e3c4e8",
+            "link-text-hover-color": "#e0f14e"
+          }
+        },
         "16600699028cc1bb1c-3": {
           "type": "image",
           "settings": {
@@ -46,27 +67,6 @@
             "make-klaviyo-form": false,
             "link-text-color": "#e0f14e",
             "link-text-hover-color": "#e3c4e8"
-          }
-        },
-        "16600699028cc1bb1c-0": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/JYI-34_1200x_afc1b8ee-7640-4e86-9546-77377106d3a1.webp",
-            "text-position": "bottom-left",
-            "text-width": "medium",
-            "overline": "HOME REFRESH",
-            "timer_enabled": false,
-            "new_start_date": "2022-02-15T08:00:00Z",
-            "new_end_date": "2022-02-17T08:00:00Z",
-            "timer_label_color": "#3473e5",
-            "timer_label_text_color": "#ffffff",
-            "title": "Cozy updates",
-            "description": "<p>Shop our assortment of must-haves for your home.<\/p>",
-            "link-url": "shopify:\/\/collections\/living",
-            "link-text": "Shop Now",
-            "make-klaviyo-form": false,
-            "link-text-color": "#e3c4e8",
-            "link-text-hover-color": "#e0f14e"
           }
         },
         "16600699028cc1bb1c-2": {
@@ -113,8 +113,8 @@
         }
       },
       "block_order": [
-        "16600699028cc1bb1c-3",
         "16600699028cc1bb1c-0",
+        "16600699028cc1bb1c-3",
         "16600699028cc1bb1c-2",
         "16600699028cc1bb1c-1"
       ],
