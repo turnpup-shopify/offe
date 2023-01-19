@@ -3,16 +3,27 @@
     "navigation": {
       "type": "search--navigation",
       "settings": {
+        "show-sort-button": true,
+        "show-refine-button": true,
+        "show-layout-buttons": true,
+        "show-sort-list": true,
+        "show-refine-list": true,
+        "swatches-enabled": false,
+        "show-search-link": true
       }
     },
     "main": {
       "type": "search-results",
       "settings": {
+        "products-per-row--desktop": 4,
+        "products-per-row--mobile": "1",
+        "number-of-rows": 4,
+        "aspect-ratio": "landscape"
       }
     }
   },
   "order": [
-    "main",
-    "navigation"
+    "navigation",
+    "main"
   ]
 }
