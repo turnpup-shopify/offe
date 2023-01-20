@@ -65,6 +65,9 @@
 
 
     <link href="{{ "theme--critical.css" | asset_url }}" rel="stylesheet" media="all">
+    {% comment %} START - CUSTOM CSS - FLWR {% endcomment %}
+    <link rel="preload" href="{{ "offe--custom.css" | asset_url }}" as="style">
+    {% comment %} END - CUSTOM CSS - FLWR {% endcomment %}
     <link
       href="{{ "theme--async.css" | asset_url }}"
       rel="stylesheet"

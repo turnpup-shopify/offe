@@ -226,6 +226,15 @@
 
 <!-- TURNPUP ADD STYLING -->
 <style>  
+  .offe-custom-collection-marketing-tile-image[data-darken-mobile=true]::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
   .custom-featured-{{ block_id }} button.{{title|remove:" "}} {
     background-color: transparent !important;
     color: {{ link_url_color }} !important;
