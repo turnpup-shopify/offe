@@ -77,6 +77,28 @@
     "16600699028b851273": {
       "type": "slideshow",
       "blocks": {
+        "16600699028cc1bb1c-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/mixed-pattern-2_1200x_a13b3d73-4f3c-498f-83c0-bebeff277be7.jpg",
+            "mobile-image": "shopify:\/\/shop_images\/mixed-pattern-2_1200x_a13b3d73-4f3c-498f-83c0-bebeff277be7.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "NEW IN!",
+            "timer_enabled": true,
+            "new_start_date": "2023-01-23T08:00:00Z",
+            "new_end_date": "2023-01-29T08:00:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "Dusen Dusen",
+            "description": "<p>35% off bedding, towels, and bathrobes in one-of-a-kind bold, original prints<\/p>",
+            "link-url": "shopify:\/\/collections\/dusen-dusen",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e0f14e",
+            "link-text-hover-color": "#e3c4e8"
+          }
+        },
         "16600699028cc1bb1c-0": {
           "type": "image",
           "settings": {
@@ -96,27 +118,6 @@
             "make-klaviyo-form": false,
             "link-text-color": "#e3c4e8",
             "link-text-hover-color": "#e0f14e"
-          }
-        },
-        "16600699028cc1bb1c-3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/PhotoJul13_15753PM_d1939a85-bcf8-4349-8297-d53a6831959f.jpg",
-            "text-position": "bottom-left",
-            "text-width": "medium",
-            "overline": "NEW IN!",
-            "timer_enabled": false,
-            "new_start_date": "2022-11-14T08:00:00Z",
-            "new_end_date": "2022-11-21T08:00:00Z",
-            "timer_label_color": "#e3c4e8",
-            "timer_label_text_color": "#ffffff",
-            "title": "DONNI.",
-            "description": "<p>30-60% off our favorite made-in-LA essentials.<\/p>",
-            "link-url": "shopify:\/\/collections\/donni",
-            "link-text": "Shop Now",
-            "make-klaviyo-form": false,
-            "link-text-color": "#e0f14e",
-            "link-text-hover-color": "#e3c4e8"
           }
         },
         "16600699028cc1bb1c-2": {
@@ -163,8 +164,8 @@
         }
       },
       "block_order": [
-        "16600699028cc1bb1c-0",
         "16600699028cc1bb1c-3",
+        "16600699028cc1bb1c-0",
         "16600699028cc1bb1c-2",
         "16600699028cc1bb1c-1"
       ],
