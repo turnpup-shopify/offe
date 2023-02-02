@@ -25,6 +25,22 @@
         "link-text": "SEE WHAT'S NEW"
       }
     },
+    "8fe184f3-85f9-4553-b0ad-ae99f8c705a3": {
+      "type": "featured-video",
+      "settings": {
+        "video-url": "https:\/\/vimeo.com\/795072187",
+        "image": "shopify:\/\/shop_images\/JYI-7.jpg",
+        "full-width": true,
+        "background-color": "light",
+        "section-height": "small",
+        "light-text": true,
+        "darken-video": true,
+        "heading": "Join us on set!",
+        "sub-heading": "We're shooting new arrivals and showing some BTS.",
+        "button-text": "Follow us on TikTok",
+        "button-url": "https:\/\/tiktok.com\/@offemarket"
+      }
+    },
     "1660069364d78f178e": {
       "type": "image-with-text",
       "settings": {
@@ -366,6 +382,7 @@
     },
     "1663349653ec666f15": {
       "type": "grid-with-overlay",
+      "disabled": true,
       "blocks": {
         "1663349653bbf39c4c-0": {
           "type": "image",
@@ -928,6 +945,7 @@
   },
   "order": [
     "1663280613f3192a7f",
+    "8fe184f3-85f9-4553-b0ad-ae99f8c705a3",
     "1660069364d78f178e",
     "8da8ca36-e6dd-45f4-9d26-12c1dee3ec42",
     "16600699028b851273",
