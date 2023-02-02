@@ -28,13 +28,13 @@
     "8fe184f3-85f9-4553-b0ad-ae99f8c705a3": {
       "type": "featured-video",
       "settings": {
-        "video-url": "https:\/\/vimeo.com\/795072187",
+        "video-url": "https:\/\/vimeo.com\/795074322",
         "image": "shopify:\/\/shop_images\/JYI-7.jpg",
         "full-width": true,
         "background-color": "light",
         "section-height": "small",
         "light-text": true,
-        "darken-video": true,
+        "darken-video": false,
         "heading": "Join us on set!",
         "sub-heading": "We're shooting new arrivals and showing some BTS.",
         "button-text": "Follow us on TikTok",
