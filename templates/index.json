@@ -94,29 +94,6 @@
     "16600699028b851273": {
       "type": "slideshow",
       "blocks": {
-        "16600699028cc1bb1c-3": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify:\/\/shop_images\/mixed-pattern-2_1200x_a13b3d73-4f3c-498f-83c0-bebeff277be7.jpg",
-            "mobile-image": "shopify:\/\/shop_images\/mixed-pattern-2_1200x_a13b3d73-4f3c-498f-83c0-bebeff277be7.jpg",
-            "text-position": "bottom-left",
-            "text-width": "medium",
-            "overline": "NEW IN!",
-            "timer_enabled": true,
-            "new_start_date": "2023-01-23T08:00:00Z",
-            "new_end_date": "2023-01-29T08:00:00Z",
-            "timer_label_color": "#3473e5",
-            "timer_label_text_color": "#ffffff",
-            "title": "Dusen Dusen",
-            "description": "<p>35% off bedding, towels, and bathrobes in one-of-a-kind bold, original prints<\/p>",
-            "link-url": "shopify:\/\/collections\/dusen-dusen",
-            "link-text": "Shop Now",
-            "make-klaviyo-form": false,
-            "link-text-color": "#e0f14e",
-            "link-text-hover-color": "#e3c4e8"
-          }
-        },
         "16600699028cc1bb1c-0": {
           "type": "image",
           "settings": {
@@ -129,13 +106,35 @@
             "new_end_date": "2022-02-17T08:00:00Z",
             "timer_label_color": "#3473e5",
             "timer_label_text_color": "#ffffff",
-            "title": "New in",
+            "title": "",
             "description": "<p>We've got bags on bags on bags. Plus some hats, homewares, and other signature Baggu items.<\/p>",
             "link-url": "shopify:\/\/collections\/baggu",
             "link-text": "Shop Now",
             "make-klaviyo-form": false,
             "link-text-color": "#e3c4e8",
             "link-text-hover-color": "#e0f14e"
+          }
+        },
+        "16600699028cc1bb1c-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/18482422_2fbbfe10-fbfe-4012-95d1-e9c48f7b8217.jpg",
+            "mobile-image": "shopify:\/\/shop_images\/18482422_2fbbfe10-fbfe-4012-95d1-e9c48f7b8217.jpg",
+            "text-position": "bottom-left",
+            "text-width": "medium",
+            "overline": "TRENDING SHOES",
+            "timer_enabled": false,
+            "new_start_date": "2023-01-23T08:00:00Z",
+            "new_end_date": "2023-01-29T08:00:00Z",
+            "timer_label_color": "#3473e5",
+            "timer_label_text_color": "#ffffff",
+            "title": "",
+            "description": "<p>Add the final touch to any outfit with these perfect pairs.<\/p>",
+            "link-url": "shopify:\/\/collections\/shoes",
+            "link-text": "Shop Now",
+            "make-klaviyo-form": false,
+            "link-text-color": "#e0f14e",
+            "link-text-hover-color": "#e3c4e8"
           }
         },
         "16600699028cc1bb1c-2": {
@@ -150,8 +149,8 @@
             "new_end_date": "2022-02-17T08:00:00Z",
             "timer_label_color": "#3473e5",
             "timer_label_text_color": "#ffffff",
-            "title": "Winter's not over yet.",
-            "description": "<p>Shop our assortment of the coziest loungewear, slippers, and other cold-weather essentials.<\/p>",
+            "title": "",
+            "description": "<p>Winter's not over yet, shop lounge wear, slippers, and other cold-weather essentials.<\/p>",
             "link-url": "shopify:\/\/collections\/the-cozy-shop",
             "link-text": "Shop Now",
             "make-klaviyo-form": false,
@@ -161,20 +160,19 @@
         },
         "16600699028cc1bb1c-1": {
           "type": "image",
-          "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/light_leak-2.jpg",
+            "image": "shopify:\/\/shop_images\/JYI-58.jpg",
             "text-position": "bottom-left",
             "text-width": "medium",
-            "overline": "BEST SELLERS",
+            "overline": "Dresses",
             "timer_enabled": false,
             "new_start_date": "2022-02-15T08:00:00Z",
             "new_end_date": "2022-02-17T08:00:00Z",
             "timer_label_color": "#3473e5",
             "timer_label_text_color": "#ffffff",
-            "title": "The best of the best",
-            "description": "<p>See what our customers are loving.<\/p>",
-            "link-url": "shopify:\/\/collections\/best-sellers",
+            "title": "",
+            "description": "<p>See why it's our best-selling category.<\/p>",
+            "link-url": "shopify:\/\/collections\/dresses",
             "link-text": "Shop Now",
             "make-klaviyo-form": false,
             "link-text-color": "#e0f14e",
@@ -183,8 +181,8 @@
         }
       },
       "block_order": [
-        "16600699028cc1bb1c-3",
         "16600699028cc1bb1c-0",
+        "16600699028cc1bb1c-3",
         "16600699028cc1bb1c-2",
         "16600699028cc1bb1c-1"
       ],
