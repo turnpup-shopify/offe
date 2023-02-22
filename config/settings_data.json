@@ -474,6 +474,12 @@
           "random": false,
           "with_photos": false
         }
+      },
+      "3868388246157625423": {
+        "type": "shopify:\/\/apps\/stamped-loyalty-referrals\/blocks\/rewards-launcher\/1dca3c9b-31b1-4bfb-a09a-c23c1a3c8fb6",
+        "disabled": false,
+        "settings": {
+        }
       }
     }
   },
