@@ -129,10 +129,6 @@
           <h2 class="product-page--heading" data-item="section-heading">
             {{- product.title -}}
           </h2>
-
-<!-- Stamped - Begin badge -->
-<span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" data-product-title="{{ product.title | escape }}" data-product-type="{{ product.type }}" style="display: block; margin-top: 15px;">{{ product.metafields.stamped.badge }}</span>
-<!-- Stamped - End badge -->
       
       {% assign timer_label_text_color = product.metafields['header']['timer_label_text_color'] | default: "#000000" %}
         <div style="display:none;" class="timer_label_text_color"> {{ timer_label_text_color }} </div>
